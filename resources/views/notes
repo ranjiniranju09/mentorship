@@ -1,0 +1,44 @@
+Mentors
+
+1) registration - login (name, email , mobile , skills , languages) -> register through link . : Email verification for registration.- DONE
+2) Dashboard ( stud profile card , notice board with upcoming session,)
+3) Assigned student profile view on mentor dashboard. 
+4) Fields to add modules and its assignments.
+5)Feature to host session : Select Date,Time,Module,Add Session Link: 
+6)Feature to add video recording for the session.
+7) space to see the tracking record of students . (completed modules, assignment).
+8) alert message for upcoming session and other meeting. (in mail,sms or popup in dashboard)
+9) feedback section or mail after every session completion.
+
+
+Mentee
+
+1) Registration - login (name, email, mobile, skills, instrested skills) - DONE
+2) dashboard (modules card, notice board with deadlines, upcoming session)
+3) modules card -> no of modules with its assignments , deadline to complete each moduels)
+4) section to ask doubts or raise a ticket . 
+5) section to notedown module notes in each modules (optional).
+6) Alert msg for deadlines , upcoming session (in mail,sms or popup in dashboard)
+7) Achievement section of attending modules .
+
+
+Admin
+
+1) store & details of mentors and mentees registered . - DONE
+2) select students and assign to mentors (randomly). View the list of unmapped mentee or mentor
+3) send registration link to selected students and mentors. 
+4)Ability to host group sessions others .
+5)Add Modules,Add Resource Bank,Add MCQ. 
+6)Set up survey question. View Survey Responses
+8)Master Dashboard for seeing all the details
+
+
+username ranjini.forstu@gmail.com
+ranjini@123
+
+others 
+
+chat section.
+motivation msg to encourage students.
+section for new tech news related to their interesting fields. 
+
