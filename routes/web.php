@@ -1,6 +1,18 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Events\MessageSent;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\ChatController;
+use Illuminate\Support\Facades\Broadcast;
+use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\ModuleController;
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +25,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 
-Route::match(['get', 'post'], '/mentees', 'App\Http\Controllers\MenteeController@menteedash')->name('mentees');
+Broadcast::routes(['middleware' => ['auth:sanctum']]);
+
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/test-email', function () {
+    Mail::raw('This is a test email', function ($message) {
+        $message->to('rahul@forstu.co')  // Change to your email
+                ->subject('Test Email');
+    });
+
+    return 'Test email sent';
+});
+
+
+Route::match(['get', 'post'], '/mentees/{menteeId}', 'App\Http\Controllers\MenteeController@menteedash')->name('mentees');
 
 Route::match(['get', 'post'], '/login', 'App\Http\Controllers\LoginRegController@login')->name('login');
 
@@ -38,7 +62,7 @@ Route::match(['get','post'],'/logged','App\Http\Controllers\LoginRegController@s
 
 Route::match(['get','post'],'/session/{mentorId]','App\Http\Controllers\SessionController@session')->name('session');
 
-Route::match(['get','post'],'/mentor','App\Http\Controllers\MentorController@mentor')->name('mentor');
+Route::match(['get','post'],'/mentor/{mentorId}','App\Http\Controllers\MentorController@mentor')->name('mentor');
 
 
 Route::match(['get','post'],'/sessionstore','App\Http\Controllers\SessionController@sessionstore')->name('sessionstore');
@@ -65,6 +89,63 @@ Route::match(['get','post'],'/storefeedback/{id}','App\Http\Controllers\SessionC
 
 Route::match(['get','post'],'/MarkAttendance/{id}','App\Http\Controllers\SessionController@MarkAttendance')->name('MarkAttendance');
 
-Route::match(['get','post'],'/ShowTask','App\Http\Controllers\TasksController@ShowTask')->name('ShowTask');
+Route::match(['get','post'],'/ShowTask/{mentorId}','App\Http\Controllers\TasksController@ShowTask')->name('ShowTask');
 
 Route::match(['get','post'],'/StoreTask/{mentorId}','App\Http\Controllers\TasksController@StoreTask')->name('StoreTask');
+
+//view chat blade
+Route::match(['get','post'],'/showchat','App\Http\Controllers\ChatController@showchat')->name('showchat');
+
+// Route::match(['get','post'],'/fetchMessages','App\Http\Controllers\ChatController@fetchMessages')->name('fetchMessages');
+
+// Route::match(['get','post'],'/messages','App\Http\Controllers\ChatController@sendMessage')->name('sendMessage');
+
+Route::post('/send-message',function(\Illuminate\Http\Request $request){
+    $message = $request->message;
+    $name = $request ->name;
+    event(new MessageSent($message,$name));
+    return response()->json(['status'=>'success']);
+});
+
+// View chat blade
+// Route::get('/showchat', [ChatController::class, 'showchat'])->name('showchat');
+// Route::get('/fetchMessages', [ChatController::class, 'fetchMessages'])->name('fetchMessages');
+// Route::post('/messages', [ChatController::class, 'sendMessage'])->name('sendMessage');
+
+// routes/web.php
+
+// Routes for creating and storing resources (accessible by mentors)
+Route::match(['get', 'post'], '/resources/{mentorId}', 'App\Http\Controllers\ResourceController@show')->name('resources');
+Route::match(['get', 'post'], '/storeresources/{mentorId}', 'App\Http\Controllers\ResourceController@store')->name('storeresources');
+
+// Route for displaying pending resources (accessible by admins)
+Route::get('/pending', 'App\Http\Controllers\ResourceController@pending')->name('pending');
+
+// Route for approving resources (accessible by admins)
+Route::post('/approve/{id}', 'App\Http\Controllers\ResourceController@approve')->name('approve');
+
+
+
+Route::match(['get','post'],'/viewmenteeresources/{menteeId}','App\Http\Controllers\ResourceController@viewmenteeresources')->name('viewmenteeresources');
+
+Route::get('/menteeresources/{mentee_id}','App\Http\Controllers\ResourceController@menteeResources')->name('menteeresources');
+
+
+Route::match(['get','post'],'/viewjobs/{mentorId}','App\Http\Controllers\JobController@view')->name('viewjobs');
+
+Route::match(['get','post'],'/storejobs/{mentorId}','App\Http\Controllers\JobController@store')->name('storejobs');
+
+Route::match(['get','post'],'/jobs/{mentorId}','App\Http\Controllers\JobController@jobs')->name('jobs');
+
+Route::match(['get','post'],'/adminjobstore','App\Http\Controllers\JobController@adminjobstore')->name('adminjobstore');
+
+Route::match(['get','post'],'/adminjobs','App\Http\Controllers\JobController@adminjobs')->name('adminjobs');
+
+Route::match(['get','post'],'/modules/{mentorId}','App\Http\Controllers\ModulesController@modules')->name('modules');
+
+Route::match(['get','post'],'/chapters','App\Http\Controllers\ModulesController@chapters')->name('chapters');
+
+Route::match(['get','post'],'/chapterscontent','App\Http\Controllers\ModulesController@chapterscontent')->name('chapterscontent');
+
+
+Route::match(['get','post'],'/quiz','App\Http\Controllers\ModulesController@quiz')->name('quiz');

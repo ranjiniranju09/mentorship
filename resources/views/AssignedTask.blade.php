@@ -44,7 +44,7 @@
             <a href="#" class="nav-link">Profile</a>
           </li>
           <li class="nav-item">
-            <a href="{{route('mentor')}}" class="nav-link">Dashboard</a>
+            <a href="{{route('mentor',['mentorId' => $mentorId])}}" class="nav-link">Dashboard</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Scholarships</a>

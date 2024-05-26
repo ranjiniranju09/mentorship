@@ -10,17 +10,18 @@ use App\Models\Tasks;
 
 class TasksController extends Controller
 {
-    public function ShowTask()
+    public function ShowTask($mentorId)
     {
     
         // Retrieve the task by its ID using SQL query builder
         $task = DB::table('tasks')->get();
     
-        return view('AssignedTask');
+        return view('AssignedTask',compact('mentorId'));
        
     }
     public function StoreTask(Request $request, $mentorId)
     {
+        
         $task = DB::table('tasks')->get();
 
         if ($request->hasFile('file')) {

@@ -38,13 +38,13 @@
         </a>
         <ul class="nav flex-column mb-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">Home</a>
+            <a href="#" class="nav-link " aria-current="page">Home</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Profile</a>
           </li>
           <li class="nav-item">
-            <a href="{{route('mentor')}}" class="nav-link">Dashboard</a>
+            <a href="{{route('mentor',['mentorId' => $mentorId])}}" class="nav-link active ">Dashboard</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Scholarships</a>
@@ -53,23 +53,50 @@
             <a href="#" class="nav-link">Mentorship</a>
           </li>
           <li class="nav-item">
-            <a href="{{route('session')}}" class="nav-link " aria-current="page">
+            <a href="{{route('showchat')}}" class="nav-link">Chat Room</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('session',['mentorId' => $mentorId])}}" class="nav-link " aria-current="page">
               Add session
             </a>
           </li>
           <li class="nav-item">
-          <a href="{{ route('ShowTask') }}" class="nav-link active" aria-current="page">
+          <a href="{{ route('ShowTask',['mentorId' => $mentorId]) }}" class="nav-link " aria-current="page">
               Assign Task
             </a>
           </li>
+          <li class="nav-item">
+          <a href="{{ route('resources',['mentorId' => $mentorId]) }}" class="nav-link " aria-current="page">
+              Add Resources
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('jobs',['mentorId' => $mentorId]) }}" class="nav-link">Add Job</a> 
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('viewjobs',['mentorId' => $mentorId]) }}" class="nav-link">Job List</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('modules',['mentorId' => $mentorId]) }}" class="nav-link">Modules</a>
+        </li>
         </ul>
         <a class="d-flex align-items-center text-white text-decoration-none" href="{{route('login')}}">Sign out</a>
       </div>
     </div>
-     
+
     <!-- Content (Right side) -->
+
+    
     <div class="col-md-9">
       <div class="content">
+         <!-- Success and Error message alerts -->
+         @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+
           <!-- Notice Board -->
             <div class="notice-board">
               <h3 class="mb-4">Notice Board</h3>

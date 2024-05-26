@@ -132,6 +132,16 @@
               Add session
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('pending')}}" class="nav-link " aria-current="page">
+              View Resources
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('adminjobs')}}" class="nav-link " aria-current="page">
+              Add Jobs
+            </a>
+          </li>
         </ul>
         <a class="d-flex align-items-center text-white text-decoration-none" href="{{route('login')}}">Sign out</a>
       </div>
@@ -141,6 +151,15 @@
     <div class="col-md-9">
       <div class="content">
         <br>
+
+         <!-- Success and Error message alerts -->
+         @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+
           <!-- Table to display sessions -->
           <h4>Mentor-Mentee Mappings</h4>
           <table class="table mt-4">

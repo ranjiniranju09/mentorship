@@ -1,4 +1,3 @@
-<!-- map.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,24 +158,27 @@
             
             <div class="form-group">
                 <label for="mentor_id" style="padding: 5px;">Select Mentor:</label>
-
-                    <select class="form-control" id="mentor_id" name="mentor_id">
-                    <option value="Select Mentor here">--Select Mentor Here--</option>
-                        @foreach($mentors as $mentor)
-                            <option value="{{ $mentor->id }}">{{ $mentor->name }}</option>
-                        @endforeach
-                    </select>
+                <select class="form-control" id="mentor_id" name="mentor_id">
+                    <option value="">--Select Mentor Here--</option>
+                    @foreach($mentors as $mentor)
+                        <option value="{{ $mentor->id }}" {{ $mentor->is_mapped ? 'disabled' : '' }}>
+                            {{ $mentor->name }} {{ $mentor->is_mapped ? '(Already Mapped)' : '' }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="mentee_id" style="padding: 5px;">Select Mentee:</label>
-                    <select class="form-control" id="mentee_id" name="mentee_id">
-                    <option value="Select Mentee here">--Select Mentee Here--</option>
-                        @foreach($mentees as $mentee)
-                            <option value="{{ $mentee->id }}">{{ $mentee->name }}</option>
-                        @endforeach
-                    </select>            
+                <select class="form-control" id="mentee_id" name="mentee_id">
+                    <option value="">--Select Mentee Here--</option>
+                    @foreach($mentees as $mentee)
+                        <option value="{{ $mentee->id }}" {{ $mentee->is_mapped ? 'disabled' : '' }}>
+                            {{ $mentee->name }} {{ $mentee->is_mapped ? '(Already Mapped)' : '' }}
+                        </option>
+                    @endforeach
+                </select>            
             </div>
-</br>
+            <br>
             <button type="submit" class="btn btn-primary">Map</button>
         </form>
       </div>
@@ -187,19 +189,5 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- JavaScript code for popup message -->
-<!-- <script>
-  // Check if a success or error message exists in the session
-  var successMessage = "{{ session('success') }}";
-  var errorMessage = "{{ session('error') }}";
-  if (successMessage) {
-    alert(successMessage); // Display a popup message if success message exists
-  }
-  if (errorMessage) {
-    alert(errorMessage); // Display a popup message if error message exists
-  }
-</script> -->
-
 </body>
 </html>
-   

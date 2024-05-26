@@ -14,6 +14,4 @@ class Mentor extends Model
     {
         return $this->hasOne(MentorMenteeMap::class, 'mentor_id');
     }
-    // Define a scope for past sessions
-  
 }

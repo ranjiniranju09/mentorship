@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Session;
-use Illuminate\Support\Facades\DB;
+use App\Models\User; // Ensure the User model is imported
+use Illuminate\Support\Facades\DB; // Ensure the DB facade is imported
+use Illuminate\Support\Facades\Mail; // Ensure the Mail facade is imported
+use App\Mail\Sessionmail; // Ensure the Sessionmail is imported
 
 class SessionController extends Controller
 {
     public function session(Request $request)
     {
-        $mentorId = $request->input('mentorId');
-        
         $loggedInMentorId = $request->input('mentorId');
     
         // Retrieve sessions belonging to the logged-in mentor
@@ -27,33 +28,38 @@ class SessionController extends Controller
         return view('sessions', compact('sessions', 'pastSessions', 'upcomingSessions', 'loggedInMentorId'));
     }
     
-
     public function sessionstore(Request $request)
-{
-    // Retrieve mentorId from session
-    $mentorId = session('mentor_id');
+    {
+        // Retrieve mentorId from session
+        $mentorId = session('mentor_id');
 
-    // Insert session into the database
-    $session = DB::table('sessions')->insertGetId([
-        'mentorId' => $mentorId,
-        'name' => $request->input('name'),
-        'date' => $request->input('date'),
-        'status' => 'open',
-        'start_time' => $request->input('start_time'),
-        'end_time' => $request->input('end_time'),
-        'slink' => $request->input('slink'),
-        'created_at' => now(),
-        'updated_at' => now(),
-    ]);
+        // Insert session into the database
+        $session = DB::table('sessions')->insertGetId([
+            'mentorId' => $mentorId,
+            'name' => $request->input('name'),
+            'date' => $request->input('date'),
+            'status' => 'open',
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+            'slink' => $request->input('slink'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-    // Retrieve all sessions (optional)
-    $sessions = DB::table('sessions')->get();
+        // Retrieve the newly created session
+        $newSession = Session::find($session);
 
-    // Redirect or return view with sessions data
-    // For example, you can redirect back to the sessions page
-    return redirect()->route('session')->with('success', 'Session added successfully.');
-}
+        // Get the mentees mapped to this mentor
+        $mentees = User::where('mentor_id', $mentorId)->get();
 
+        // Send email notification to each mentee
+        foreach ($mentees as $mentee) {
+            Mail::to($mentee->email)->send(new Sessionmail($newSession));
+        }
+
+        // Redirect or return view with sessions data
+        return redirect()->route('session')->with('success', 'Session added successfully.');
+    }
 
     public function sessionupdate(Request $request, $id)
     {
@@ -98,12 +104,11 @@ class SessionController extends Controller
     }
 
     public function feedbackshow($id)
-
     {
         // Assuming you have a feedback form route and view set up
         $sessions = DB::table('sessions')->where('id', $id)->first();
 
-        return view('sessionfeedback',compact('sessions'));
+        return view('sessionfeedback', compact('sessions'));
     }
 
     public function storefeedback(Request $request, $id)
@@ -124,7 +129,6 @@ class SessionController extends Controller
         $feedbackInserted = DB::table('feedback')->insert([
             'feedback' => $request->input('feedback'),
             'rating' => $request->input('rating'),
-          
         ]);
     
         if ($feedbackInserted) {
@@ -137,21 +141,21 @@ class SessionController extends Controller
     }
 
     public function markAttendance($id)
-{
-    // Retrieve the session by its ID
-    $session = Session::find($id);
+    {
+        // Retrieve the session by its ID
+        $session = Session::find($id);
 
-    // Check if the session exists
-    if (!$session) {
-        return redirect()->back()->with('error', 'Session not found.'); // Redirect back with an error message
+        // Check if the session exists
+        if (!$session) {
+            return redirect()->back()->with('error', 'Session not found.'); // Redirect back with an error message
+        }
+
+        // Mark the session as attended by updating the 'attendance' column
+        $session->attendance = true;
+
+        // Save the changes to the session
+        $session->save();
+
+        return redirect()->back()->with('success', 'Attendance marked successfully.'); // Redirect back with a success message
     }
-
-    // Mark the session as attended by updating the 'attendance' column
-    $session->attendance = true;
-
-    // Save the changes to the session
-    $session->save();
-
-    return redirect()->back()->with('success', 'Attendance marked successfully.'); // Redirect back with a success message
-}
 }

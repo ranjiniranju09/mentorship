@@ -161,7 +161,7 @@ class LoginRegController extends Controller
                         ->whereDate('date', '>=', now())
                         ->get();
 
-                    return view('mentees', compact('pastSessions', 'upcomingSessions', 'assignedMentor1','assignedSession'));
+                    return view('mentees', compact('pastSessions', 'upcomingSessions', 'assignedMentor1','assignedSession','menteeId'));
                     
                 } elseif ($user->role === 'admin') {
                     $mappingData = DB::table('mentor_mentee_map')

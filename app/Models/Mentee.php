@@ -10,7 +10,7 @@ class Mentee extends Model
     protected $fillable = ['name', 'email', 'password']; // Add other fields as needed
 
     // Define relationship with MentorMenteeMap
-    public function mentorMap()
+    public function menteeMap()
     {
         return $this->hasOne(MentorMenteeMap::class, 'mentee_id');
     }

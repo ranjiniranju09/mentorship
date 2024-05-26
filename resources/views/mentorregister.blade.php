@@ -71,6 +71,12 @@
         <form id="registrationForm" action="{{route('registermentor')}}" method="POST">
             @csrf
             
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
          
                 <div class="form-group">
                     <label for="name">Full Name</label>
@@ -119,6 +125,8 @@
             
         </form>
     </div>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   
 </body>

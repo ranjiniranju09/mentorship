@@ -12,11 +12,17 @@ class MenteeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function menteedash()
+    public function menteedash(Request $request)
     {
+        // Get the logged-in mentee's ID
+        $menteeId = $request->user()->id;
 
-        return view('mentees');
+        // Find the mentor assigned to the mentee
+        $mentorMap = MentorMenteeMap::where('mentee_id', $menteeId)->first();
+        // Pass data to the view
+        return view('mentees', ['menteeId' => $menteeId]);
     }
+    
 
     public function showAssignedMentor(Request $request)
     {
