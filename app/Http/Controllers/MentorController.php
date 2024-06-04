@@ -11,4 +11,10 @@ class MentorController extends Controller
     {
         return view('mentor');
     }
+
+    public function dashboardmentor()
+    {
+        return view('dashboardmentor');
+    }
+
 }

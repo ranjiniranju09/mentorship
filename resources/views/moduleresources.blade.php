@@ -270,14 +270,6 @@
         .resource-link:hover {
             text-decoration: underline;
         }
-        /* Ticket Table */
-        .ticket-table th, .ticket-table td {
-            text-align: center;
-            vertical-align: middle;
-        }
-        .ticket-table .btn {
-            margin: 0 2px;
-        }
     </style>
 </head>
 <body>
@@ -294,7 +286,7 @@
             <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
             <a href="{{route('taskmentee')}}"><i class="fas fa-tasks card-icon"></i>&nbsp; Task</a>
             <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
-            <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
+            <a href="{{route('menteeticket')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
             <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
             <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
         </div>
@@ -323,52 +315,30 @@
                         <p>Top Performer - Mean Score: 192</p>
                     </div>
                     <hr>
-                    <!-- Ticket Table Section -->
-                    <div class="ticket-table-section">
-                        <h4>Ticket Details</h4>
-                        <table class="table table-bordered ticket-table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Ticket No</th>
-                                    <th>User ID</th>
-                                    <th>Category</th>
-                                    <th>Query</th>
-                                    <th>Status</th>
-                                    <th>Response</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>12345</td>
-                                    <td>67890</td>
-                                    <td>Technical</td>
-                                    <td>How to reset password?</td>
-                                    <td>Open</td>
-                                    <td>We are looking into it.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-success btn-sm">Resolve</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>54321</td>
-                                    <td>09876</td>
-                                    <td>Billing</td>
-                                    <td>Incorrect invoice</td>
-                                    <td>Closed</td>
-                                    <td>Issue resolved.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-danger btn-sm">Reopen</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- Resource List Section -->
+                    <div class="resources-list">
+                        <h4>General Resources</h4>
+                        <hr>
+                        <div class="resource-item">
+                        <div class="resource-title">Simple Weather Application Project</div>
+                        <div class="resource-description">Objective for Simple Weather Application Project.</div>
+                            <a href="{{route('displaymoduleresources')}}" class="resource-link">View Resource</a>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">Interactive To-Do List Project</div>
+                            <div class="resource-description">Objective for Interactive To-Do List Project.</div>
+                            <a href="#" class="resource-link">View Resource</a>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">JavaScript Projects</div>
+                            <div class="resource-description">Hands-on projects to practice JavaScript skills.</div>
+                            <a href="#" class="resource-link">View Resource</a>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">Web Development Tools</div>
+                            <div class="resource-description">Essential tools for modern web development.</div>
+                            <a href="#" class="resource-link">View Resource</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -378,6 +348,19 @@
                             <span class="notification-event">Mentor name: Rahul Parakh</span>
                         </div>
                     </div>
+                    <div class="notifications">
+                        <h4>Notifications</h4>
+                        <hr>
+                        <div class="notification-item">
+                            <span class="notification-time">10:00</span>
+                            <span class="notification-event">Assignment due</span>
+                        </div>
+                        <div class="notification-item">
+                            <span class="notification-time">13:00</span>
+                            <span class="notification-event">New lecture available</span>
+                        </div>
+                    </div>
+                    
                     
                 </div>
             </div>
@@ -392,6 +375,6 @@
     <!-- FullCalendar JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-  
+    
 </body>
 </html>

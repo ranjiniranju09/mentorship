@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modules</title>
+    <title>Resources</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -270,20 +270,26 @@
         .resource-link:hover {
             text-decoration: underline;
         }
-        /* Ticket Table */
-        .ticket-table th, .ticket-table td {
-            text-align: center;
-            vertical-align: middle;
+        .read-btn {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+            transition: background-color 0.3s;
         }
-        .ticket-table .btn {
-            margin: 0 2px;
+        .read-btn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="sidebar">
-            <a href="{{route('dashboardmentee')}}">
+            <a href="#">
                 <span class="icon">
                     <i class="fa-solid fa-circle-user fa-2xl"></i> &nbsp;
                 </span> 
@@ -294,7 +300,7 @@
             <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
             <a href="{{route('taskmentee')}}"><i class="fas fa-tasks card-icon"></i>&nbsp; Task</a>
             <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
-            <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
+            <a href="{{route('menteeticket')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
             <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
             <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
         </div>
@@ -323,52 +329,20 @@
                         <p>Top Performer - Mean Score: 192</p>
                     </div>
                     <hr>
-                    <!-- Ticket Table Section -->
-                    <div class="ticket-table-section">
-                        <h4>Ticket Details</h4>
-                        <table class="table table-bordered ticket-table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Ticket No</th>
-                                    <th>User ID</th>
-                                    <th>Category</th>
-                                    <th>Query</th>
-                                    <th>Status</th>
-                                    <th>Response</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>12345</td>
-                                    <td>67890</td>
-                                    <td>Technical</td>
-                                    <td>How to reset password?</td>
-                                    <td>Open</td>
-                                    <td>We are looking into it.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-success btn-sm">Resolve</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>54321</td>
-                                    <td>09876</td>
-                                    <td>Billing</td>
-                                    <td>Incorrect invoice</td>
-                                    <td>Closed</td>
-                                    <td>Issue resolved.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-danger btn-sm">Reopen</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- Objective Section -->
+                    <div class="col-md-12">
+                        <div class="objective">
+                            <h4>Objective for Simple Weather Application Project</h4>
+                            <hr>
+                            <p>The objective of the Simple Weather Application project is to develop a user-friendly, responsive web application using JavaScript that allows users to quickly and easily check the current weather conditions for any location. The application should fetch real-time weather data from a reliable API and display it in a clear, concise format. Key features will include:</p>
+                            <ul>
+                                <li><strong>Location Search:</strong> Allow users to search for weather by city name or zip code.</li>
+                                <li><strong>Real-Time Data:</strong> Retrieve and display up-to-date weather information, including temperature, humidity, wind speed, and weather conditions.</li>
+                                <li><strong>User Interface:</strong> Create an intuitive and visually appealing interface that works seamlessly on both desktop and mobile devices.</li>
+                                <li><strong>Error Handling:</strong> Provide meaningful error messages for invalid inputs or failed data retrieval.</li>
+                                <li><strong>Performance:</strong> Ensure fast loading times and efficient data handling.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -376,6 +350,18 @@
                         <h4>Assigned Mentor</h4>
                         <div class="mentor-detailsitems">
                             <span class="notification-event">Mentor name: Rahul Parakh</span>
+                        </div>
+                    </div>
+                    <div class="notifications">
+                        <h4>Notifications</h4>
+                        <hr>
+                        <div class="notification-item">
+                            <span class="notification-time">10:00</span>
+                            <span class="notification-event">Assignment due</span>
+                        </div>
+                        <div class="notification-item">
+                            <span class="notification-time">13:00</span>
+                            <span class="notification-event">New lecture available</span>
                         </div>
                     </div>
                     
@@ -392,6 +378,6 @@
     <!-- FullCalendar JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-  
+    
 </body>
 </html>

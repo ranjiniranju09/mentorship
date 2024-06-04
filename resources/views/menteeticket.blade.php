@@ -6,7 +6,7 @@
     <title>Modules</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJ1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -270,13 +270,9 @@
         .resource-link:hover {
             text-decoration: underline;
         }
-        /* Ticket Table */
-        .ticket-table th, .ticket-table td {
-            text-align: center;
-            vertical-align: middle;
-        }
-        .ticket-table .btn {
-            margin: 0 2px;
+        /* Ticket Form */
+        .ticket-form .form-group {
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -323,52 +319,29 @@
                         <p>Top Performer - Mean Score: 192</p>
                     </div>
                     <hr>
-                    <!-- Ticket Table Section -->
-                    <div class="ticket-table-section">
-                        <h4>Ticket Details</h4>
-                        <table class="table table-bordered ticket-table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Ticket No</th>
-                                    <th>User ID</th>
-                                    <th>Category</th>
-                                    <th>Query</th>
-                                    <th>Status</th>
-                                    <th>Response</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>12345</td>
-                                    <td>67890</td>
-                                    <td>Technical</td>
-                                    <td>How to reset password?</td>
-                                    <td>Open</td>
-                                    <td>We are looking into it.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-success btn-sm">Resolve</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>54321</td>
-                                    <td>09876</td>
-                                    <td>Billing</td>
-                                    <td>Incorrect invoice</td>
-                                    <td>Closed</td>
-                                    <td>Issue resolved.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-danger btn-sm">Reopen</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- Ticket Form Section -->
+                    <div class="ticket-form-section">
+                        <h4>Submit a New Ticket</h4>
+                        <form class="ticket-form">
+                            <div class="form-group">
+                                <label for="user-id">User ID</label>
+                                <input type="text" class="form-control" id="user-id" placeholder="Enter your User ID">
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <select class="form-control" id="category">
+                                    <option>Technical</option>
+                                    <option>Billing</option>
+                                    <option>General</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="query">Query</label>
+                                <textarea class="form-control" id="query" rows="3" placeholder="Describe your query"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Ticket</button>
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -378,7 +351,7 @@
                             <span class="notification-event">Mentor name: Rahul Parakh</span>
                         </div>
                     </div>
-                    
+                   
                 </div>
             </div>
         </div>
@@ -392,6 +365,16 @@
     <!-- FullCalendar JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-  
+    <script>
+    $(document).ready(function() {
+        $('.ticket-form').submit(function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+            // Your form submission logic here
+
+            // Display alert message
+            alert("Ticket query submitted successfully!");
+        });
+    });
+</script>
 </body>
 </html>

@@ -1,246 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Student Dashboard</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modules</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- FullCalendar CSS -->
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+    <!-- Custom CSS -->
     <style>
-        /* Custom CSS styles */
         body {
-            background-color: #f8f9fa;
-            font-family: 'Roboto', sans-serif;
+            font-family: "Ubuntu", sans-serif;
+            background-color: #f4f7f6;
         }
         .sidebar {
             position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: 280px;
-            background-color: #343a40;
-            overflow-y: auto;
-            padding-top: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            height: 100%;
+            background: linear-gradient(to bottom, #000000, #4ca1af);
+            transition: 0.5s;
+            overflow: hidden;
         }
-        .nav-link {
-            color: #fff;
+        .sidebar a {
+            position: relative;
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: white;
+            padding: 15px 10px;
+            margin-bottom: 10px;
+            align-content: center;
             transition: background-color 0.3s, color 0.3s;
         }
-        .nav-link:hover {
-            background-color: #495057;
-            color: #fff;
+        .sidebar a:hover {
+            color: #cc66ff;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .sidebar .hovered a {
+            color: blue;
+        }
+        .sidebar a i {
+            margin-right: 15px;
         }
         .content {
-            margin-left: 300px;
+            margin-left: 250px;
             padding: 20px;
+            transition: margin-left 0.5s;
         }
-        .module-card {
+        .topbar, .dashboard-header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .topbar {
+            width: 100%;
+            height: 60px;
+            padding: 0 10px;
+        }
+        .toggle {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+        .search {
+            width: 400px;
+            margin: 0 10px;
+            position: relative;
+        }
+        .search label {
+            width: 100%;
+        }
+        .search label input {
+            width: 100%;
+            height: 40px;
+            border-radius: 40px;
+            padding: 5px 20px;
+            padding-left: 35px;
+            font-size: 18px;
+            outline: none;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .search label ion-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            font-size: 1.2rem;
+            transform: translateY(-50%);
+        }
+        .user {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+        .user img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .greeting {
+            font-size: 24px;
+            color: green;
+            font-weight: bold;
+        }
+        .start-btn {
+            background-color: #5cb85c;
+            color: #fff;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .start-btn:hover {
+            background-color: #4cae4c;
+        }
+        .dashboard-header-wrapper {
+            margin-bottom: 30px;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+            .content {
+                margin-left: 0;
+            }
+        }
+        .academic-record, .assigned-tasks, .calendar, .mentor-details, .notifications, .resources, .meetings {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
-        }
-        .module-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-        .module-title {
-            color: #343a40;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .chapter-item {
-            margin-bottom: 15px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
-            background-color: #f9f9f9;
-        }
-        .chapter-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #f1f1f1;
-        }
-        .chapter-title {
-            font-weight: bold;
-            color: #343a40;
-        }
-        .page-title {
-            color: #343a40;
             margin-bottom: 30px;
-            font-size: 28px;
+            transition: transform 0.3s;
+        }
+        .academic-record:hover, .assigned-tasks:hover, .mentor-details:hover, .notifications:hover, .resources:hover {
+            transform: translateY(-5px);
+        }
+        .progress {
+            height: 20px;
+            border-radius: 10px;
+        }
+        .module-name {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .calendar-item, .notification-item, .mentor-detailsitems, .activity-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease-in-out;
+        }
+        .calendar-item:last-child, .notification-item:last-child, .activity-item:last-child {
+            border-bottom: none;
+        }
+        .calendar-item:hover, .notification-item:hover, .activity-item:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.02);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .calendar-time, .notification-time, .activity-time {
+            font-size: 18px;
+            color: #333;
+            display: block;
             font-weight: bold;
         }
-        .sidebar-brand {
-            font-size: 28px;
-            font-weight: bold;
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
+        .calendar-event, .notification-event, .activity-event {
+            font-size: 16px;
+            color: #666;
+            display: block;
         }
-        .sidebar-brand:hover {
-            color: #ccc;
+        .top-performer {
+            text-align: center;
+            margin-top: 30px;
         }
-        .alert {
-            transition: opacity 0.3s, transform 0.3s;
+        .top-performer img {
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .alert.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .alert.hide {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        .chapter-btn {
-            display: inline-block;
+        .top-performer h3 {
             margin-top: 10px;
-            margin-right: 10px;
-            padding: 10px 15px;
-            color: #fff;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
         }
-        .btn-primary {
-            background-color: #007bff;
+        .top-performer p {
+            color: #666;
         }
-        .btn-primary:hover {
-            background-color: #0056b3;
+        .card-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
         }
-        .btn-warning {
-            background-color: #ffc107;
+        .custom-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: transform 0.3s;
         }
-        .btn-warning:hover {
-            background-color: #e0a800;
+        .custom-card:hover {
+            transform: translateY(-5px);
         }
-        .btn-success {
-            background-color: #28a745;
+        .custom-card.project {
+            border-left: 5px solid #007bff;
         }
-        .btn-success:hover {
-            background-color: #218838;
+        .custom-card.task {
+            border-left: 5px solid #28a745;
+        }
+        .custom-card.quizzes {
+            border-left: 5px solid #ffc107;
+        }
+        .custom-card.project .card-icon {
+            color: #007bff;
+        }
+        .custom-card.task .card-icon {
+            color: #28a745;
+        }
+        .custom-card.quizzes .card-icon {
+            color: #ffc107;
+        }
+        /* FullCalendar overrides */
+        #calendar {
+            max-width: 100%;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar (Left side) -->
-        <div class="col-md-3">
-            <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white">
-                <a href="/" class="sidebar-brand mb-4">Mentor Dashboard</a>
-                <ul class="nav flex-column mb-auto" id="module-list">
-                    <!-- Dummy data for modules -->
-                    <li class="nav-item">
-                        <a href="#" class="nav-link module-link" data-module-id="1">Module 1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link module-link" data-module-id="2">Module 2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link module-link" data-module-id="3">Module 3</a>
-                    </li>
-                </ul>
-                <a class="d-flex align-items-center text-white text-decoration-none mt-auto" href="#">Sign out</a>
-            </div>
+    <div class="container-fluid">
+        <div class="sidebar">
+            <a href="#">
+                <span class="icon">
+                    <i class="fa-solid fa-circle-user fa-2xl"></i> &nbsp;
+                </span> 
+                <span class="title"> Mentee </span>
+            </a>
+            <a href="{{route('dashboardmentee')}}"><i class="fa-solid fa-house"></i>&nbsp; Home</a>
+            <a href="#"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
+            <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
+            <a href="{{route('taskmentee')}}"><i class="fas fa-tasks card-icon"></i>&nbsp; Task</a>
+            <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
+            <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
+            <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
+            <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
         </div>
-
-        <!-- Content (Right side) -->
-        <div class="col-md-10">
-            <div class="content">
-                <!-- Success and Error message alerts -->
-                <div class="alert alert-success" style="display: none;">Success message</div>
-                <div class="alert alert-danger" style="display: none;">Error message</div>
-
-                <!-- Modules and Chapters -->
-                <div class="container mt-3">
-                    <h1 class="page-title">Modules and Chapters</h1>
-
-                    <!-- Chapter List -->
-                    <div class="chapter-list" id="chapter-list" style="display: none;">
-                        <!-- Chapters will be dynamically loaded here -->
+        <div class="container content">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="dashboard-header-wrapper">
+                        <div class="topbar">
+                            <div class="dashboard-header">
+                                <i class="fa-solid fa-graduation-cap fa-beat fa-2xl"></i>
+                                <span class="greeting">Hi, Chisom</span>
+                            </div>
+                            <div class="toggle">
+                                <ion-icon name="menu-outline"></ion-icon>
+                            </div>
+                            <div class="search">
+                                <label>
+                                    <input type="text" placeholder="Search here">
+                                    <ion-icon name="search-outline"></ion-icon>
+                                </label>
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- Chapter Details -->
-                    <div class="module-section" id="chapter-details">
-                        <!-- Chapter details will be dynamically loaded here -->
+                    <div class="top-performer">
+                        <h3>Mariya Bestcity</h3>
+                        <p>Top Performer - Mean Score: 192</p>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="custom-card project">
+                            <i class="fa-brands fa-js fa-2xl" style="color: #FFD43B;"></i>
+                                <h5>Javascript</h5>
+                                <a href="{{route('chapters')}}" class="start-btn">Explore</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="custom-card project">
+                            <i class="fa-brands fa-html5 fa-2xl" style="color: #ff9500;"></i>
+                                <h5>HTML</h5>
+                                <a href="#" class="start-btn">Explore</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="custom-card project">
+                            <i class="fa-brands fa-css3-alt fa-2xl" style="color: #3dabff;"></i>
+                                <h5>CSS</h5>
+                                <a href="#" class="start-btn">Explore</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="custom-card project">
+                            <i class="fa-brands fa-php fa-2xl" style="color: #002970;"></i>
+                                <h5>PHP</h5>
+                                <a href="#" class="start-btn">Explore</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="custom-card project">
+                            <i class="fa-brands fa-react fa-2xl" style="color: #0400ff;"></i>
+                                <h5>React</h5>
+                                <a href="#" class="start-btn">Explore</a>
+                            </div>
+                        </div>
+                       <div class="col-md-3">
+                            <div class="custom-card project">
+                            <i class="fa-solid fa-database fa-2xl" style="color: #00348f;"></i>
+                                <h5>SQL</h5>
+                                <a href="#" class="start-btn">Explore</a>
+                            </div>
+                        </div> 
+                        <div class="col-md-3">
+                            <div class="custom-card project">
+                            <i class="fa-brands fa-java fa-2xl" style="color: #fa8500;"></i>
+                                <h5>Java</h5>
+                                <a href="#" class="start-btn">Explore</a>
+                            </div>
+                        </div> 
+                        <div class="col-md-3">
+                            <div class="custom-card project">
+                            <i class="fa-brands fa-python fa-2xl" style="color: #1e8fe6;"></i>
+                                <h5>Python</h5>
+                                <a href="#" class="start-btn">Explore</a>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mentor-details" style="background-color:#ffc107;">
+                        <h4>Assigned Mentor</h4>
+                        <div class="mentor-detailsitems">
+                            <span class="notification-event">Mentor name: Rahul Parakh</span>
+                        </div>
+                    </div>
+                    <div class="notifications">
+                        <h4>Notifications</h4>
+                        <hr>
+                        <div class="notification-item">
+                            <span class="notification-time">10:00</span>
+                            <span class="notification-event">Assignment due</span>
+                        </div>
+                        <div class="notification-item">
+                            <span class="notification-time">13:00</span>
+                            <span class="notification-event">New lecture available</span>
+                        </div>
+                    </div>
+                    <div class="resources">
+                        <h4>Related Resources</h4>
+                        <hr>
+                        <div class="activity-item">
+                            <span class="activity-time">Javascript Projects</span>
+                            <span class="activity-event"><a href="{{route('displayresources')}}">Click Here </a></span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-time">HTML, CSS Projects</span>
+                            <span class="activity-event">Link</span>
+                        </div>
+                    </div>
+                    <!-- Calendar Section -->
+                    <div class="calendar">
+                        <h4>Calendar</h4>
+                        <div id='calendar'></div>
                     </div>
                 </div>
             </div>
+            <!-- Card Section -->
+            
         </div>
     </div>
-</div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Font Awesome -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const modules = [
-            {
-                id: 1,
-                title: "Module 1",
-                chapters: [
-                    { title: "Chapter 1.1", description: "Description for Chapter 1.1" },
-                    { title: "Chapter 1.2", description: "Description for Chapter 1.2" },
-                    { title: "Chapter 1.3", description: "Description for Chapter 1.3" }
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.16/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- FullCalendar JS -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+    <script>
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: true,
+                events: [
+                    {
+                        title: 'Mathematics Meeting',
+                        start: '2024-06-01T09:00:00'
+                    },
+                    {
+                        title: 'Science Meeting',
+                        start: '2024-06-05T12:00:00'
+                    },
+                    {
+                        title: 'History Meeting',
+                        start: '2024-06-10T15:00:00'
+                    },
+                    {
+                        title: 'Geography Lecture',
+                        start: '2024-06-15T14:00:00'
+                    }
                 ]
-            },
-            {
-                id: 2,
-                title: "Module 2",
-                chapters: [
-                    { title: "Chapter 2.1", description: "Description for Chapter 2.1" },
-                    { title: "Chapter 2.2", description: "Description for Chapter 2.2" },
-                    { title: "Chapter 2.3", description: "Description for Chapter 2.3" }
-                ]
-            },
-            {
-                id: 3,
-                title: "Module 3",
-                chapters: [
-                    { title: "Chapter 3.1", description: "Description for Chapter 3.1" },
-                    { title: "Chapter 3.2", description: "Description for Chapter 3.2" },
-                    { title: "Chapter 3.3", description: "Description for Chapter 3.3" }
-                ]
-            }
-        ];
-
-        // Add event listeners to module links
-        document.querySelectorAll('.module-link').forEach(link => {
-            link.addEventListener('click', function (event) {
-                event.preventDefault();
-                const moduleId = this.getAttribute('data-module-id');
-                loadChapters(moduleId);
             });
         });
-
-        // Function to load chapters
-        function loadChapters(moduleId) {
-            const selectedModule = modules.find(module => module.id == moduleId);
-            const chapterList = document.getElementById('chapter-list');
-            chapterList.style.display = 'block'; // Show chapter list
-            chapterList.innerHTML = ''; // Clear current chapters
-
-            selectedModule.chapters.forEach(chapter => {
-                const chapterItem = document.createElement('div');
-                chapterItem.classList.add('chapter-item', 'col-md-12');
-                chapterItem.innerHTML = `<dt class="col-sm-3 chapter-title">${chapter.title}</dt>
-                                         <dd class="col-sm-9">${chapter.description}</dd>
-                                         <a href="{{route('chapters')}}" target="_blank" class="chapter-btn btn-primary"><i class="fas fa-book"></i> View Chapter</a>
-                                         <a href="#" target="_blank" class="chapter-btn btn-warning"><i class="fas fa-tasks"></i> Assignments</a>
-                                         <a href="{{route('quiz')}}" target="_blank" class="chapter-btn btn-success"><i class="fas fa-question-circle"></i> Quiz</a>`;
-                chapterList.appendChild(chapterItem);
-            });
-        }
-    });
-</script>
+    </script>
 </body>
 </html>
+
+
+

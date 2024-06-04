@@ -1,124 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quiz</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>JavaScript Basics Quiz</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
+            font-family: Arial, sans-serif;
             background-color: #f8f9fa;
-            font-family: 'Roboto', sans-serif;
+            margin: 20px;
         }
         .quiz-container {
-            margin-top: 50px;
-            margin-bottom: 50px;
+            max-width: 600px;
+            margin: auto;
             background-color: #fff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .quiz-title {
-            margin-bottom: 20px;
+        .quiz-container h1 {
             text-align: center;
+            margin-bottom: 30px;
             color: #343a40;
         }
-        .quiz-question {
+        .question {
             margin-bottom: 20px;
         }
-        .quiz-option {
-            margin-bottom: 10px;
+        .question label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #495057;
         }
-        .quiz-option input[type="radio"] {
+        .question input[type="radio"] {
             margin-right: 10px;
         }
-        .btn-group {
+        .buttons {
             margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
+            text-align: center;
         }
-        .submit-btn, .back-btn {
-            width: 48%;
-            padding: 10px;
+        .buttons button {
+            padding: 10px 20px;
+            margin: 5px;
             border: none;
             border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        .submit-btn {
+        .buttons .btn-primary {
             background-color: #007bff;
-            color: #fff;
+            color: white;
         }
-        .submit-btn:hover {
+        .buttons .btn-primary:hover {
             background-color: #0056b3;
-            transform: scale(1.05);
         }
-        .back-btn {
+        .buttons .btn-secondary {
             background-color: #6c757d;
-            color: #fff;
+            color: white;
         }
-        .back-btn:hover {
-            background-color: #5a6268;
-            transform: scale(1.05);
+        .buttons .btn-secondary:hover {
+            background-color: #495057;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="col-md-8 offset-md-2 quiz-container">
-            <h2 class="quiz-title">Quiz Title</h2>
-            <form method="POST" action="#">
-                @csrf
-                <!-- Question 1 -->
-                <div class="quiz-question">
-                    <h5>Question 1: What is the capital of France?</h5>
-                    <div class="quiz-option">
-                        <input type="radio" id="q1a" name="question1" value="Paris">
-                        <label for="q1a">Paris</label>
-                    </div>
-                    <div class="quiz-option">
-                        <input type="radio" id="q1b" name="question1" value="London">
-                        <label for="q1b">London</label>
-                    </div>
-                    <div class="quiz-option">
-                        <input type="radio" id="q1c" name="question1" value="Berlin">
-                        <label for="q1c">Berlin</label>
-                    </div>
-                    <div class="quiz-option">
-                        <input type="radio" id="q1d" name="question1" value="Madrid">
-                        <label for="q1d">Madrid</label>
-                    </div>
+    <div class="quiz-container">
+        <h1>JavaScript Basics Quiz</h1>
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question">
+                <label for="q1">1. What is the correct syntax to refer to an external script called "script.js"?</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q1" value="<script src='script.js'>">
+                    <label class="form-check-label">&lt;script src='script.js'&gt;</label>
                 </div>
-
-                <!-- Question 2 -->
-                <div class="quiz-question">
-                    <h5>Question 2: Which planet is known as the Red Planet?</h5>
-                    <div class="quiz-option">
-                        <input type="radio" id="q2a" name="question2" value="Mars">
-                        <label for="q2a">Mars</label>
-                    </div>
-                    <div class="quiz-option">
-                        <input type="radio" id="q2b" name="question2" value="Venus">
-                        <label for="q2b">Venus</label>
-                    </div>
-                    <div class="quiz-option">
-                        <input type="radio" id="q2c" name="question2" value="Jupiter">
-                        <label for="q2c">Jupiter</label>
-                    </div>
-                    <div class="quiz-option">
-                        <input type="radio" id="q2d" name="question2" value="Saturn">
-                        <label for="q2d">Saturn</label>
-                    </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q1" value="<script href='script.js'>">
+                    <label class="form-check-label">&lt;script href='script.js'&gt;</label>
                 </div>
-
-                <!-- Button Group -->
-                <div class="btn-group">
-                    <button type="button" class="back-btn" onclick="history.back()">Back</button>
-                    <button type="submit" class="submit-btn">Submit</button>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q1" value="<script ref='script.js'>">
+                    <label class="form-check-label">&lt;script ref='script.js'&gt;</label>
                 </div>
-            </form>
-        </div>
+            </div>
+            <!-- Question 2 -->
+            <div class="question">
+                <label for="q2">2. How do you create a function in JavaScript?</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q2" value="function = myFunction()">
+                    <label class="form-check-label">function = myFunction()</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q2" value="function myFunction()">
+                    <label class="form-check-label">function myFunction()</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q2" value="function:myFunction()">
+                    <label class="form-check-label">function:myFunction()</label>
+                </div>
+            </div>
+            <!-- Question 3 -->
+            <div class="question">
+                <label for="q3">3. How do you call a function named "myFunction"?</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q3" value="call myFunction()">
+                    <label class="form-check-label">call myFunction()</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q3" value="call function myFunction()">
+                    <label class="form-check-label">call function myFunction()</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q3" value="myFunction()">
+                    <label class="form-check-label">myFunction()</label>
+                </div>
+            </div>
+            <!-- Question 4 -->
+            <div class="question">
+                <label for="q4">4. How to write an IF statement in JavaScript?</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q4" value="if i == 5 then">
+                    <label class="form-check-label">if i == 5 then</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q4" value="if (i == 5)">
+                    <label class="form-check-label">if (i == 5)</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q4" value="if i = 5">
+                    <label class="form-check-label">if i = 5</label>
+                </div>
+            </div>
+            <!-- Question 5 -->
+            <div class="question">
+                <label for="q5">5. How does a WHILE loop start?</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q5" value="while (i <= 10; i++)">
+                    <label class="form-check-label">while (i <= 10; i++)</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q5" value="while (i <= 10)">
+                    <label class="form-check-label">while (i <= 10)</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q5" value="while i = 1 to 10">
+                    <label class="form-check-label">while i = 1 to 10</label>
+                </div>
+            </div>
+            <!-- Question 6 -->
+            <div class="question">
+                <label for="q6">6. How can you add a comment in JavaScript?</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q6" value="<!-- This is a comment -->">
+                    <label class="form-check-label">&lt;!-- This is a comment --&gt;</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q6" value="// This is a comment">
+                    <label class="form-check-label">// This is a comment</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q6" value="* This is a comment *">
+                    <label class="form-check-label">* This is a comment *</label>
+                </div>
+            </div>
+            <!-- Buttons -->
+            <div class="buttons">
+                <button type="button" class="btn btn-primary" onclick="submitQuiz()">Submit</button>
+                <button type="button" class="btn btn-secondary" onclick="clearQuiz()">Clear</button>
+            </div>
+        </form>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function submitQuiz() {
+            alert('Quiz submitted!');
+        }
+
+        function clearQuiz() {
+            document.getElementById('quizForm').reset();
+        }
+    </script>
 </body>
 </html>

@@ -242,48 +242,12 @@
             max-width: 100%;
             margin: 0 auto;
         }
-        .resource-item {
-            padding: 10px;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            margin-bottom: 10px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        .resource-item:hover {
-            background-color: #f0f0f0;
-            transform: translateY(-3px);
-        }
-        .resource-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-        }
-        .resource-description {
-            font-size: 14px;
-            color: #666;
-        }
-        .resource-link {
-            font-size: 14px;
-            color: #007bff;
-            text-decoration: none;
-        }
-        .resource-link:hover {
-            text-decoration: underline;
-        }
-        /* Ticket Table */
-        .ticket-table th, .ticket-table td {
-            text-align: center;
-            vertical-align: middle;
-        }
-        .ticket-table .btn {
-            margin: 0 2px;
-        }
     </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="sidebar">
-            <a href="{{route('dashboardmentee')}}">
+            <a href="#">
                 <span class="icon">
                     <i class="fa-solid fa-circle-user fa-2xl"></i> &nbsp;
                 </span> 
@@ -323,52 +287,12 @@
                         <p>Top Performer - Mean Score: 192</p>
                     </div>
                     <hr>
-                    <!-- Ticket Table Section -->
-                    <div class="ticket-table-section">
-                        <h4>Ticket Details</h4>
-                        <table class="table table-bordered ticket-table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Ticket No</th>
-                                    <th>User ID</th>
-                                    <th>Category</th>
-                                    <th>Query</th>
-                                    <th>Status</th>
-                                    <th>Response</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>12345</td>
-                                    <td>67890</td>
-                                    <td>Technical</td>
-                                    <td>How to reset password?</td>
-                                    <td>Open</td>
-                                    <td>We are looking into it.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-success btn-sm">Resolve</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>54321</td>
-                                    <td>09876</td>
-                                    <td>Billing</td>
-                                    <td>Incorrect invoice</td>
-                                    <td>Closed</td>
-                                    <td>Issue resolved.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-danger btn-sm">Reopen</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="row">
+                         <!-- Calendar Section -->
+                    <div class="calendar">
+                        <h4>Calendar</h4>
+                        <div id='calendar'></div>
+                    </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -378,9 +302,10 @@
                             <span class="notification-event">Mentor name: Rahul Parakh</span>
                         </div>
                     </div>
-                    
                 </div>
             </div>
+            <!-- Card Section -->
+            
         </div>
     </div>
 
@@ -392,6 +317,38 @@
     <!-- FullCalendar JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-  
+    <script>
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: true,
+                events: [
+                    {
+                        title: 'Mathematics Meeting',
+                        start: '2024-06-01T09:00:00'
+                    },
+                    {
+                        title: 'Science Meeting',
+                        start: '2024-06-05T12:00:00'
+                    },
+                    {
+                        title: 'History Meeting',
+                        start: '2024-06-10T15:00:00'
+                    },
+                    {
+                        title: 'Geography Lecture',
+                        start: '2024-06-15T14:00:00'
+                    }
+                ]
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+

@@ -42,52 +42,54 @@ class MenteeController extends Controller
             return view('no_assigned_mentor');
         }
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show()
     {
-        
+        return view('dashboardmentee');
+    }
+    public function task()
+    {
+        return view('Task');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function modules()
     {
-        //
+        return view('modules');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function chapters()
     {
-        //
+        return view('chapter-details');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function JsIntro()
     {
-        //
+        return view('Jsintroduction');
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function publicresources()
     {
-        //
+        return view('publicresources');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function displayresources()
     {
-        //
+        return view('displayresources');
+    }
+    public function calender()
+    {
+        return view('calender');
+    }
+    public function menteeticket()
+    {
+        return view('menteeticket');
+    }
+    public function tickets()
+    {
+        return view('tickets');
+    }
+    public function opportunities()
+    {
+        return view('jobs');
+    }
+    public function jobdetails1()
+    {
+        return view('jobdetails');
     }
 }

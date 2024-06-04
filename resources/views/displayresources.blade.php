@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modules</title>
+    <title>Resources</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -270,20 +270,26 @@
         .resource-link:hover {
             text-decoration: underline;
         }
-        /* Ticket Table */
-        .ticket-table th, .ticket-table td {
-            text-align: center;
-            vertical-align: middle;
+        .read-btn {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+            transition: background-color 0.3s;
         }
-        .ticket-table .btn {
-            margin: 0 2px;
+        .read-btn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="sidebar">
-            <a href="{{route('dashboardmentee')}}">
+            <a href="#">
                 <span class="icon">
                     <i class="fa-solid fa-circle-user fa-2xl"></i> &nbsp;
                 </span> 
@@ -294,7 +300,7 @@
             <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
             <a href="{{route('taskmentee')}}"><i class="fas fa-tasks card-icon"></i>&nbsp; Task</a>
             <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
-            <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
+            <a href="{{route('menteeticket')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
             <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
             <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
         </div>
@@ -323,59 +329,39 @@
                         <p>Top Performer - Mean Score: 192</p>
                     </div>
                     <hr>
-                    <!-- Ticket Table Section -->
-                    <div class="ticket-table-section">
-                        <h4>Ticket Details</h4>
-                        <table class="table table-bordered ticket-table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Ticket No</th>
-                                    <th>User ID</th>
-                                    <th>Category</th>
-                                    <th>Query</th>
-                                    <th>Status</th>
-                                    <th>Response</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>12345</td>
-                                    <td>67890</td>
-                                    <td>Technical</td>
-                                    <td>How to reset password?</td>
-                                    <td>Open</td>
-                                    <td>We are looking into it.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-success btn-sm">Resolve</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>54321</td>
-                                    <td>09876</td>
-                                    <td>Billing</td>
-                                    <td>Incorrect invoice</td>
-                                    <td>Closed</td>
-                                    <td>Issue resolved.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-danger btn-sm">Reopen</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <!-- Objective Section -->
+                    <div class="col-md-12">
+                        <div class="news">
+                            <h4>Microsoft to launch web-based mobile app store in July</h4>
+                            <hr>
+                                <p>At the Bloomberg Technology Summit, Microsoft’s President of Xbox, Sarah Bond, declared that the company is set to launch its new mobile store this July. This long-discussed move aims to establish an alternative to dominant marketplaces like the App Store and Play Store.</p>
+                                <p>Unlike traditional approaches, Microsoft plans to roll out its mobile game store via the web, rather than as a native application. This strategy allows the company to circumvent restrictive app store policies and make the platform available globally across all devices, including both Android and iOS systems.</p>
+                                <p>Microsoft’s launch is set to include popular titles such as “Candy Crush” and “Minecraft,” with initial offerings centred around Microsoft’s first-party portfolio. The company has plans to later extend access to third-party developers.</p>
+                                <p>The decision to start with a web-based store is designed to leverage the advantage of universal accessibility despite the varying global regulations on app distribution.</p>
+                                <p>iOS users in the EU now have sideloading capabilities due to local regulations forcing Apple to allow third-party app stores, but this is not the case worldwide. Microsoft’s web-based approach thus provides a strategic workaround to these limitations.</p>
+                                <p>“In July, we are going to be launching our mobile store experience,” Bond stated. “We’re going to start, actually, by bringing our own first-party portfolio to that. So you’re going to see games like Candy Crush show up in that experience, games like Minecraft. And then we’re going to extend that capability to partners so that they can take advantage of it and have a true cross-platform gaming-centric mobile experience,” she added.</p>
+                                <p>This innovative deployment method not only challenges the status quo set by Apple and Google but also seems to hint at the potential role of cloud gaming in distributing games through the internet.</p>
+                                <p>While Microsoft’s new store is a significant step towards providing an alternative to established app stores, the full realisation of its vision to include third-party support and broader store functionalities appears to be some distance away. This initial launch phase focuses on proving the viability of web-based game distribution and setting a foundation for future expansion.</p>
+                            </div>
+                        </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mentor-details" style="background-color:#ffc107;">
                         <h4>Assigned Mentor</h4>
                         <div class="mentor-detailsitems">
                             <span class="notification-event">Mentor name: Rahul Parakh</span>
+                        </div>
+                    </div>
+                    <div class="notifications">
+                        <h4>Notifications</h4>
+                        <hr>
+                        <div class="notification-item">
+                            <span class="notification-time">10:00</span>
+                            <span class="notification-event">Assignment due</span>
+                        </div>
+                        <div class="notification-item">
+                            <span class="notification-time">13:00</span>
+                            <span class="notification-event">New lecture available</span>
                         </div>
                     </div>
                     
@@ -392,6 +378,6 @@
     <!-- FullCalendar JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-  
+    
 </body>
 </html>

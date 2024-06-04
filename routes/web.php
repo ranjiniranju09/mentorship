@@ -128,24 +128,59 @@ Route::post('/approve/{id}', 'App\Http\Controllers\ResourceController@approve')-
 
 Route::match(['get','post'],'/viewmenteeresources/{menteeId}','App\Http\Controllers\ResourceController@viewmenteeresources')->name('viewmenteeresources');
 
-Route::get('/menteeresources/{mentee_id}','App\Http\Controllers\ResourceController@menteeResources')->name('menteeresources');
+// Route::get('/menteeresources/{mentee_id}','App\Http\Controllers\ResourceController@menteeResources')->name('menteeresources');
 
 
-Route::match(['get','post'],'/viewjobs/{mentorId}','App\Http\Controllers\JobController@view')->name('viewjobs');
+// Route::match(['get','post'],'/viewjobs/{mentorId}','App\Http\Controllers\JobController@view')->name('viewjobs');
 
-Route::match(['get','post'],'/storejobs/{mentorId}','App\Http\Controllers\JobController@store')->name('storejobs');
+// Route::match(['get','post'],'/storejobs/{mentorId}','App\Http\Controllers\JobController@store')->name('storejobs');
 
-Route::match(['get','post'],'/jobs/{mentorId}','App\Http\Controllers\JobController@jobs')->name('jobs');
+// Route::match(['get','post'],'/jobs/{mentorId}','App\Http\Controllers\JobController@jobs')->name('jobs');
 
-Route::match(['get','post'],'/adminjobstore','App\Http\Controllers\JobController@adminjobstore')->name('adminjobstore');
+// Route::match(['get','post'],'/adminjobstore','App\Http\Controllers\JobController@adminjobstore')->name('adminjobstore');
 
-Route::match(['get','post'],'/adminjobs','App\Http\Controllers\JobController@adminjobs')->name('adminjobs');
+// Route::match(['get','post'],'/adminjobs','App\Http\Controllers\JobController@adminjobs')->name('adminjobs');
 
-Route::match(['get','post'],'/modules/{mentorId}','App\Http\Controllers\ModulesController@modules')->name('modules');
+// Route::match(['get','post'],'/modules/{mentorId}','App\Http\Controllers\ModulesController@modules')->name('modules');
 
-Route::match(['get','post'],'/chapters','App\Http\Controllers\ModulesController@chapters')->name('chapters');
+// Route::match(['get','post'],'/chapters','App\Http\Controllers\ModulesController@chapters')->name('chapters');
 
-Route::match(['get','post'],'/chapterscontent','App\Http\Controllers\ModulesController@chapterscontent')->name('chapterscontent');
+// Route::match(['get','post'],'/chapterscontent','App\Http\Controllers\ModulesController@chapterscontent')->name('chapterscontent');
 
 
 Route::match(['get','post'],'/quiz','App\Http\Controllers\ModulesController@quiz')->name('quiz');
+
+//sample
+
+Route::match(['get','post'],'/dashboardmentee','App\Http\Controllers\MenteeController@show')->name('dashboardmentee');
+Route::match(['get','post'],'/admindashboard','App\Http\Controllers\AdminController@dashboard')->name('admindashboard');
+
+Route::match(['get','post'],'/taskmentee','App\Http\Controllers\MenteeController@task')->name('taskmentee');
+
+Route::match(['get','post'],'/modules','App\Http\Controllers\MenteeController@modules')->name('modules');
+
+Route::match(['get','post'],'/chapters','App\Http\Controllers\MenteeController@chapters')->name('chapters');
+
+Route::match(['get','post'],'/JsIntro','App\Http\Controllers\MenteeController@JsIntro')->name('JsIntro');
+
+Route::match(['get','post'],'/quizJsIntro','App\Http\Controllers\ModulesController@quizJsIntro')->name('quizJsIntro');
+
+Route::match(['get','post'],'/publicresources','App\Http\Controllers\MenteeController@publicresources')->name('publicresources');
+
+Route::match(['get','post'],'/displayresources','App\Http\Controllers\MenteeController@displayresources')->name('displayresources');
+
+Route::match(['get','post'],'/calender','App\Http\Controllers\MenteeController@calender')->name('calender');
+
+Route::match(['get','post'],'/moduleresources','App\Http\Controllers\ModulesController@moduleresources')->name('moduleresources');
+
+Route::match(['get','post'],'/displaymoduleresources','App\Http\Controllers\ModulesController@displaymoduleresources')->name('displaymoduleresources');
+
+Route::match(['get','post'],'/tickets','App\Http\Controllers\MenteeController@tickets')->name('tickets');
+
+Route::match(['get','post'],'/menteeticket','App\Http\Controllers\MenteeController@menteeticket')->name('menteeticket');
+
+Route::match(['get','post'],'/jobs','App\Http\Controllers\MenteeController@opportunities')->name('jobs');
+
+Route::match(['get','post'],'/jobdetails1','App\Http\Controllers\MenteeController@jobdetails1')->name('jobdetails1');
+
+Route::match(['get','post'],'/dashboardmentor','App\Http\Controllers\MentorController@dashboardmentor')->name('dashboardmentor');

@@ -139,24 +139,23 @@
 </head>
 <body>
 <div class="sidebar">
-    <a href="{{route('dashboardmentee')}}">
+    <a href="#">
         <span class="icon">
             <i class="fa-solid fa-circle-user fa-2xl"></i> &nbsp;
         </span> 
         <span class="title"> Mentee </span>
     </a>
     <div class="icon-title">
-        <i class="fa-brands fa-js fa-2xl" style="color: #FFD43B;"></i> &nbsp;
-        <h4 class="text" style="color: #fff; margin: 0;">JavaScript</h4>
+        <h4 class="text" style="color: #fff; margin: 0;">1. JavaScript Introduction</h4>
     </div>
-    <a href="#chapter1">Chapter 1: Introduction</a>
-    <a href="#chapter2">Chapter 2: Basics</a>
-    <a href="#chapter3">Chapter 3: Advanced Topics</a>
-    <a href="#chapter4">Chapter 4: Summary</a>
+    <a href="#chapter1">Chapter 1.1 : Introduction </a>
+    <a href="#chapter2">Chapter 1.2 : JavaScript Functions and Events </a>
+    <a href="#chapter3">Chapter 1.3: Advanced Topics</a>
+    <a href="#chapter4">Chapter 1.4: Summary</a>
 </div>
 
 <div class="breadcrumb-container">
-    <a href="{{route('modules')}}" onclick="history.back()">Back</a>
+    <a href="{{route('chapters')}}" onclick="history.back()">Back</a>
     <a href="#nextChapter">Next</a>
 </div>
 
@@ -172,48 +171,56 @@
                     <!-- Chapter 1 -->
                     <div class="chapter-item" id="chapter1">
                         <div class="progress-bar"></div> <!-- Progress bar added here -->
-                        <h3 class="chapter-title">Chapter 1: Introduction</h3>
+                        <h3 class="chapter-title">Chapter 1.1: JavaScript Introduction</h3>
                         <p class="chapter-description">Learn about the basics of our course.</p>
                         <div class="chapter-objectives">
                             <h5>Learning Objectives:</h5>
                             <ul>
-                                <li>Understand the course structure</li>
-                                <li>Get an overview of the main topics</li>
-                                <li>Familiarize yourself with key concepts</li>
+                                <h6>JavaScript is one of the 3 languages all web developers must learn: </h6> 
+
+                                <li>1. HTML to define the content of web pages</li> 
+
+                                <li> 2. CSS to specify the layout of web pages</li>    
+
+                                <li> 3. JavaScript to program the behavior of web pages</li>
                             </ul>
                         </div>
-                        <div class="chapter-resources">
+                        <!-- <div class="chapter-resources">
                             <h5>Resources:</h5>
                             <ul>
-                                <li><a href="{{route('moduleresources')}}" class="chapter-link">Introduction PDF</a></li><br>
+                                <li><a href="resource1.pdf" class="chapter-link">Introduction PDF</a></li><br>
                                 <li><a href="video1.mp4" class="chapter-link">Introductory Video</a></li>
                             </ul>
-                        </div>
-                        <a href="{{route('JsIntro')}}" class="chapter-link">Read more</a>
-                        <!-- <a href="{{route('quiz')}}" target="_blank" class="chapter-link btn btn-warning"><i class="fas fa-question-circle"></i> Quiz</a></button> Quiz button added here -->
+                        </div> -->
+                        <!-- <a href="{{route('JsIntro')}}" class="chapter-link">Read more</a> -->
+                        <a href="{{route('quizJsIntro')}}" target="_blank" class="chapter-link btn btn-warning"><i class="fas fa-question-circle"></i> Quiz</a></button> <!-- Quiz button added here -->
                     </div>
                     
                     <!-- Chapter 2 -->
                     <div class="chapter-item" id="chapter2">
                         <div class="progress-bar"></div>
-                        <h3 class="chapter-title">Chapter 2: Basics</h3>
+                        <h3 class="chapter-title">Chapter 1.2 : JavaScript Functions and Events </h3>
                         <p class="chapter-description">Dive into the basic concepts.</p>
                         <div class="chapter-objectives">
-                            <h5>Learning Objectives:</h5>
+                            <!-- <h5>Learning Objectives:</h5> -->
                             <ul>
-                                <li>Understand basic principles</li>
-                                <li>Learn fundamental techniques</li>
-                                <li>Practice with examples</li>
+                                A JavaScript function is a block of JavaScript code, that can be executed when "called" for.
+                                For example, a function can be called when an event occurs, like when the user clicks a button.
                             </ul>
+                            <ul>
+                                Example : 
+
+                            </ul>
+
                         </div>
-                        <div class="chapter-resources">
+                        <!-- <div class="chapter-resources">
                             <h5>Resources:</h5>
                             <ul>
                                 <li><a href="resource2.pdf" class="chapter-link">Basics PDF</a></li><br>
                                 <li><a href="video2.mp4" class="chapter-link">Basics Video</a></li>
                             </ul>
-                        </div>
-                        <a href="#" class="chapter-link">Read more</a>
+                        </div> -->
+                        <!-- <a href="#" class="chapter-link">Read more</a> -->
                         <button type="button" class="chpater-link btn btn-warning">Quiz</button> <!-- Quiz button added here -->
 
                     </div>
@@ -227,22 +234,19 @@
                         <div class="chapter-objectives">
                             <h5>Learning Objectives:</h5>
                             <ul>
-                                <li>1. JS Functions</li>
-                                <li>2. JS Classes</li>
-                                <li>3. JS HTML DOM</li>
-                                <li>4. JS Async</li>
-                                <li>5. Web APIs</li>
-                                <li>6. JS JSON</li>
+                                <li>Understand advanced concepts</li>
+                                <li>Apply advanced techniques</li>
+                                <li>Work on complex projects</li>
                             </ul>
                         </div>
-                        <div class="chapter-resources">
+                        <!-- <div class="chapter-resources">
                             <h5>Resources:</h5>
                             <ul>
                                 <li><a href="resource3.pdf" class="chapter-link">Advanced Topics PDF</a></li><br>
                                 <li><a href="video3.mp4" class="chapter-link">Advanced Topics Video</a></li>
                             </ul>
-                        </div>
-                        <a href="#" class="chapter-link">Read more</a>
+                        </div> -->
+                        <!-- <a href="#" class="chapter-link">Read more</a> -->
                         <button type="button" class="chpater-link btn btn-warning">Quiz</button> <!-- Quiz button added here -->
 
                     </div>
@@ -250,7 +254,7 @@
                     <!-- Chapter 4 -->
                     <div class="chapter-item" id="chapter4">
                     <div class="progress-bar"></div> <!-- Progress bar added here -->
-                        <h3 class="chapter-title">Chapter 4: Example Programs</h3>
+                        <h3 class="chapter-title">Chapter 4: Summary</h3>
                         <p class="chapter-description">Summary of the course.</p>
                         <div class="chapter-objectives">
                             <h5>Learning Objectives:</h5>
@@ -260,14 +264,14 @@
                                 <li>Prepare for assessments</li>
                             </ul>
                         </div>
-                        <div class="chapter-resources">
+                        <!-- <div class="chapter-resources">
                             <h5>Resources:</h5>
                             <ul>
-                                <li><a href="{{route('displayresources')}}" class="chapter-link">Summary PDF</a></li><br>
+                                <li><a href="resource4.pdf" class="chapter-link">Summary PDF</a></li><br>
                                 <li><a href="video4.mp4" class="chapter-link">Summary Video</a></li>
                             </ul>
-                        </div>
-                        <a href="#" class="chapter-link">Read more</a>
+                        </div> -->
+                        <!-- <a href="#" class="chapter-link">Read more</a> -->
                              <a href="{{route('quiz')}}" target="_blank" class="chapter-link btn-success"><i class="fas fa-question-circle"></i> Quiz</a></button> <!-- Quiz button added here -->
 
                     </div>

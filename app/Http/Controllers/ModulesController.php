@@ -39,5 +39,17 @@ class ModulesController extends Controller
     {
         return view('quiz');
     }
+    public function quizJsIntro()
+    {
+        return view('quizJsIntro');
+    }
+    public function moduleresources()
+    {
+        return view('moduleresources');
+    }
+    public function displaymoduleresources()
+    {
+        return view('displaymoduleresources');
+    }
 }
 

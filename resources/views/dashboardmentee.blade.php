@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modules</title>
+    <title>Mentee Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -100,7 +100,10 @@
         .user {
             width: 50px;
             height: 50px;
+            /* border-radius: 50%; */
+            /* overflow: hidden; */
             cursor: pointer;
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
         }
         .user img {
             width: 100%;
@@ -141,7 +144,7 @@
                 margin-left: 0;
             }
         }
-        .academic-record, .assigned-tasks, .calendar, .mentor-details, .notifications, .resources, .meetings {
+        .academic-record, .assigned-tasks, .calendar, .mentor-details, .notifications, .recent-activities, .meetings {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -149,7 +152,7 @@
             margin-bottom: 30px;
             transition: transform 0.3s;
         }
-        .academic-record:hover, .assigned-tasks:hover, .mentor-details:hover, .notifications:hover, .resources:hover {
+        .academic-record:hover, .assigned-tasks:hover, .mentor-details:hover, .notifications:hover, .recent-activities:hover, .meetings:hover {
             transform: translateY(-5px);
         }
         .progress {
@@ -242,48 +245,12 @@
             max-width: 100%;
             margin: 0 auto;
         }
-        .resource-item {
-            padding: 10px;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            margin-bottom: 10px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        .resource-item:hover {
-            background-color: #f0f0f0;
-            transform: translateY(-3px);
-        }
-        .resource-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-        }
-        .resource-description {
-            font-size: 14px;
-            color: #666;
-        }
-        .resource-link {
-            font-size: 14px;
-            color: #007bff;
-            text-decoration: none;
-        }
-        .resource-link:hover {
-            text-decoration: underline;
-        }
-        /* Ticket Table */
-        .ticket-table th, .ticket-table td {
-            text-align: center;
-            vertical-align: middle;
-        }
-        .ticket-table .btn {
-            margin: 0 2px;
-        }
     </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="sidebar">
-            <a href="{{route('dashboardmentee')}}">
+            <a href="#">
                 <span class="icon">
                     <i class="fa-solid fa-circle-user fa-2xl"></i> &nbsp;
                 </span> 
@@ -294,7 +261,7 @@
             <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
             <a href="{{route('taskmentee')}}"><i class="fas fa-tasks card-icon"></i>&nbsp; Task</a>
             <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
-            <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
+            <a href="{{route('menteeticket')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
             <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
             <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
         </div>
@@ -304,8 +271,8 @@
                     <div class="dashboard-header-wrapper">
                         <div class="topbar">
                             <div class="dashboard-header">
-                                <i class="fa-solid fa-graduation-cap fa-beat fa-2xl"></i>
-                                <span class="greeting">Hi, Chisom</span>
+                            <i class="fa-solid fa-graduation-cap fa-beat fa-2xl"></i>
+                                <span class="greeting">Hi, Chisom
                             </div>
                             <div class="toggle">
                                 <ion-icon name="menu-outline"></ion-icon>
@@ -316,69 +283,160 @@
                                     <ion-icon name="search-outline"></ion-icon>
                                 </label>
                             </div>
+                            
                         </div>
                     </div>
                     <div class="top-performer">
                         <h3>Mariya Bestcity</h3>
                         <p>Top Performer - Mean Score: 192</p>
                     </div>
-                    <hr>
-                    <!-- Ticket Table Section -->
-                    <div class="ticket-table-section">
-                        <h4>Ticket Details</h4>
-                        <table class="table table-bordered ticket-table">
-                            <thead class="thead-dark">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="custom-card project">
+                            <a href="{{route('modules')}}"><i class="fas fa-project-diagram card-icon"></i></a>
+                                <h5>Modules</h5>
+                                <p>Details about the project progress and submissions.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="custom-card task">
+                               <a href="{{route('taskmentee')}}"> <i class="fas fa-tasks card-icon"></i></a>
+                                <h5>Task</h5>
+                                <p>Overview of upcoming tasks and deadlines.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="custom-card quizzes">
+                            <a href="{{route('publicresources')}}"><i class="fas fa-clipboard-list card-icon"></i></a>
+                                <h5>Resources</h5>
+                                <p>Information on General Resources .</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="academic-record">
+                        <h4>Academic Record</h4>
+                        <div class="module-name">Module 1</div>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                        </div>
+                        <div class="module-name">Module 2</div>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+                        </div>
+                        <div class="module-name">Module 3</div>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                        </div>
+                        <div class="module-name">Module 4</div>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                        </div>
+                    </div>
+                    <!-- <div class="assigned-tasks">
+                        <h4>Assigned Tasks</h4>
+                        <table class="table table-striped">
+                            <thead>
                                 <tr>
-                                    <th>Ticket No</th>
-                                    <th>User ID</th>
-                                    <th>Category</th>
-                                    <th>Query</th>
-                                    <th>Status</th>
-                                    <th>Response</th>
-                                    <th>Actions</th>
+                                    <th scope="col">Assigned Task</th>
+                                    <th scope="col">Submission Date</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>12345</td>
-                                    <td>67890</td>
-                                    <td>Technical</td>
-                                    <td>How to reset password?</td>
-                                    <td>Open</td>
-                                    <td>We are looking into it.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-success btn-sm">Resolve</button>
-                                    </td>
+                                    <td>Assignment 1: Math Homework</td>
+                                    <td>2024-06-05</td>
                                 </tr>
                                 <tr>
-                                    <td>54321</td>
-                                    <td>09876</td>
-                                    <td>Billing</td>
-                                    <td>Incorrect invoice</td>
-                                    <td>Closed</td>
-                                    <td>Issue resolved.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-danger btn-sm">Reopen</button>
-                                    </td>
+                                    <td>Project: Science Fair</td>
+                                    <td>2024-06-10</td>
+                                </tr>
+                                <tr>
+                                    <td>Essay: History of Ancient Egypt</td>
+                                    <td>2024-06-15</td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="meetings">
+                                <h4>Meetings</h4>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Module Name</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Mathematics</td>
+                                            <td>Scheduled</td>
+                                            <td>2024-06-01</td>
+                                            <td><a href="#" class="btn btn-primary">Join</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Science</td>
+                                            <td>Scheduled</td>
+                                            <td>2024-06-05</td>
+                                            <td><a href="#" class="btn btn-primary">Join</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>History</td>
+                                            <td>Scheduled</td>
+                                            <td>2024-06-10</td>
+                                            <td><a href="#" class="btn btn-primary">Join</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6">
+                            Calendar Section
+                            <div class="calendar">
+                                <h4>Calendar</h4>
+                                <div id='calendar'></div>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="mentor-details" style="background-color:#ffc107;">
+                <div class="mentor-details" style="background-color:#ffc107;">
                         <h4>Assigned Mentor</h4>
                         <div class="mentor-detailsitems">
-                            <span class="notification-event">Mentor name: Rahul Parakh</span>
+                            <span class="notification-event"> Mentor name: Rahul Parakh</span>
+                        </div>
+                       
+                    </div>
+                    <div class="notifications">
+                        <h4>Notifications</h4>
+                        <div class="notification-item">
+                            <span class="notification-time">10:00</span>
+                            <span class="notification-event">Assignment due</span>
+                        </div>
+                        <div class="notification-item">
+                            <span class="notification-time">13:00</span>
+                            <span class="notification-event">New lecture available</span>
                         </div>
                     </div>
-                    
+                    <div class="recent-activities">
+                        <h4>Recent Activities</h4>
+                        <div class="activity-item">
+                            <span class="activity-time">Yesterday</span>
+                            <span class="activity-event">Completed Assignment 1</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-time">2 days ago</span>
+                            <span class="activity-event">Joined new course: Biology</span>
+                        </div>
+                    </div>
+                    <!-- Calendar Section -->
+                    <div class="calendar">
+                        <h4>Calendar</h4>
+                        <div id='calendar'></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -392,6 +450,35 @@
     <!-- FullCalendar JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-  
+    <script>
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: true,
+                events: [
+                    {
+                        title: 'Mathematics Meeting',
+                        start: '2024-06-01T09:00:00'
+                    },
+                    {
+                        title: 'Science Meeting',
+                        start: '2024-06-05T12:00:00'
+                    },
+                    {
+                        title: 'History Meeting',
+                        start: '2024-06-10T15:00:00'
+                    },
+                    {
+                        title: 'Geography Lecture',
+                        start: '2024-06-15T14:00:00'
+                    }
+                ]
+            });
+        });
+    </script>
 </body>
 </html>
