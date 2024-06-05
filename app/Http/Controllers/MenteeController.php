@@ -92,4 +92,8 @@ class MenteeController extends Controller
     {
         return view('jobdetails');
     }
+    public function sessionmentee()
+    {
+        return view('sessionmentee');
+    }
 }

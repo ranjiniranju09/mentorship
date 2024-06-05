@@ -175,18 +175,22 @@
         }
         @media (max-width: 768px) {
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
+                width: 250px;
+                height: 100%;
+                position: fixed;
+                left: -250px;
+                z-index: 1000;
+            }
+            .sidebar.active {
+                left: 0;
             }
             .content {
                 margin-left: 0;
             }
-            .tech-stack {
-                position: static;
-                width: 100%;
-                margin-bottom: 20px;
+            .toggle {
+                display: block;
             }
+           
         }
     </style>
 </head>
@@ -336,5 +340,13 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
     <!-- Custom JavaScript -->
+    <script>
+    $(document).ready(function() {
+        // Toggle sidebar on hamburger menu click
+        $('#toggle-btn').click(function() {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>
 </body>
 </html>

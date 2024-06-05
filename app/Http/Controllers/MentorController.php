@@ -16,5 +16,13 @@ class MentorController extends Controller
     {
         return view('dashboardmentor');
     }
+    public function mentorsessionadd()
+    {
+        return view('mentorsessionadd');
+    }
+    public function mentortaskadd()
+    {
+        return view('mentortaskadd');
+    }
 
 }

@@ -129,16 +129,20 @@
         }
         @media (max-width: 768px) {
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
+                width: 250px;
+                height: 100%;
+                position: fixed;
+                left: -250px;
+                z-index: 1000;
             }
-            .sidebar a {
-                text-align: center;
-                float: none;
+            .sidebar.active {
+                left: 0;
             }
             .content {
                 margin-left: 0;
+            }
+            .toggle {
+                display: block;
             }
         }
         .academic-record, .assigned-tasks, .calendar, .mentor-details, .notifications, .resources, .meetings {
@@ -427,6 +431,14 @@
             });
         });
     </script>
+    <script>
+    $(document).ready(function() {
+        // Toggle sidebar on hamburger menu click
+        $('#toggle-btn').click(function() {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>
 </body>
 </html>
 

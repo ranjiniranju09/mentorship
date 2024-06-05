@@ -139,6 +139,24 @@
         .start-btn:hover {
             background-color: #4cae4c;
         }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 250px;
+                height: 100%;
+                position: fixed;
+                left: -250px;
+                z-index: 1000;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .content {
+                margin-left: 0;
+            }
+            .toggle {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -292,5 +310,13 @@
             document.querySelector(`.filter-btn[onclick="filterOpportunities('${type}')"]`).classList.add('active');
         }
     </script>
+    <script>
+    $(document).ready(function() {
+        // Toggle sidebar on hamburger menu click
+        $('#toggle-btn').click(function() {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>
 </body>
 </html>

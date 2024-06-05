@@ -25,7 +25,6 @@
             background: linear-gradient(to bottom, #000000, #4ca1af);
             transition: 0.5s;
             overflow: hidden;
-            z-index: 1000; /* Ensure the sidebar is above other content */
         }
         .sidebar a {
             position: relative;
@@ -71,7 +70,6 @@
             align-items: center;
             font-size: 2.5rem;
             cursor: pointer;
-            display: none; /* Hide by default */
         }
         .search {
             width: 400px;
@@ -149,7 +147,6 @@
             .toggle {
                 display: block;
             }
-           
         }
         .academic-record, .assigned-tasks, .calendar, .mentor-details, .notifications, .recent-activities, .meetings {
             background-color: #fff;
@@ -247,6 +244,47 @@
         .custom-card.quizzes .card-icon {
             color: #ffc107;
         }
+        .table thead {
+            background-color: #007bff;
+            color: white;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #e9f7fe;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        .dropdown-menu {
+            background-color: #f8f9fa;
+        }
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        .session-table-wrapper {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        .session-table-wrapper h4 {
+            margin-bottom: 20px;
+        }
+        .btn-group .btn-sm {
+            padding: 5px 10px;
+        }
         /* FullCalendar overrides */
         #calendar {
             max-width: 100%;
@@ -272,11 +310,10 @@
             <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
             <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
         </div>
-        
         <div class="container content">
             <div class="row">
                 <div class="col-md-8">
-                <div class="dashboard-header-wrapper">
+                    <div class="dashboard-header-wrapper">
                     <div class="topbar">
                         <div class="dashboard-header">
                             <i class="fa-solid fa-graduation-cap fa-beat fa-2xl"></i>
@@ -297,153 +334,63 @@
                         <h3>Mariya Bestcity</h3>
                         <p>Top Performer - Mean Score: 192</p>
                     </div>
+
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="custom-card project">
-                            <a href="{{route('modules')}}"><i class="fas fa-project-diagram card-icon"></i></a>
-                                <h5>Modules</h5>
-                                <p>Details about the project progress and submissions.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="custom-card task">
-                               <a href="{{route('taskmentee')}}"> <i class="fas fa-tasks card-icon"></i></a>
-                                <h5>Task</h5>
-                                <p>Overview of upcoming tasks and deadlines.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="custom-card quizzes">
-                            <a href="{{route('publicresources')}}"><i class="fas fa-clipboard-list card-icon"></i></a>
-                                <h5>Resources</h5>
-                                <p>Information on General Resources .</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="academic-record">
-                        <h4>Academic Record</h4>
-                        <div class="module-name">Module 1</div>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-                        </div>
-                        <div class="module-name">Module 2</div>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
-                        </div>
-                        <div class="module-name">Module 3</div>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-                        </div>
-                        <div class="module-name">Module 4</div>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-                        </div>
-                    </div>
-                    <!-- <div class="assigned-tasks">
-                        <h4>Assigned Tasks</h4>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Assigned Task</th>
-                                    <th scope="col">Submission Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Assignment 1: Math Homework</td>
-                                    <td>2024-06-05</td>
-                                </tr>
-                                <tr>
-                                    <td>Project: Science Fair</td>
-                                    <td>2024-06-10</td>
-                                </tr>
-                                <tr>
-                                    <td>Essay: History of Ancient Egypt</td>
-                                    <td>2024-06-15</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="meetings">
-                                <h4>Meetings</h4>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Module Name</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Mathematics</td>
-                                            <td>Scheduled</td>
-                                            <td>2024-06-01</td>
-                                            <td><a href="#" class="btn btn-primary">Join</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Science</td>
-                                            <td>Scheduled</td>
-                                            <td>2024-06-05</td>
-                                            <td><a href="#" class="btn btn-primary">Join</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>History</td>
-                                            <td>Scheduled</td>
-                                            <td>2024-06-10</td>
-                                            <td><a href="#" class="btn btn-primary">Join</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- <div class="col-md-6">
-                            Calendar Section
-                            <div class="calendar">
-                                <h4>Calendar</h4>
-                                <div id='calendar'></div>
-                            </div>
-                        </div> -->
-                    </div>
+            <div class="col-md-12">
+                <div class="session-table-wrapper">
+                    <h4>Session Details</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Session</th>
+                                <th scope="col">Start Time</th>
+                                <th scope="col">End Time</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Session 1</td>
+                                <td>2024-06-03 10:00 AM</td>
+                                <td>2024-06-03 11:00 AM</td>
+                                <td>Math Review</td>
+                                <td>Mentor</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-video"></i> Join Recording
+                                        </a>
+                                        <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="visually-hidden">Review</span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">Write Review</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
                 </div>
                 <div class="col-md-4">
-                <div class="mentor-details" style="background-color:#ffc107;">
+                    <div class="mentor-details" style="background-color:#ffc107;">
                         <h4>Assigned Mentor</h4>
                         <div class="mentor-detailsitems">
                             <span class="notification-event"> Mentor name: Rahul Parakh</span>
                         </div>
-                       
                     </div>
-                    <div class="notifications">
-                        <h4>Notifications</h4>
-                        <div class="notification-item">
-                            <span class="notification-time">10:00</span>
-                            <span class="notification-event">Assignment due</span>
-                        </div>
-                        <div class="notification-item">
-                            <span class="notification-time">13:00</span>
-                            <span class="notification-event">New lecture available</span>
-                        </div>
-                    </div>
-                    <div class="recent-activities">
-                        <h4>Recent Activities</h4>
-                        <div class="activity-item">
-                            <span class="activity-time">Yesterday</span>
-                            <span class="activity-event">Completed Assignment 1</span>
-                        </div>
-                        <div class="activity-item">
-                            <span class="activity-time">2 days ago</span>
-                            <span class="activity-event">Joined new course: Biology</span>
-                        </div>
-                    </div>
-                    <!-- Calendar Section -->
+                   
+                   <!-- Calendar Section 
                     <div class="calendar">
                         <h4>Calendar</h4>
                         <div id='calendar'></div>
-                    </div>
+                    </div>  -->
                 </div>
             </div>
         </div>
@@ -457,7 +404,7 @@
     <!-- FullCalendar JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-    <script>
+    <!-- <script>
         $(document).ready(function() {
             $('#calendar').fullCalendar({
                 header: {
@@ -486,7 +433,7 @@
                 ]
             });
         });
-    </script>
+    </script> -->
     <script>
     $(document).ready(function() {
         // Toggle sidebar on hamburger menu click
@@ -495,6 +442,5 @@
         });
     });
 </script>
-
 </body>
 </html>
