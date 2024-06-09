@@ -286,12 +286,12 @@
                 <span class="title"> Mentee </span>
             </a>
             <a href="{{route('dashboardmentee')}}"><i class="fa-solid fa-house"></i>&nbsp; Home</a>
-            <a href="#"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
+            <a href="{{route('menteeprofile')}}"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
             <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
-            <a href="{{route('taskmentee')}}"><i class="fas fa-tasks card-icon"></i>&nbsp; Task</a>
+            <a href="{{route('taskmentee')}}"><i class="fa-solid fa-list-check"></i>&nbsp; Task</a>
             <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
-            <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
-            <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
+            <a href="{{route('menteeticket')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
+            <a href="{{route('sessionmentee')}}"><i class="fa-solid fa-user-group"></i>&nbsp; Sessions</a>
             <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
         </div>
         <div class="container content">
@@ -319,30 +319,7 @@
                         <p>Top Performer - Mean Score: 192</p>
                     </div>
                     <hr>
-                    <!-- Ticket Form Section -->
-                    <div class="ticket-form-section">
-                        <h4>Submit a New Ticket</h4>
-                        <form class="ticket-form">
-                            <div class="form-group">
-                                <label for="user-id">User ID</label>
-                                <input type="text" class="form-control" id="user-id" placeholder="Enter your User ID">
-                            </div>
-                            <div class="form-group">
-                                <label for="category">Category</label>
-                                <select class="form-control" id="category">
-                                    <option>Technical</option>
-                                    <option>Billing</option>
-                                    <option>General</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="query">Query</label>
-                                <textarea class="form-control" id="query" rows="3" placeholder="Describe your query"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit Ticket</button>
-                        </form>
-                    </div>
+                   
                 </div>
                 <div class="col-md-4">
                     <div class="mentor-details" style="background-color:#ffc107;">

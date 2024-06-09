@@ -5,7 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opportunities</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+     <!-- Bootstrap CSS -->
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXGEL0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+   <style>
         body {
             font-family: "Ubuntu", sans-serif;
             background-color: #f4f7f6;
@@ -19,31 +30,51 @@
             overflow: hidden;
         }
         .sidebar a {
+            position: relative;
             display: block;
             width: 100%;
             text-decoration: none;
             color: white;
             padding: 15px 10px;
             margin-bottom: 10px;
+            align-content: center;
             transition: background-color 0.3s, color 0.3s;
         }
         .sidebar a:hover {
             color: #cc66ff;
             background-color: rgba(255, 255, 255, 0.1);
         }
+        .sidebar .hovered a {
+            color: blue;
+        }
+        .sidebar a i {
+            margin-right: 15px;
+        }
         .content {
             margin-left: 250px;
             padding: 20px;
             transition: margin-left 0.5s;
         }
-        .topbar {
+        .topbar, .dashboard-header-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        .topbar {
             width: 100%;
             height: 60px;
             padding: 0 10px;
         }
+        .toggle {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+
         .greeting {
             font-size: 24px;
             color: green;
@@ -60,9 +91,11 @@
         }
         .search {
             width: 400px;
+            margin: 0 10px;
             position: relative;
-            flex: 1;
-            text-align: right;
+        }
+        .search label {
+            width: 100%;
         }
         .search label input {
             width: 100%;
@@ -74,6 +107,13 @@
             outline: none;
             border: none;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .search label ion-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            font-size: 1.2rem;
+            transform: translateY(-50%);
         }
         .filter-btns {
             text-align: center;
@@ -127,18 +167,6 @@
         .opportunity-action {
             text-align: right;
         }
-        .start-btn {
-            background-color: #5cb85c;
-            color: #fff;
-            border-radius: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        .start-btn:hover {
-            background-color: #4cae4c;
-        }
         @media (max-width: 768px) {
             .sidebar {
                 width: 250px;
@@ -160,7 +188,6 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid">
         <div class="sidebar">
             <a href="#">
                 <span class="icon">
@@ -171,16 +198,16 @@
             <a href="{{route('dashboardmentee')}}"><i class="fa-solid fa-house"></i>&nbsp; Home</a>
             <a href="#"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
             <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
-            <a href="{{route('taskmentee')}}"><i class="fa-solid fa-list"></i>&nbsp; Task</a>
+            <a href="{{route('taskmentee')}}"><i class="fa-solid fa-list-check"></i>&nbsp; Task</a>
             <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
-            <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a>
-            <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
+            <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
+            <a href="{{route('sessionmentee')}}"><i class="fa-solid fa-user-group"></i>&nbsp; Sessions</a>
             <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
         </div>
-        <div class="container content">
+        <div class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="dashboard-header-wrapper">
+                    <!-- <div class="dashboard-header-wrapper">
                         <div class="topbar">
                             <div class="dashboard-header">
                                 <i class="fa-solid fa-graduation-cap fa-beat fa-2xl"></i>
@@ -188,7 +215,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
+                    <hr> -->
                     <div class="jobs">
                         <h2>Opportunities for you</h2>
                         <div class="search">
@@ -198,11 +225,14 @@
                         </div>
                         <hr>
                     </div>
+    </br>
                     <div class="filter-btns rounded">
                       <button class="filter-btn active" onclick="filterOpportunities('all')">All</button>
                       <button class="filter-btn" onclick="filterOpportunities('job')">Jobs</button>
                       <button class="filter-btn" onclick="filterOpportunities('internship')">Internships</button>
                       <button class="filter-btn" onclick="filterOpportunities('fellowship')">Fellowships</button>
+                      <button class="filter-btn" onclick="filterOpportunities('others')">Others</button>
+
                     </div>
                     <hr>
                     <ul class="opportunity-list">
@@ -212,7 +242,7 @@
                                 <h5>Software Engineer</h5>
                             </div>
                             <div class="opportunity-action">
-                                <a href="#" class="start-btn">Explore</a>
+                                <a href="{{route('jobdetails1')}}" class="start-btn">Explore</a>
                             </div>
                         </li>
                         <li class="opportunity-item internship">
@@ -282,7 +312,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -291,7 +320,9 @@
     <!-- FullCalendar JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-    <!-- Custom JavaScript -->
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
         function filterOpportunities(type) {
             const items = document.querySelectorAll('.opportunity-item');

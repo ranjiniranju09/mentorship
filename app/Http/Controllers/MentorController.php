@@ -25,4 +25,13 @@ class MentorController extends Controller
         return view('mentortaskadd');
     }
 
+    public function mentorprofile()
+    {
+        return view('mentorprofile');
+    }
+    public function mentorresourceadd()
+    {
+        return view('mentorresourceadd');
+    } 
+
 }

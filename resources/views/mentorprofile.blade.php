@@ -8,10 +8,12 @@
     <title>Mentor Task Add </title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   
+</head>
 <style>
     /* =========== Google Fonts ============ */
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
@@ -225,143 +227,67 @@ body {
   height: 100%;
   object-fit: cover;
 }
+.form-container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+        margin: 20px;
+    }
 
-/* ======================= Cards ====================== */
-.cardBox {
-  position: relative;
-  width: 100%;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 30px;
-}
+    .form-container h2 {
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
 
-.cardBox .card {
-  position: relative;
-  background: var(--white);
-  padding: 30px;
-  border-radius: 20px;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-}
+    .form-group {
+        margin-bottom: 15px;
+    }
 
-.cardBox .card .numbers {
-  position: relative;
-  font-weight: 500;
-  font-size: 2.5rem;
-  color: var(--black1);
-}
+    .form-group label {
+        font-weight: 500;
+    }
 
-.cardBox .card .cardName {
-  color: var(--black2);
-  font-size: 1.1rem;
-  margin-top: 5px;
-}
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="file"],
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #999999;
+        border-radius: 5px;
+        outline: none;
+        transition: all 0.3s ease;
+    }
 
-.cardBox .card .iconBx {
-  font-size: 3.5rem;
-  color: var(--black2);
-}
+    .form-group input[type="text"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group input[type="tel"]:focus,
+    .form-group input[type="file"]:focus,
+    .form-group textarea:focus {
+        border-color: #2a2185;
+    }
 
-.cardBox .card:hover {
-  background: var(--blue);
-}
-.cardBox .card:hover .numbers,
-.cardBox .card:hover .cardName,
-.cardBox .card:hover .iconBx {
-  color: var(--white);
-}
+    .form-group input[type="file"] {
+        padding: 3px;
+    }
 
-/* ================== Order Details List ============== */
-.details {
-  position: relative;
-  width: 100%;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: 30px;
-  /* margin-top: 10px; */
-}
+    .form-group button {
+        background: #2a2185;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
 
-.details .recentOrders {
-  position: relative;
-  display: grid;
-  min-height: 500px;
-  background: var(--white);
-  padding: 20px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-}
-
-.details .cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.cardHeader h2 {
-  font-weight: 600;
-  color: var(--black1);
-}
-.cardHeader .btn {
-  position: relative;
-  padding: 5px 10px;
-  background: var(--blue);
-  text-decoration: none;
-  color: var(--white);
-  border-radius: 6px;
-}
-    /* =========== Add Task Form ============ */
-    .addTaskForm {
-    /* background-color: #f9f9f9; */
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 5px;
-    width: 800px;
-    margin-left: 40px;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-}
-
-.addTaskForm h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.addTaskForm label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-    font-weight: bold;
-}
-
-.addTaskForm input[type="text"],
-.addTaskForm input[type="url"],
-.addTaskForm input[type="date"],
-.addTaskForm input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.addTaskForm button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.addTaskForm button:hover {
-    background-color: #45a049;
-}
+    .form-group button:hover {
+        background: #1e185f;
+    }   
+ 
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
@@ -388,9 +314,7 @@ body {
   .details {
     grid-template-columns: 1fr;
   }
-  .recentOrders {
-    overflow-x: auto;
-  }
+  
   .status.inProgress {
     white-space: nowrap;
   }
@@ -424,23 +348,7 @@ body {
     right: 0;
     left: initial;
   }
-        .task-table {
-            margin-top: 40px;
-            margin-left: 50px;
-            width:max-content;
-
-        }
-
-        .task-table th, .task-table td {
-            vertical-align: middle;
-        }
-
-        .display-task{
-          margin-left: 50px;
-          
-        }
 }
-
 </style>
 </head>
 
@@ -495,7 +403,7 @@ body {
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="{{route('mentorresourceadd')}}">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -542,79 +450,48 @@ body {
                 </div>
             </div>
 
-            <!-- =============== Add Task Form ================ -->
-            <hr>
-</br>
+            <!-- Profile Details Form -->
 
-            <div class="row">
-              <div class="addTaskForm">
-                  <h2>Add Task</h2>
-                  <form>
-                      <label for="taskName">Task Name:</label>
-                      <input type="text" id="taskName" name="taskName" required>
-
-                      <label for="taskLink">Task Link:</label>
-                      <input type="url" id="taskLink" name="taskLink" required>
-
-                      <label for="submissionDeadline">Submission Deadline:</label>
-                      <input type="date" id="submissionDeadline" name="submissionDeadline" required>
-
-                      <label for="fileUpload">Upload File:</label>
-                      <input type="file" id="fileUpload" name="fileUpload" accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
-
-                      <button type="submit">Add Task</button>
-                  </form>
-              </div>
-          </div>
-
-</br>
-</br>
-          <div class="display-task">
-            <div class="col-md-10">
-                <h2>Tasks</h2>
-                <table class="table table-bordered task-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Task Name</th>
-                            <th>Task Link</th>
-                            <th>Submission Deadline</th>
-                            <th>File</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Task 1</td>
-                            <td><a href="#">Task Link</a></td>
-                            <td>2024-06-30</td>
-                            <td><a href="#">Download File</a></td>
-                        </tr>
-                        <tr>
-                            <td>Task 2</td>
-                            <td><a href="#">Task Link</a></td>
-                            <td>2024-07-5</td>
-                            <td><a href="#">Download File</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="form-container">
+                <div class="col-md-10">
+                <form action="#" method="POST">
+                    <div class="profile-picture">
+                        <img src="{{ asset('public/build/assets/17134408731954993.png')}}" alt="Your Profile Picture">
+                        <!-- <div class="form-group">
+                            <input type="file" id="profile-picture" name="profile-picture">
+                        </div> -->
+                    </div>
+                    <h2>Profile Details</h2>
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile">Mobile:</label>
+                            <input type="tel" id="mobile" name="mobile" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="skills">Skills:</label>
+                            <input type="text" id="skills" name="skills">
+                        </div>
+                       
+                        <div class="form-group">
+                            <button type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-
-
-        </div>
-    </div>
-
-    <!-- =========== Scripts =========  -->
+    </div>    
+</body>
     <script src="assets/js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- ====== ionicons ======= -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa1uMRHI8mK4K6pi/4jllnjt6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    
-</body>
 
 </html>

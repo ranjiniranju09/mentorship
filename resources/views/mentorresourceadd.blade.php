@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentor Task Add </title>
+    <title>Mentor Resource </title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -313,7 +313,7 @@ body {
   border-radius: 6px;
 }
     /* =========== Add Task Form ============ */
-    .addTaskForm {
+    .addResourceForm {
     /* background-color: #f9f9f9; */
     border: 1px solid #ddd;
     padding: 20px;
@@ -323,23 +323,23 @@ body {
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
-.addTaskForm h2 {
+.addResourceForm h2 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
-.addTaskForm label {
+.addResourceForm label {
     display: block;
     margin-bottom: 8px;
     color: #333;
     font-weight: bold;
 }
 
-.addTaskForm input[type="text"],
-.addTaskForm input[type="url"],
-.addTaskForm input[type="date"],
-.addTaskForm input[type="file"] {
+.addResourceForm input[type="text"],
+.addResourceForm input[type="url"],
+.addResourceForm input[type="date"],
+.addResourceForm input[type="file"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -348,7 +348,7 @@ body {
     box-sizing: border-box;
 }
 
-.addTaskForm button {
+.addResourceForm button {
     width: 100%;
     padding: 10px;
     background-color: #4CAF50;
@@ -359,7 +359,7 @@ body {
     font-size: 16px;
 }
 
-.addTaskForm button:hover {
+.addResourceForm button:hover {
     background-color: #45a049;
 }
 
@@ -435,7 +435,7 @@ body {
             vertical-align: middle;
         }
 
-        .display-task{
+        .display-resource{
           margin-left: 50px;
           
         }
@@ -547,59 +547,54 @@ body {
 </br>
 
             <div class="row">
-              <div class="addTaskForm">
-                  <h2>Add Task</h2>
+              <div class="addResourceForm">
+                  <h2>Add Resource</h2>
                   <form>
-                      <label for="taskName">Task Name:</label>
-                      <input type="text" id="taskName" name="taskName" required>
+                      <label for="resourceName">Resource Name:</label>
+                      <input type="text" id="resourceName" name="resourceName" required>
 
-                      <label for="taskLink">Task Link:</label>
-                      <input type="url" id="taskLink" name="taskLink" required>
+                      <label for="ResourceLink">Resource Link:</label>
+                      <input type="url" id="ResourceLink" name="ResourceLink" required>
 
-                      <label for="submissionDeadline">Submission Deadline:</label>
-                      <input type="date" id="submissionDeadline" name="submissionDeadline" required>
+                      <label for="resourceModule">Submission Deadline:</label>
+                      <input type="text" id="resourceModule" name="resourceModule" required>
 
                       <label for="fileUpload">Upload File:</label>
                       <input type="file" id="fileUpload" name="fileUpload" accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
 
-                      <button type="submit">Add Task</button>
+                      <button type="submit">Add Resource</button>
                   </form>
               </div>
           </div>
 
 </br>
 </br>
-          <div class="display-task">
-            <div class="col-md-10">
-                <h2>Tasks</h2>
-                <table class="table table-bordered task-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Task Name</th>
-                            <th>Task Link</th>
-                            <th>Submission Deadline</th>
-                            <th>File</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Task 1</td>
-                            <td><a href="#">Task Link</a></td>
-                            <td>2024-06-30</td>
-                            <td><a href="#">Download File</a></td>
-                        </tr>
-                        <tr>
-                            <td>Task 2</td>
-                            <td><a href="#">Task Link</a></td>
-                            <td>2024-07-5</td>
-                            <td><a href="#">Download File</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="display-resource">
+                <div class="col-md-10">
+                    <h2>Resource</h2>
+                    <table class="table table-bordered task-table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Resource Name</th>
+                                <th>Description</th>
+                                <th>Related Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Resource 1</td>
+                                <td>Description of Resource 1</td>
+                                <td><a href="https://www.javatpoint.com/">Related Link</a></td>
+                            </tr>
+                            <tr>
+                                <td>Resource 2</td>
+                                <td>Description of Resource 2</td>
+                                <td><a href="#">Related Link</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-
-
         </div>
     </div>
 

@@ -10,6 +10,8 @@
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
     /* =========== Google Fonts ============ */
@@ -189,7 +191,7 @@ body {
   width: 100%;
 }
 
-.search label input {
+.search label input select{
   width: 100%;
   height: 40px;
   border-radius: 40px;
@@ -319,7 +321,12 @@ body {
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     margin: 20px 0;
     width: 80%;
+    margin-left: 40px;
 }
+  .display-session{
+    margin-left: 40px;
+    width:max-content;
+  }
 
 .addSessionForm h2 {
     font-weight: 600;
@@ -338,7 +345,7 @@ body {
     margin-bottom: 5px;
 }
 
-.addSessionForm form input,
+.addSessionForm form input,.addSessionForm form select,
 .addSessionForm form textarea {
     margin-bottom: 15px;
     padding: 10px;
@@ -428,13 +435,45 @@ body {
     right: 0;
     left: initial;
   }
+  /* ====================== Display Session table ========================== */
+
+ .ticket-table {
+            margin-top: 20px;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .completed {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .inProgress {
+            background-color: #ffc107;
+            color: #000;
+        }
+
+        .pending {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        .canceled {
+            background-color: #dc3545;
+            color: #fff;
+        }
 }
 </style>
 </head>
 
 <body>
     <!-- =============== Navigation ================ -->
-    <div class="container">
+    <div class="container-fluid">
         <div class="navigation">
             <ul>
                 <li>
@@ -482,14 +521,14 @@ body {
                     </a>
                 </li>
 
-                <li>
-                    <a href="#">
+                <!-- <li>
+                <a href="#">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
-                        <span class="title">Settings</span>
+                        <span class="title">Resources</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li>
                     <a href="#">
@@ -531,7 +570,7 @@ body {
             </div>
 
             <!-- =============== Add Session Form ================ -->
-            <div class="row">
+            <div class="row ">
                 <div class="addSessionForm">
                     <h2>Add New Session</h2>
                     <form>
@@ -544,25 +583,94 @@ body {
                         <label for="meetingTime">Meeting Time:</label>
                         <input type="time" id="meetingTime" name="meetingTime" required>
 
-                        <label for="videoUpload">Upload Video:</label>
-                        <input type="file" id="videoUpload" name="videoUpload" accept="video/*" required>
+                        <label for="sessioncategory">Modules</label>
+                          <select  id="sessioncategory" name="sessioncategory">
+                            <option>---Select Modules---</option>
+                            <option>Modules 1</option>
+                            <option>Modules 2</option>
+                            <option>Modules 3</option>
+                            <option>Modules 4</option>
+                            <option>General</option>
+                          </select>
+
+                        <label for="sessionlink">Session Link:</label>
+                        <input type="text" id="sessionlink" name="sessionlink" required>
 
                         <button type="submit">Add Session</button>
                     </form>
-
                 </div>
             </div>
 
-        </div>
+            <div class="display-session">
+        <h2>Added Sessions</h2>
+        <table class="table table-bordered ticket-table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Session ID</th>
+                    <th>Title</th>
+                    <th>Instructor</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>Introduction to Python</td>
+                    <td>Guest Lecturer</td>
+                    <td>2024-06-01</td>
+                    <td><span class="status completed">Completed</span></td>
+                    <td>
+                      <a href="#" class="btn btn-success">Recording</a>
+                      
+                    </td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Data Science Basics</td>
+                    <td>Mentor</td>
+                    <td>2024-06-02</td>
+                    <td><span class="status inProgress">In Progress</span></td>
+                    <td><a href="#" class="btn btn-success">Join</a></td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>Web Development</td>
+                    <td>Guest Lecturer</td>
+                    <td>2024-06-03</td>
+                    <td><span class="status pending">Pending</span></td>
+                    <td><a href="#" class="btn btn-success">Join</a></td>
+                </tr>
+                <tr>
+                    <td>004</td>
+                    <td>Advanced Python</td>
+                    <td>Mentor</td>
+                    <td>2024-06-04</td>
+                    <td><span class="status canceled">Canceled</span></td>
+                </tr>
+                <tr>
+                    <td>005</td>
+                    <td>Machine Learning</td>
+                    <td>Mentor</td>
+                    <td>2024-06-05</td>
+                    <td><span class="status completed">Completed</span></td>
+                    <td><a href="#" class="btn btn-success">Recording</a></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+</div>
+
 
     <!-- =========== Scripts =========  -->
     <script src="assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- ====== ionicons ======= -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     
 </body>

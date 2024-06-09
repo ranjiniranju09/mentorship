@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task</title>
+    <title>Mentee Dashboard</title>
     <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Font Awesome -->
@@ -12,6 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- FullCalendar CSS -->
     <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+    
+    
     <!-- Custom CSS -->
     <style>
         body {
@@ -98,7 +102,7 @@
             transform: translateY(-50%);
         }
         .user {
-            width: 50px;
+            width: 100px;
             height: 50px;
             cursor: pointer;
         }
@@ -109,9 +113,8 @@
         }
         .greeting {
             font-size: 24px;
-            color: #333;
-            font-weight: bold;
             color: green;
+            font-weight: bold;
         }
         .start-btn {
             background-color: #5cb85c;
@@ -130,20 +133,23 @@
         }
         @media (max-width: 768px) {
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
+                width: 250px;
+                height: 100%;
+                position: fixed;
+                left: -250px;
+                z-index: 1000;
             }
-            .sidebar a {
-                text-align: center;
-                float: none;
+            .sidebar.active {
+                left: 0;
             }
             .content {
                 margin-left: 0;
             }
+            .toggle {
+                display: block;
+            }
         }
-    
-        .academic-record,.assigned-tasks, .calendar, .mentor-details, .Resources, .recent-activities, .meetings {
+        .academic-record, .assigned-tasks, .calendar, .mentor-details, .notifications, .recent-activities, .meetings {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -151,7 +157,7 @@
             margin-bottom: 30px;
             transition: transform 0.3s;
         }
-        .academic-record:hover, .calendar:hover, .mentor-details:hover, .Resources:hover, .recent-activities:hover, .meetings:hover {
+        .academic-record:hover, .assigned-tasks:hover, .mentor-details:hover, .notifications:hover, .recent-activities:hover, .meetings:hover {
             transform: translateY(-5px);
         }
         .progress {
@@ -163,26 +169,26 @@
             color: #333;
             margin-bottom: 10px;
         }
-        .calendar-item, .Resources-item, .mentor-detailsitems, .activity-item {
+        .calendar-item, .notification-item, .mentor-detailsitems, .activity-item {
             padding: 10px 0;
             border-bottom: 1px solid #eee;
             transition: all 0.3s ease-in-out;
         }
-        .calendar-item:last-child, .Resources-item:last-child, .activity-item:last-child {
+        .calendar-item:last-child, .notification-item:last-child, .activity-item:last-child {
             border-bottom: none;
         }
-        .calendar-item:hover, .Resources-item:hover, .activity-item:hover {
+        .calendar-item:hover, .notification-item:hover, .activity-item:hover {
             background-color: #f0f0f0;
             transform: scale(1.02);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .calendar-time, .Resources-time, .activity-time {
+        .calendar-time, .notification-time, .activity-time {
             font-size: 18px;
             color: #333;
             display: block;
             font-weight: bold;
         }
-        .calendar-event, .Resources-event, .activity-event,.mentor-event {
+        .calendar-event, .notification-event, .activity-event {
             font-size: 16px;
             color: #666;
             display: block;
@@ -239,62 +245,44 @@
         .custom-card.quizzes .card-icon {
             color: #ffc107;
         }
-        /* FullCalendar overrides */
-        #calendar {
-            max-width: 100%;
-            margin: 0 auto;
+        .table thead {
+            background-color: #007bff;
+            color: white;
         }
-
-        /* To-Do List Styles */
-        .todo-list {
-            background-color: #f9f9f9;
-            padding: 20px;
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #e9f7fe;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .table-container {
+            padding: 10px;
+            margin-bottom: 30px;
+            background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
         }
-        .todo-list h6 {
-            color: #333;
-            font-weight: bold;
+        .modal-header {
+            background-color: #f8f9fa;
         }
-        .todo-list .form-control {
-            border: 1px solid #ccc;
-            box-shadow: none;
+
+        .modal-footer {
+            background-color: #f8f9fa;
         }
-        .todo-list .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
-        .todo-list .btn-primary:hover {
-            background-color: #0056b3;
-        }
-        .todo-list .form-check-input {
-            margin: 0;
-        }
-        .todo-list .list-group-item {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .todo-list .list-group-item .btn-sm {
-            font-size: 0.8rem;
-        }
-        .task {
-            color: orangered;
-        }
-        .submitted-badge {
-            background-color: #28a745;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-        }
+
+        /* .table-container {
+            margin-top: 20px;
+        } */
+
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="sidebar">
+<div class="sidebar">
             <a href="#">
                 <span class="icon">
                     <i class="fa-solid fa-circle-user fa-2xl"></i> &nbsp;
@@ -304,217 +292,220 @@
             <a href="{{route('dashboardmentee')}}"><i class="fa-solid fa-house"></i>&nbsp; Home</a>
             <a href="#"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
             <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
+            <a href="{{route('taskmentee')}}"><i class="fa-solid fa-list-check"></i>&nbsp; Task</a>
             <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
-            <a href="{{route('taskmentee')}}"><i class="fas fa-tasks card-icon"></i>&nbsp; Task</a>
             <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
-            <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
+            <a href="{{route('sessionmentee')}}"><i class="fa-solid fa-user-group"></i>&nbsp; Sessions</a>
             <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
         </div>
-        <div class="container content">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="dashboard-header-wrapper">
-                        <div class="topbar">
-                            <div class="dashboard-header">
-                            <i class="fa-solid fa-graduation-cap fa-beat fa-2xl"></i>
-                                <span class="greeting">Hi, Chisom</span>
-                            </div>
-                            <div class="toggle">
-                                <ion-icon name="menu-outline"></ion-icon>
-                            </div>
-                            <div class="search">
-                                <label>
-                                    <input type="text" placeholder="Search here">
-                                    <ion-icon name="search-outline"></ion-icon>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                     <!-- Calendar Section
-                     <div class="calendar">
-                        <h4>Calendar</h4>
-                        <div id='calendar'></div>
-                    </div> -->
-                    <div class="assigned-tasks">
-                        <h5 class="task">Assigned Tasks</h5>
-                        <ul class="list-group mb-3">
-                            <li class="list-group-item d-flex justify-content-between align-items-center" data-description="Complete the math exercises from chapter 5" data-due-date="2024-06-05" data-task-id="1" onclick="showTaskDetails(this)">
-                                <div>
-                                    <label style="margin-right: 20px;"><input class="form-check-input m-0" type="checkbox"></label>
-                                    <strong>Assignment 1:</strong> Math Homework <span class="badge bg-primary">New</span>
-                                </div>
-                                <span class="badge badge-primary badge-pill">2024-06-05</span>
-                                <a href="{{route('dashboardmentee')}}" target="_blank"><i class="fa-solid fa-book-open-reader"></i></a>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center" data-description="Prepare a model for the science fair" data-due-date="2024-06-10" data-task-id="2" onclick="showTaskDetails(this)">
-                                <div>
-                                    <label style="margin-right: 20px;"><input class="form-check-input m-0" type="checkbox"></label>
-                                    <strong>Project:</strong> Science Fair
-                                </div>
-                                <span class="badge badge-primary badge-pill">2024-06-10</span>
-                                <a href="#" target="_blank"><i class="fa-solid fa-book-open-reader"></i></a>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center" data-description="Write an essay about the history of ancient Egypt" data-due-date="2024-06-15" data-task-id="3" onclick="showTaskDetails(this)">
-                                <div>
-                                    <label style="margin-right: 20px;"><input class="form-check-input m-0" type="checkbox"></label>
-                                    <strong>Essay:</strong> History of Ancient Egypt
-                                </div>
-                                <span class="badge badge-primary badge-pill">2024-06-15</span>
-                                <a href="#" target="_blank"><i class="fa-solid fa-book-open-reader"></i></a>
-                            </li>
-                        </ul>
+    <div class="content">
+        <div class="topbar">
+            <div class="toggle"><i class="fa-solid fa-bars"></i></div>
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Search here">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+            <!-- <div class="user">
+            <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>Sign Out</a>
+            </div> -->
+        </div>
+        
+        <div class="container">
+            <h2>Assigned Tasks</h2>
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Task</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>June 1, 2024</td>
+                            <td>Complete Project Proposal</td>
+                            <td>June 10, 2024</td>
+                            <td>In Progress</td>
+                            <td>
+                                <button class="btn btn-success" onclick="openModal('Complete Project Proposal', 'June 10, 2024', 'In Progress')">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>June 2, 2024</td>
+                            <td>Submit Report</td>
+                            <td>June 15, 2024</td>
+                            <td>Not Started</td>
+                            <td>
+                                <button class="btn btn-success" onclick="openModal('Submit Report', 'June 15, 2024', 'Not Started')">View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                        <div class="input-group mb-3">
-                            <input type="file" class="form-control" id="uploadFile">
-                        </div>
-                        
-                        <button class="btn btn-primary w-100" type="submit">Submit</button>
+        <!-- Modal -->
+        <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="taskModalLabel">Task Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                   
-                    <!-- <div class="Resources">
-                        <h4>Related Resources</h4>
-                        <div class="notification-item">
-                            <span class="Resources-time">10:00</span>
-                            <span class="Resources-event">Assignment due</span>
-                        </div>
-                        <div class="Resources-item">
-                            <span class="Resources-time">13:00</span>
-                            <span class="Resources-event">New lecture available</span>
-                        </div>
-                    </div> -->
+                    <div class="modal-body">
+                        <form id="taskForm">
+                            <div class="mb-3">
+                                <label for="taskTopic" class="form-label">Topic</label>
+                                <input type="text" class="form-control" id="taskTopic" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="taskDueDate" class="form-label">Due Date</label>
+                                <input type="text" class="form-control" id="taskDueDate" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="taskStatus" class="form-label">Status</label>
+                                <input type="text" class="form-control" id="taskStatus" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="taskReply" class="form-label">Reply</label>
+                                <textarea class="form-control" id="taskReply" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="taskFile" class="form-label">Upload File</label>
+                                <input class="form-control" type="file" id="taskFile">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="submitTask()">Submit</button>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="mentor-details" style="background-color:#ffc107;">
-                        <h4>Assigned Mentor</h4>
-                        <div class="mentor-detailsitems">
-                            <span class="mentor-event"> Mentor name: Rahul Parakh</span>
-                        </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>Completed Tasks</h2>
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Task</th>
+                            <th>Completion Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>May 20, 2024</td>
+                            <td>Finalize Topic</td>
+                            <td>May 25, 2024</td>
+                            <td>Completed</td>
+                            <td>
+                            <button class="btn btn-info" onclick="openReviewModal('Complete Project Proposal', 'June 10, 2024', 'Submitted')">Review</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>May 22, 2024</td>
+                            <td>Draft Outline</td>
+                            <td>May 28, 2024</td>
+                            <td>Completed</td>
+                            <td>                            
+                                <button class="btn btn-info" onclick="openReviewModal('Submit Report', 'June 15, 2024', 'Submitted')">Review</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Review Modal -->
+        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reviewModalLabel">Review Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="todo-list">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h6 class="mb-0">Notes</h6>
-                            <a href="#" class="text-primary">Show All</a>
-                        </div>
-                        <div class="d-flex mb-2">
-                            <input class="form-control" type="text" placeholder="Enter task">
-                            <button type="button" class="btn btn-primary ms-2">Add</button>
-                        </div>
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex align-items-center">
-                                <span>Short task goes here...</span>
-                                <button class="btn btn-sm btn-outline-danger ms-auto"><i class="fa fa-times"></i></button>
-                            </li>
-                            <li class="list-group-item d-flex align-items-center">
-                                <span>Short task goes here...</span>
-                                <button class="btn btn-sm btn-outline-danger ms-auto"><i class="fa fa-times"></i></button>
-                            </li>
-                            <li class="list-group-item d-flex align-items-center">
-                                <span>Short task goes here...</span>
-                                <button class="btn btn-sm btn-outline-primary ms-auto"><i class="fa fa-times"></i></button>
-                            </li>
-                            <li class="list-group-item d-flex align-items-center">
-                                <span>Short task goes here...</span>
-                                <button class="btn btn-sm btn-outline-danger ms-auto"><i class="fa fa-times"></i></button>
-                            </li>
-                            <li class="list-group-item d-flex align-items-center">
-                                <span>Short task goes here...</span>
-                                <button class="btn btn-sm btn-outline-danger ms-auto"><i class="fa fa-times"></i></button>
-                            </li>
-                        </ul>
+                    <div class="modal-body">
+                        <form id="reviewForm">
+                            <div class="mb-3">
+                                <label for="reviewTopic" class="form-label">Topic</label>
+                                <input type="text" class="form-control" id="reviewTopic" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reviewDueDate" class="form-label">Due Date</label>
+                                <input type="text" class="form-control" id="reviewDueDate" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reviewStatus" class="form-label">Status</label>
+                                <input type="text" class="form-control" id="reviewStatus" readonly>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <!-- Task Detail Modal -->
-    <div class="modal fade" id="taskDetailModal" tabindex="-1" aria-labelledby="taskDetailModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="taskDetailModalLabel">Task Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p><strong>Description:</strong> <span id="taskDescription"></span></p>
-                    <p><strong>Due Date:</strong> <span id="taskDueDate"></span></p>
-                    <textarea class="form-control" rows="4" placeholder="Enter task details here..."></textarea>
-                    <div class="input-group mt-3">
-                        <input type="file" class="form-control" id="uploadTaskFile">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="submitTask()">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
+   
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.16/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
     <!-- FullCalendar JS -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
     <script>
-        // $(document).ready(function() {
-        //     $('#calendar').fullCalendar({
-        //         header: {
-        //             left: 'prev,next today',
-        //             center: 'title',
-        //             right: 'month,agendaWeek,agendaDay'
-        //         },
-        //         editable: true,
-        //         events: [
-        //             {
-        //                 title: 'Mathematics Meeting',
-        //                 start: '2024-06-01T09:00:00'
-        //             },
-        //             {
-        //                 title: 'Science Meeting',
-        //                 start: '2024-06-05T12:00:00'
-        //             },
-        //             {
-        //                 title: 'History Meeting',
-        //                 start: '2024-06-10T15:00:00'
-        //             },
-        //             {
-        //                 title: 'Geography Lecture',
-        //                 start: '2024-06-15T14:00:00'
-        //             }
-        //         ]
-        //     });
-        // });
+        $(document).ready(function() {
+            $('.toggle').on('click', function() {
+                $('.sidebar').toggleClass('active');
+                $('.content').toggleClass('active');
+            });
+        });
 
-        function showTaskDetails(element) {
-            const description = element.getAttribute('data-description');
-            const dueDate = element.getAttribute('data-due-date');
-            const taskId = element.getAttribute('data-task-id');
-            
-            document.getElementById('taskDescription').innerText = description;
-            document.getElementById('taskDueDate').innerText = dueDate;
-            document.getElementById('taskDetailModal').setAttribute('data-task-id', taskId);
-            
-            $('#taskDetailModal').modal('show');
+        function openModal(topic, dueDate, status) {
+        document.getElementById('taskTopic').value = topic;
+        document.getElementById('taskDueDate').value = dueDate;
+        document.getElementById('taskStatus').value = status;
+        var myModal = new bootstrap.Modal(document.getElementById('taskModal'));
+        myModal.show();
         }
 
         function submitTask() {
-            const taskId = document.getElementById('taskDetailModal').getAttribute('data-task-id');
-            const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
-            const submittedBadge = document.createElement('span');
-            submittedBadge.classList.add('badge', 'submitted-badge');
-            submittedBadge.innerText = 'Submitted';
-            taskElement.appendChild(submittedBadge);
-
-            $('#taskDetailModal').modal('hide');
+            alert('Your task is successfully submitted');
+            var myModal = bootstrap.Modal.getInstance(document.getElementById('taskModal'));
+            myModal.hide();
         }
+
+        function openReviewModal(topic, dueDate, status) {
+            document.getElementById('reviewTopic').value = topic;
+            document.getElementById('reviewDueDate').value = dueDate;
+            document.getElementById('reviewStatus').value = status;
+            var reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
+            reviewModal.show();
+        }
+
+        function submitReview() {
+            alert('Your review is successfully submitted');
+            var reviewModal = bootstrap.Modal.getInstance(document.getElementById('reviewModal'));
+            reviewModal.hide();
+        }
+
+
     </script>
+
 </body>
 </html>

@@ -25,7 +25,6 @@
             background: linear-gradient(to bottom, #000000, #4ca1af);
             transition: 0.5s;
             overflow: hidden;
-            z-index: 1000; /* Ensure the sidebar is above other content */
         }
         .sidebar a {
             position: relative;
@@ -102,10 +101,7 @@
         .user {
             width: 50px;
             height: 50px;
-            /* border-radius: 50%; */
-            /* overflow: hidden; */
             cursor: pointer;
-            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
         }
         .user img {
             width: 100%;
@@ -116,18 +112,6 @@
             font-size: 24px;
             color: green;
             font-weight: bold;
-        }
-        .start-btn {
-            background-color: #5cb85c;
-            color: #fff;
-            border-radius: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        .start-btn:hover {
-            background-color: #4cae4c;
         }
         .dashboard-header-wrapper {
             margin-bottom: 30px;
@@ -195,27 +179,10 @@
             color: #666;
             display: block;
         }
-        .top-performer {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .top-performer img {
-            border-radius: 50%;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .top-performer h3 {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #333;
-            font-weight: bold;
-        }
-        .top-performer p {
-            color: #666;
-        }
-        .card-icon {
-            font-size: 36px;
+        .icon {
+            font-size: 40px;
             margin-bottom: 20px;
-            transition: transform 0.3s;
+            transition: transform 0.4s;
         }
         .custom-card {
             background-color: #fff;
@@ -229,23 +196,39 @@
         .custom-card:hover {
             transform: translateY(-5px);
         }
-        .custom-card.project {
+        .custom-card.modules {
             border-left: 5px solid #007bff;
+            width:auto;
+            height: 80%;
         }
         .custom-card.task {
             border-left: 5px solid #28a745;
+            width:auto;
+            height: 80%;
+
         }
-        .custom-card.quizzes {
+        .custom-card.resources {
             border-left: 5px solid #ffc107;
+            width:auto;
+            height: 80%;
         }
-        .custom-card.project .card-icon {
+        .custom-card.jobs {
+            border-left: 5px solid #d24dff;
+            width:auto;
+            height: 80%;
+        }
+        
+        .custom-card.modules .card-icon {
             color: #007bff;
         }
         .custom-card.task .card-icon {
             color: #28a745;
         }
-        .custom-card.quizzes .card-icon {
+        .custom-card.resources .card-icon {
             color: #ffc107;
+        }
+        .custom-card.jobs .card-icon {
+            color: #d24dff;
         }
         /* FullCalendar overrides */
         #calendar {
@@ -255,68 +238,75 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="sidebar">
+    <div class="sidebar">
             <a href="#">
                 <span class="icon">
                     <i class="fa-solid fa-circle-user fa-2xl"></i> &nbsp;
                 </span> 
-                <span class="title"> Mentee </span>
+                <span class="title"> Rahul </span>
             </a>
             <a href="{{route('dashboardmentee')}}"><i class="fa-solid fa-house"></i>&nbsp; Home</a>
-            <a href="#"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
+            <a href="{{route('menteeprofile')}}"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
             <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
-            <a href="{{route('taskmentee')}}"><i class="fas fa-tasks card-icon"></i>&nbsp; Task</a>
+            <a href="{{route('taskmentee')}}"><i class="fa-solid fa-list-check"></i>&nbsp; Task</a>
             <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
-            <a href="{{route('menteeticket')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
-            <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
+            <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
+            <a href="{{route('sessionmentee')}}"><i class="fa-solid fa-user-group"></i>&nbsp; Sessions</a>
             <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
-        </div>
+     </div>
         
         <div class="container content">
             <div class="row">
                 <div class="col-md-8">
-                <div class="dashboard-header-wrapper">
-                    <div class="topbar">
-                        <div class="dashboard-header">
-                            <i class="fa-solid fa-graduation-cap fa-beat fa-2xl"></i>
-                            <span class="greeting">Hi, Chisom</span>
-                        </div>
-                        <div class="toggle" id="toggle-btn">
-                            <ion-icon name="menu-outline"></ion-icon>
-                        </div>
-                        <div class="search">
-                            <label>
-                                <input type="text" placeholder="Search here">
-                                <ion-icon name="search-outline"></ion-icon>
-                            </label>
+                    <div class="dashboard-header-wrapper">
+                        <div class="topbar">
+                            <div class="dashboard-header">
+                                <i class="fa-solid fa-graduation-cap fa-beat fa-2xl"></i>
+                                <span class="greeting">Hi, Chisom</span>
+                            </div>
+                            <div class="toggle" id="toggle-btn">
+                                <ion-icon name="menu-outline"></ion-icon>
+                            </div>
+                            <div class="search">
+                                <label>
+                                    <input type="text" placeholder="Search here">
+                                    <ion-icon name="search-outline"></ion-icon>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                    <div class="top-performer">
-                        <h3>Mariya Bestcity</h3>
-                        <p>Top Performer - Mean Score: 192</p>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="custom-card project">
-                            <a href="{{route('modules')}}"><i class="fas fa-project-diagram card-icon"></i></a>
+                            <div class="custom-card modules">
+                            <a href="{{route('modules')}}"><i class=" icon fa-solid fa-diagram-project fa-2xl"></i></a>
+    </br>
                                 <h5>Modules</h5>
                                 <p>Details about the project progress and submissions.</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="custom-card task">
-                               <a href="{{route('taskmentee')}}"> <i class="fas fa-tasks card-icon"></i></a>
+                               <a href="{{route('taskmentee')}}"> <i class="icon fa-solid fa-list-check fa-2xl"></i></a>
+                               </br>
                                 <h5>Task</h5>
                                 <p>Overview of upcoming tasks and deadlines.</p>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="custom-card quizzes">
-                            <a href="{{route('publicresources')}}"><i class="fas fa-clipboard-list card-icon"></i></a>
-                                <h5>Resources</h5>
+                            <div class="custom-card resources">
+                            <a href="{{route('publicresources')}}"><i class=" icon fa-solid fa-link fa-2xl"></i></a>
+                            </br>
+                                <h5>Knowledge Bank</h5>
                                 <p>Information on General Resources .</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="custom-card jobs">
+                            <a href="{{route('jobs')}}"><i class="icon fa-solid fa-briefcase fa-2xl"></i></a>
+                            </br>
+                                <h5>Opportunities</h5>
+                                <p>Information on different opportunity  .</p>
                             </div>
                         </div>
                     </div>
@@ -339,31 +329,7 @@
                             <div class="progress-bar bg-danger" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
                         </div>
                     </div>
-                    <!-- <div class="assigned-tasks">
-                        <h4>Assigned Tasks</h4>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Assigned Task</th>
-                                    <th scope="col">Submission Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Assignment 1: Math Homework</td>
-                                    <td>2024-06-05</td>
-                                </tr>
-                                <tr>
-                                    <td>Project: Science Fair</td>
-                                    <td>2024-06-10</td>
-                                </tr>
-                                <tr>
-                                    <td>Essay: History of Ancient Egypt</td>
-                                    <td>2024-06-15</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> -->
+                   
                     <div class="row">
                         <div class="col-md-12">
                             <div class="meetings">
@@ -382,19 +348,19 @@
                                             <td>Mathematics</td>
                                             <td>Scheduled</td>
                                             <td>2024-06-01</td>
-                                            <td><a href="#" class="btn btn-primary">Join</a></td>
+                                            <td><a href="https://meet.google.com/hnq-unax-qwn" class="btn btn-primary">Join</a></td>
                                         </tr>
                                         <tr>
                                             <td>Science</td>
                                             <td>Scheduled</td>
                                             <td>2024-06-05</td>
-                                            <td><a href="#" class="btn btn-primary">Join</a></td>
+                                            <td><a href="https://meet.google.com/hnq-unax-qwn" class="btn btn-primary">Join</a></td>
                                         </tr>
                                         <tr>
                                             <td>History</td>
                                             <td>Scheduled</td>
                                             <td>2024-06-10</td>
-                                            <td><a href="#" class="btn btn-primary">Join</a></td>
+                                            <td><a href="https://meet.google.com/hnq-unax-qwn" target="_blank" class="btn btn-primary">Join</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -410,44 +376,45 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                <div class="mentor-details" style="background-color:#ffc107;">
-                        <h4>Assigned Mentor</h4>
-                        <div class="mentor-detailsitems">
-                            <span class="notification-event"> Mentor name: Rahul Parakh</span>
+                    <div class="mentor-details" style="background-color:#ffc107;">
+                            <h4>Assigned Mentor</h4>
+                            <div class="mentor-detailsitems">
+                                <span class="notification-event"> Mentor name: Rahul Parakh</span>
+                            </div>
+                        
                         </div>
-                       
-                    </div>
-                    <div class="notifications">
-                        <h4>Notifications</h4>
-                        <div class="notification-item">
-                            <span class="notification-time">10:00</span>
-                            <span class="notification-event">Assignment due</span>
+                        <div class="notifications">
+                            <h4>Notifications</h4>
+                            <div class="notification-item">
+                                <span class="notification-time">10:00</span>
+                                <span class="notification-event">Assignment due</span>
+                            </div>
+                            <div class="notification-item">
+                                <span class="notification-time">13:00</span>
+                                <span class="notification-event">New lecture available</span>
+                            </div>
                         </div>
-                        <div class="notification-item">
-                            <span class="notification-time">13:00</span>
-                            <span class="notification-event">New lecture available</span>
+                        <div class="recent-activities">
+                            <h4>Recent Activities</h4>
+                            <div class="activity-item">
+                                <span class="activity-time">Yesterday</span>
+                                <span class="activity-event">Completed Assignment 1</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-time">2 days ago</span>
+                                <span class="activity-event">Joined new course: Biology</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="recent-activities">
-                        <h4>Recent Activities</h4>
-                        <div class="activity-item">
-                            <span class="activity-time">Yesterday</span>
-                            <span class="activity-event">Completed Assignment 1</span>
+                        <!-- Calendar Section -->
+                        <div class="calendar">
+                            <h4>Calendar</h4>
+                            <div id='calendar'></div>
                         </div>
-                        <div class="activity-item">
-                            <span class="activity-time">2 days ago</span>
-                            <span class="activity-event">Joined new course: Biology</span>
-                        </div>
-                    </div>
-                    <!-- Calendar Section -->
-                    <div class="calendar">
-                        <h4>Calendar</h4>
-                        <div id='calendar'></div>
                     </div>
                 </div>
             </div>
+        
         </div>
-    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -488,13 +455,13 @@
         });
     </script>
     <script>
-    $(document).ready(function() {
-        // Toggle sidebar on hamburger menu click
-        $('#toggle-btn').click(function() {
-            $('#sidebar').toggleClass('active');
+        $(document).ready(function() {
+            // Toggle sidebar on hamburger menu click
+            $('#toggle-btn').click(function() {
+                $('#sidebar').toggleClass('active');
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
 </html>

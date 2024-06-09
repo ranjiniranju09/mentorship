@@ -8,9 +8,18 @@
     <title> Mentor Dashboard </title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa1uMRHI8mK4K6pi/4jllnjt6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    <!-- FontAwesome icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  </head>
 <style>
     /* =========== Google Fonts ============ */
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
@@ -47,7 +56,6 @@ body {
   width: 300px;
   height: 100%;
   background: var(--black1);
-  border-left: 10px solid var(--white);
   transition: 0.5s;
   overflow: hidden;
 }
@@ -116,33 +124,6 @@ body {
   white-space: nowrap;
 }
 
-/* --------- curve outside ---------- */
-.navigation ul li:hover a::before,
-.navigation ul li.hovered a::before {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: -50px;
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  border-radius: 100%;
-  box-shadow: 35px 35px 0 10px var(--white);
-  pointer-events: none;
-}
-.navigation ul li:hover a::after,
-.navigation ul li.hovered a::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -50px;
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  border-radius: 50%;
-  box-shadow: 35px -35px 0 10px var(--white);
-  pointer-events: none;
-}
 
 /* ===================== Main ===================== */
 .main {
@@ -259,7 +240,7 @@ body {
 }
 
 .sidebar .navbar .dropdown-toggle::after {
-    position: absolute;
+    position:relative;
     top: 15px;
     right: 15px;
     border: none;
@@ -290,6 +271,26 @@ body {
     color: var(--light);
     outline: none;
 }
+.dropdown-menu {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 0;
+            margin-top: 5px;
+        }
+        
+        .dropdown-item {
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #fff;
+            
+        }
 
 .content .navbar .navbar-nav .nav-link:hover,
 .content .navbar .navbar-nav .nav-link.active {
@@ -313,7 +314,7 @@ body {
 
 .content .navbar .dropdown-item:hover,
 .content .navbar .dropdown-item.active {
-    background: var(--dark);
+    background: var(--white);
 }
 
 .content .navbar .dropdown-toggle::after {
@@ -335,8 +336,8 @@ body {
   position: relative;
   width: 100%;
   padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 30px;
 }
 
@@ -480,82 +481,65 @@ body {
 
 <body>
     <!-- =============== Navigation ================ -->
-    <div class="container">
-        <div class="navigation">
-            <ul>
-                <li>
-                    <a href="#"  >
-                        <span class="icon">
-                            <i class="fa-solid fa-circle-user fa-2xl"></i>
-                        </span>
-                        <span class="title" active > Mentor </span>
-                    </a>
-                </li>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="navigation">
+                    <ul>
+                        <li>
+                            <a href="{{route('dashboardmentor')}}">
+                                <span class="icon"><i class="fas fa-circle-user"></i></span>
+                                <span class="title">Mentor</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('dashboardmentor')}}">
+                                <span class="icon"><i class="fas fa-home"></i>
+                              </span>
+                                <span class="title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon"><i class="fas fa-user"></i></span>
+                                <span class="title">Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                          <a href="{{route('mentorsessionadd')}}">
+                              <span class="icon">
+                              <ion-icon name="people-outline"></ion-icon>
+                              </span>
+                              <span class="title">Session</span>
+                          </a>
+                      </li>
 
-                <li>
-                    <a href="{{route('dashboardmentor')}}">
-                        <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </span>
-                        <span class="title">Dashboard</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                        <span class="title">Profile</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{route('mentorsessionadd')}}">
-                        <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </span>
-                        <span class="title">Session</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{route('mentortaskadd')}}">
-                        <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
-                        </span>
-                        <span class="title">Task</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
-                        </span>
-                        <span class="title">Settings</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
-                        </span>
-                        <span class="title">Password</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Sign Out</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                      <li>
+                          <a href="{{route('mentortaskadd')}}">
+                              <span class="icon">
+                              <ion-icon name="list-outline"></ion-icon>
+                              </span>
+                              <span class="title">Task</span>
+                          </a>
+                      </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon">
+                                <ion-icon name="ticket-outline"></ion-icon>
+                                </span>
+                                <span class="title">Tickets</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon"><i class="fas fa-sign-out-alt"></i>
+                              </span>
+                              <span class="title">Sign Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
         <!-- ========================= Main ==================== -->
         <div class="main">
@@ -581,7 +565,7 @@ body {
                 <div class="card">
                     <div>
                         <div class="numbers">60%</div>
-                        <div class="cardName">Module Status</div>
+                        <div class="cardName">Module Completed</div>
                     </div>
 
                     <div class="iconBx">
@@ -592,7 +576,7 @@ body {
                 <div class="card">
                     <div>
                         <div class="numbers">15</div>
-                        <div class="cardName">Tasks</div>
+                        <div class="cardName">Completed Tasks</div>
                     </div>
 
                     <div class="iconBx">
@@ -603,39 +587,50 @@ body {
                 <div class="card">
                     <div>
                         <div class="numbers">5</div>
-                        <div class="cardName">Quizs</div>
+                        <div class="cardName">Total Quizs</div>
                     </div>
 
                     <div class="iconBx">
                         <ion-icon name="clipboard-outline"></ion-icon>
                     </div>
                 </div>
-
+                
                 <div class="card">
                     <div>
-                        <div class="numbers">80%</div>
-                        <div class="cardName">Overall Progress</div>
+                        <div class="numbers">5</div>
+                        <div class="cardName">Total Session Conducted</div>
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="bar-chart-outline"></ion-icon>
+                    <ion-icon name="book-outline"></ion-icon>
                     </div>
                 </div>
-            </div>
-
-            <!-- ================ Order Details List ================= -->
-            <div class="details">
-                <div class="recentOrders">
-                    <div class="cardHeader">
-                        <h2>Activity Graph</h2>
-                        <a href="#" class="btn">View All</a>
+                <div class="card">
+                    <div>
+                        <div class="numbers">5</div>
+                        <div class="cardName">Total Mentee Assigned</div>
                     </div>
-                    <canvas id="activityChart"></canvas>
-                    <!-- cardcontent -->
+
+                    <div class="iconBx">
+                      <ion-icon name="people-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">15 mins</div>
+                        <div class="cardName">Total Minutes Mentored</div>
+                    </div>
+
+                    <div class="iconBx">
+                    <ion-icon name="time-outline"></ion-icon>
+                    </div>
                 </div>
 
-  
+
+
             </div>
+                </div>
+            </div> 
         </div>
     </div>
 
@@ -645,48 +640,39 @@ body {
 
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> 
 
-    <script>
-        const ctx = document.getElementById('activityChart').getContext('2d');
-        const activityChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: 'Activities',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                    },
-                },
-                scales: {
-                    x: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'Month'
-                        }
-                    },
-                    y: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'Value'
-                        }
-                    }
-                }
-            }
+    <!-- =========== Scripts =========  -->
+<!-- Add this script at the end of your HTML body -->
+<script>
+    // Get all dropdown toggles
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+    // Iterate through each dropdown toggle
+    dropdownToggles.forEach(toggle => {
+        // Add click event listener
+        toggle.addEventListener('click', function () {
+            // Toggle the "show" class on the next sibling element (dropdown menu)
+            const dropdownMenu = this.nextElementSibling;
+            dropdownMenu.classList.toggle('show');
         });
-    </script>
+    });
+
+    // Close dropdowns when clicking outside of them
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropdown-toggle')) {
+            const dropdowns = document.querySelectorAll('.dropdown-menu');
+            dropdowns.forEach(dropdown => {
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            });
+        }
+    }
+</script>
+
+
+   
 </body>
 
 </html>

@@ -281,7 +281,6 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid">
         <div class="sidebar">
             <a href="{{route('dashboardmentee')}}">
                 <span class="icon">
@@ -290,22 +289,22 @@
                 <span class="title"> Mentee </span>
             </a>
             <a href="{{route('dashboardmentee')}}"><i class="fa-solid fa-house"></i>&nbsp; Home</a>
-            <a href="#"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
+            <a href="{{route('menteeprofile')}}"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
             <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
-            <a href="{{route('taskmentee')}}"><i class="fas fa-tasks card-icon"></i>&nbsp; Task</a>
+            <a href="{{route('taskmentee')}}"><i class="fa-solid fa-list-check"></i>&nbsp; Task</a>
             <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
             <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
-            <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
+            <a href="{{route('sessionmentee')}}"><i class="fa-solid fa-user-group"></i>&nbsp; Sessions</a>
             <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
         </div>
         <div class="container content">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="dashboard-header-wrapper">
                         <div class="topbar">
                             <div class="dashboard-header">
                                 <i class="fa-solid fa-graduation-cap fa-beat fa-2xl"></i>
-                                <span class="greeting">Hi, Chisom</span>
+                                <span class="greeting">Hi, Rahul</span>
                             </div>
                             <div class="toggle">
                                 <ion-icon name="menu-outline"></ion-icon>
@@ -318,14 +317,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="top-performer">
-                        <h3>Mariya Bestcity</h3>
-                        <p>Top Performer - Mean Score: 192</p>
-                    </div>
                     <hr>
                     <!-- Ticket Table Section -->
                     <div class="ticket-table-section">
-                        <h4>Ticket Details</h4>
+                        <h4>Ticket Details</h4><a href="#" class="btn btn-success" data-toggle="modal" data-target="#newTicketModal">New Ticket</a>
+                        </br>
+                        </br>
+                       
+                    </div>
+                    
+                    <!-- Resolved Ticket Table Section -->
+                    <div class="resolved-ticket-table-section">
+                        <h4>Resolved Ticket Details</h4>
                         <table class="table table-bordered ticket-table">
                             <thead class="thead-dark">
                                 <tr>
@@ -334,64 +337,122 @@
                                     <th>Category</th>
                                     <th>Query</th>
                                     <th>Status</th>
-                                    <th>Response</th>
+                                    <!-- <th>Response</th> -->
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>12345</td>
-                                    <td>67890</td>
-                                    <td>Technical</td>
-                                    <td>How to reset password?</td>
-                                    <td>Open</td>
-                                    <td>We are looking into it.</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-success btn-sm">Resolve</button>
-                                    </td>
-                                </tr>
                                 <tr>
                                     <td>54321</td>
                                     <td>09876</td>
                                     <td>Billing</td>
                                     <td>Incorrect invoice</td>
                                     <td>Closed</td>
-                                    <td>Issue resolved.</td>
+                                    <!-- <td>Issue resolved.</td> -->
                                     <td>
-                                        <button class="btn btn-primary btn-sm">View</button>
-                                          </br>
-                                          </br>
-                                        <button class="btn btn-danger btn-sm">Reopen</button>
+                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#resolvedTicketModal">View</button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mentor-details" style="background-color:#ffc107;">
-                        <h4>Assigned Mentor</h4>
-                        <div class="mentor-detailsitems">
-                            <span class="notification-event">Mentor name: Rahul Parakh</span>
+
+                    <!-- Resolved Ticket Modal -->
+                    <div class="modal fade" id="resolvedTicketModal" tabindex="-1" role="dialog" aria-labelledby="resolvedTicketModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="resolvedTicketModalLabel">Resolved Ticket Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Ticket No:</strong> 54321</p>
+                                    <p><strong>User ID:</strong> 09876</p>
+                                    <p><strong>Category:</strong> Billing</p>
+                                    <p><strong>Query:</strong> Incorrect invoice</p>
+                                    <p><strong>Status:</strong> Closed</p>
+                                    <p><strong>Response:</strong> We are looking into if . once we clear it we will get back to you </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
+
+                    <!-- New Ticket Modal -->
+                    <div class="modal fade" id="newTicketModal" tabindex="-1" role="dialog" aria-labelledby="newTicketModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="newTicketModalLabel">New Ticket</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="newTicketForm">
+                                        <div class="form-group">
+                                            <label for="userid">User ID</label>
+                                            <input type="text" class="form-control" id="userid" value="09876" disabled>
+                                        </div>
+                                        <div class="form-group">   
+                                            <label for="category">Category</label>
+                                            <select class="form-control" id="category">
+                                                <option>---Select---</option>
+                                                <option>Technical</option>
+                                                <option>Profile related</option>
+                                                <option>General</option>
+                                                <option>Password related</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="query">Query</label>
+                                            <textarea class="form-control" id="query" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="query">Attachment</label>
+                                            <input type="file" class="form-control" id="attachment" rows="3"/>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- Bootstrap JS, jQuery, and Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.16/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <!-- FullCalendar JS -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-  
+    
+    <!-- Custom JS -->
+    <script>
+        $(document).ready(function() {
+            $('#newTicketForm').on('submit', function(event) {
+                event.preventDefault();
+                var userid = $('#userid').val;
+                var category = $('#category').val();
+                var query = $('#query').val();
+                var attachment = $('#attachment').val();
+                
+                if (userid && category && query && attachment) {
+                    alert('Ticket Submitted: '+ userid + ' - ' + category + ' - ' + query + ' - ');
+                    $('#newTicketModal').modal('hide');
+                } else {
+                    alert('Please fill in all fields.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

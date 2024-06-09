@@ -76,10 +76,7 @@ class MenteeController extends Controller
     {
         return view('calender');
     }
-    public function menteeticket()
-    {
-        return view('menteeticket');
-    }
+
     public function tickets()
     {
         return view('tickets');
@@ -95,5 +92,9 @@ class MenteeController extends Controller
     public function sessionmentee()
     {
         return view('sessionmentee');
+    }
+    public function menteeprofile()
+    {
+        return view('menteeprofile');
     }
 }

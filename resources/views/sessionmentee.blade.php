@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentee Dashboard</title>
+    
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXGEL0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <!-- FullCalendar CSS -->
     <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+    
     <!-- Custom CSS -->
     <style>
         body {
@@ -100,10 +107,7 @@
         .user {
             width: 50px;
             height: 50px;
-            /* border-radius: 50%; */
-            /* overflow: hidden; */
             cursor: pointer;
-            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
         }
         .user img {
             width: 100%;
@@ -115,21 +119,11 @@
             color: green;
             font-weight: bold;
         }
-        .start-btn {
-            background-color: #5cb85c;
-            color: #fff;
-            border-radius: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        .start-btn:hover {
-            background-color: #4cae4c;
-        }
+        
         .dashboard-header-wrapper {
             margin-bottom: 30px;
         }
+        
         @media (max-width: 768px) {
             .sidebar {
                 width: 250px;
@@ -192,58 +186,12 @@
             color: #666;
             display: block;
         }
-        .top-performer {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .top-performer img {
-            border-radius: 50%;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .top-performer h3 {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #333;
-            font-weight: bold;
-        }
-        .top-performer p {
-            color: #666;
-        }
         .card-icon {
             font-size: 36px;
             margin-bottom: 20px;
             transition: transform 0.3s;
         }
-        .custom-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 30px;
-            transition: transform 0.3s;
-        }
-        .custom-card:hover {
-            transform: translateY(-5px);
-        }
-        .custom-card.project {
-            border-left: 5px solid #007bff;
-        }
-        .custom-card.task {
-            border-left: 5px solid #28a745;
-        }
-        .custom-card.quizzes {
-            border-left: 5px solid #ffc107;
-        }
-        .custom-card.project .card-icon {
-            color: #007bff;
-        }
-        .custom-card.task .card-icon {
-            color: #28a745;
-        }
-        .custom-card.quizzes .card-icon {
-            color: #ffc107;
-        }
+       
         .table thead {
             background-color: #007bff;
             color: white;
@@ -253,194 +201,237 @@
         }
         .btn-primary {
             background-color: #007bff;
-            border: none;
+            border-color: #007bff;
         }
         .btn-primary:hover {
             background-color: #0056b3;
+            border-color: #0056b3;
         }
-        .btn-secondary {
-            background-color: #6c757d;
-            border: none;
-        }
-        .btn-secondary:hover {
-            background-color: #5a6268;
-        }
-        .dropdown-menu {
-            background-color: #f8f9fa;
-        }
-        .dropdown-menu .dropdown-item:hover {
-            background-color: #007bff;
-            color: white;
-        }
-        .session-table-wrapper {
+        .table-container {
+            padding: 10px;
+            margin-bottom: 30px;
             background-color: #fff;
-            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
         }
-        .session-table-wrapper h4 {
-            margin-bottom: 20px;
-        }
-        .btn-group .btn-sm {
-            padding: 5px 10px;
-        }
-        /* FullCalendar overrides */
-        #calendar {
-            max-width: 100%;
+        .smiley-rating {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 300px;
             margin: 0 auto;
+        }
+
+        .smiley-rating input {
+            display: none;
+        }
+
+        .smiley-rating label {
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .smiley-rating label:hover,
+        .smiley-rating input:checked + label {
+            transform: scale(1.3);
         }
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="sidebar">
-            <a href="#">
-                <span class="icon">
-                    <i class="fa-solid fa-circle-user fa-2xl"></i> &nbsp;
-                </span> 
-                <span class="title"> Mentee </span>
-            </a>
-            <a href="{{route('dashboardmentee')}}"><i class="fa-solid fa-house"></i>&nbsp; Home</a>
-            <a href="#"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
-            <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
-            <a href="{{route('taskmentee')}}"><i class="fas fa-tasks card-icon"></i>&nbsp; Task</a>
-            <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
-            <a href="{{route('menteeticket')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
-            <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
-            <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
-        </div>
-        <div class="container content">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="dashboard-header-wrapper">
-                    <div class="topbar">
-                        <div class="dashboard-header">
-                            <i class="fa-solid fa-graduation-cap fa-beat fa-2xl"></i>
-                            <span class="greeting">Hi, Chisom</span>
-                        </div>
-                        <div class="toggle" id="toggle-btn">
-                            <ion-icon name="menu-outline"></ion-icon>
-                        </div>
-                        <div class="search">
-                            <label>
-                                <input type="text" placeholder="Search here">
-                                <ion-icon name="search-outline"></ion-icon>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                    <div class="top-performer">
-                        <h3>Mariya Bestcity</h3>
-                        <p>Top Performer - Mean Score: 192</p>
-                    </div>
-
-                    <div class="row">
-            <div class="col-md-12">
-                <div class="session-table-wrapper">
-                    <h4>Session Details</h4>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Session</th>
-                                <th scope="col">Start Time</th>
-                                <th scope="col">End Time</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Session 1</td>
-                                <td>2024-06-03 10:00 AM</td>
-                                <td>2024-06-03 11:00 AM</td>
-                                <td>Math Review</td>
-                                <td>Mentor</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="#" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-video"></i> Join Recording
-                                        </a>
-                                        <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <span class="visually-hidden">Review</span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Write Review</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- Add more rows as needed -->
-                        </tbody>
-                    </table>
-                </div>
+    <div class="sidebar">
+        <a href="#">
+            <span class="icon">
+                <i class="fa-solid fa-circle-user fa-2xl"></i> &nbsp;
+            </span> 
+            <span class="title"> Mentee </span>
+        </a>
+        <a href="{{route('dashboardmentee')}}"><i class="fa-solid fa-house"></i>&nbsp; Home</a>
+        <a href="#"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
+        <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
+        <a href="{{route('taskmentee')}}"><i class="fa-solid fa-list-check"></i>&nbsp; Task</a>
+        <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
+        <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
+        <a href="{{route('sessionmentee')}}"><i class="fa-solid fa-user-group"></i>&nbsp; Sessions</a>
+        <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>&nbsp; Sign Out</a>
+    </div>
+    <div class="content">
+        <div class="topbar">
+            <div class="toggle"><i class="fa-solid fa-bars"></i></div>
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Search here">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+            <div class="user">
+            <a href="#"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>Sign Out</a>
             </div>
         </div>
+        
+
+        <div class="container">
+            <h2>Current Sessions</h2>
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Topic</th>
+                            <th>Host</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>June 5, 2024</td>
+                            <td>10:00 AM</td>
+                            <td>Web Development</td>
+                            <td>Mentor</td>
+                            <td>
+                                <a href="https://meet.google.com/hnq-unax-qwn" target="_blank"><button class="btn btn-success">Join</button></a> 
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td>June 6, 2024</td>
+                            <td>2:00 PM</td>
+                            <td>Machine Learning</td>
+                            <td>Guest Lecturer</td>
+                            <td>
+                                <a href="https://meet.google.com/hnq-unax-qwn" target="_blank"><button class="btn btn-success">Join</button></a>
+                            </td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>Completed Sessions</h2>
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Topic</th>
+                            <th>Host</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>June 1, 2024</td>
+                            <td>10:00 AM</td>
+                            <td>Data Science</td>
+                            <td>Guest Lecturer</td>
+                            <td>
+                            <a href="https://drive.google.com/file/d/1hRGMS7cuVAYw5DucRg43LoqpNYDwFBKv/view?usp=drive_link" target="_blank"><button class="btn btn-primary rounded">Recording</button></a>
+                            <a href="#" class="btn btn-warning rounded" data-toggle="modal" data-target="#feedbackModal">Feedback</a>
+
+                        </tr>
+                        <tr>
+                            <td>June 3, 2024</td>
+                            <td>3:00 PM</td>
+                            <td>AI Ethics</td>
+                            <td>Mentor</td>
+                            <td><button class="btn btn-primary rounded">Recording</button>
+                            <a href="#" class="btn btn-warning rounded" data-toggle="modal" data-target="#feedbackModal">Feedback</a>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackModalLabel">Provide Feedback</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="col-md-4">
-                    <div class="mentor-details" style="background-color:#ffc107;">
-                        <h4>Assigned Mentor</h4>
-                        <div class="mentor-detailsitems">
-                            <span class="notification-event"> Mentor name: Rahul Parakh</span>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="feedbackRating">Rating</label>
+                            <div class="smiley-rating">
+                                <input type="radio" id="smile5" name="rating" value="5" />
+                                <label for="smile5" class="fa fa-smile" data-rating="5"></label>
+                                <input type="radio" id="smile4" name="rating" value="4" />
+                                <label for="smile4" class="fa fa-smile" data-rating="4"></label>
+                                <input type="radio" id="smile3" name="rating" value="3" />
+                                <label for="smile3" class="fa fa-meh" data-rating="3"></label>
+                                <input type="radio" id="smile2" name="rating" value="2" />
+                                <label for="smile2" class="fa fa-frown" data-rating="2"></label>
+                                <input type="radio" id="smile1" name="rating" value="1" />
+                                <label for="smile1" class="fa fa-frown" data-rating="1"></label>
+                            </div>
                         </div>
-                    </div>
-                   
-                   <!-- Calendar Section 
-                    <div class="calendar">
-                        <h4>Calendar</h4>
-                        <div id='calendar'></div>
-                    </div>  -->
+                        <div class="form-group">
+                            <label for="feedbackMessage">Your Feedback</label>
+                            <textarea class="form-control" id="feedbackMessage" rows="3" placeholder="Share your thoughts and suggestions"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.16/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- FullCalendar JS -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-    <!-- <script>
-        $(document).ready(function() {
-            $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                editable: true,
-                events: [
-                    {
-                        title: 'Mathematics Meeting',
-                        start: '2024-06-01T09:00:00'
-                    },
-                    {
-                        title: 'Science Meeting',
-                        start: '2024-06-05T12:00:00'
-                    },
-                    {
-                        title: 'History Meeting',
-                        start: '2024-06-10T15:00:00'
-                    },
-                    {
-                        title: 'Geography Lecture',
-                        start: '2024-06-15T14:00:00'
-                    }
-                ]
-            });
-        });
-    </script> -->
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Custom JavaScript -->
     <script>
-    $(document).ready(function() {
-        // Toggle sidebar on hamburger menu click
-        $('#toggle-btn').click(function() {
-            $('#sidebar').toggleClass('active');
+        $(document).ready(function() {
+            $('.toggle').on('click', function() {
+                $('.sidebar').toggleClass('active');
+                $('.content').toggleClass('active');
+            });
+
+            // Open modal on feedback button click
+            $('.btn-warning').click(function() {
+                $('#feedbackModal').modal('show');
+            });
+
+            // Smiley rating logic
+            var $smiley_rating = $('.smiley-rating label');
+
+            var SetRatingSmiley = function() {
+                var rating = parseInt($('input[name="rating"]:checked').val());
+                $smiley_rating.each(function() {
+                    var currentRating = parseInt($(this).data('rating'));
+                    if (currentRating <= rating) {
+                        $(this).addClass('selected');
+                    } else {
+                        $(this).removeClass('selected');
+                    }
+                });
+            };
+
+            $smiley_rating.on('click', function() {
+                var rating = $(this).data('rating');
+                $('input[name="rating"][value="' + rating + '"]').prop('checked', true);
+                SetRatingSmiley();
+            });
+
+            SetRatingSmiley();
         });
-    });
-</script>
+    </script>
+    <style>
+        .smiley-rating label.selected {
+            transform: scale(1.3);
+        }
+    </style>
 </body>
 </html>

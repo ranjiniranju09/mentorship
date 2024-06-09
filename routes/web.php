@@ -177,13 +177,13 @@ Route::match(['get','post'],'/displaymoduleresources','App\Http\Controllers\Modu
 
 Route::match(['get','post'],'/tickets','App\Http\Controllers\MenteeController@tickets')->name('tickets');
 
-Route::match(['get','post'],'/menteeticket','App\Http\Controllers\MenteeController@menteeticket')->name('menteeticket');
-
 Route::match(['get','post'],'/jobs','App\Http\Controllers\MenteeController@opportunities')->name('jobs');
 
 Route::match(['get','post'],'/jobdetails1','App\Http\Controllers\MenteeController@jobdetails1')->name('jobdetails1');
 
 Route::match(['get','post'],'/sessionmentee','App\Http\Controllers\MenteeController@sessionmentee')->name('sessionmentee');
+
+Route::match(['get','post'],'/menteeprofile','App\Http\Controllers\MenteeController@menteeprofile')->name('menteeprofile');
 
 
 //  ================ Mentor List ================= 
@@ -193,3 +193,8 @@ Route::match(['get','post'],'/dashboardmentor','App\Http\Controllers\MentorContr
 Route::match(['get','post'],'/mentorsessionadd','App\Http\Controllers\MentorController@mentorsessionadd')->name('mentorsessionadd');
 
 Route::match(['get','post'],'/mentortaskadd','App\Http\Controllers\MentorController@mentortaskadd')->name('mentortaskadd');
+
+Route::match(['get','post'],'/mentorprofile','App\Http\Controllers\MentorController@mentorprofile')->name('mentorprofile');
+
+
+Route::match(['get','post'],'/mentorresourceadd','App\Http\Controllers\MentorController@mentorresourceadd')->name('mentorresourceadd');

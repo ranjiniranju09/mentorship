@@ -249,7 +249,7 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid">
+    
         <div class="sidebar">
             <a href="#">
                 <span class="icon">
@@ -260,7 +260,7 @@
             <a href="{{route('dashboardmentee')}}"><i class="fa-solid fa-house"></i>&nbsp; Home</a>
             <a href="#"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
             <a href="{{route('modules')}}"><i class="fa-solid fa-book"></i>&nbsp; Modules</a>
-            <a href="{{route('taskmentee')}}"><i class="fas fa-tasks card-icon"></i>&nbsp; Task</a>
+            <a href="{{route('taskmentee')}}"><i class="fa-solid fa-list-check"></i>&nbsp; Task</a>
             <a href="{{route('calender')}}"><i class="fa-solid fa-calendar-days"></i>&nbsp; Calendar</a>
             <a href="{{route('tickets')}}"><i class="fa-solid fa-ticket"></i>&nbsp; Ticket</a></a>
             <a href="#"><i class="fa-solid fa-bell"></i>&nbsp; Notifications</a>
@@ -285,10 +285,6 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
-                    <div class="top-performer">
-                        <h3>Mariya Bestcity</h3>
-                        <p>Top Performer - Mean Score: 192</p>
                     </div>
                     <hr>
                     <div class="row">
@@ -391,7 +387,6 @@
             <!-- Card Section -->
             
         </div>
-    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
