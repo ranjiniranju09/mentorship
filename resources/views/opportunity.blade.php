@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentor Dashboard</title>
+    <title>Admin Dashboard</title>
     <!-- ======= FontAwesome and Bootstrap ======= -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ775ciP7MO0Tz6aL4Xjj8RAXAtC8eOs3jrD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa1uMRHI8mK4K6pi/4jllnjt6" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <style>
@@ -53,7 +52,7 @@
             overflow: hidden;
         }
         .navigation.active {
-            width: 50px;
+            width: 80px;
         }
 
         .navigation ul {
@@ -82,8 +81,17 @@
 
         .navigation ul li a:hover {
             color: var(--black1);
-            background-color: #ffffff;
+            background-color: coral;
            
+        }
+        .navigation ul li.active a {
+            background: coral;
+            color: black;
+        }
+
+        .navigation ul li.active a:hover {
+            background: coral;
+            color: black;
         }
 
         .navigation ul li a .icon {
@@ -163,89 +171,30 @@
             border-radius: 50%;
             object-fit: cover;
         }
+        .jobcount {
+                font-family: 'Arial', sans-serif;
+                background-color: #f4f4f4;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 50px;
+                width: 1000px;
 
-        .cardBox {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            }
+
+        .chart-container {
+            width: 90%;
+            max-width: 700px;
+            background: white;
             padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            
         }
 
-        .card {
-            background: var(--white);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        a {
-            text-decoration: none;
-        }
-       
-        .card:hover {
-            background: var(--blue);
-        }
-
-        .card:hover .numbers,
-        .card:hover .cardName,
-        .card:hover .iconBx {
-            color: var(--white);
-        }
-      
-
-        .numbers {
-            align-items: center;
-            font-size: 2rem;
-            font-weight: 500;
-            color: var(--black1);
-        }
-
-        .cardName {
-            font-size: 1rem;
-            color: var(--black2);
-        }
-
-        .iconBx {
-            font-size: 2.5rem;
-            color: var(--black2);
-        }
-       
-
-
-        @media (max-width: 768px) {
-            .navigation {
-                left: -300px;
-            }
-
-            .navigation.active {
-                left: 0;
-            }
-
-            .main {
-                margin-left: 0;
-            }
-
-            .main.active {
-                margin-left: 300px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navigation.active {
-                width: 100%;
-                left: 0;
-            }
-
-            .main.active .toggle {
-                color: #fff;
-                position: fixed;
-                right: 0;
-                left: initial;
-            }
+        canvas {
+            width: 100% !important;
+            height: auto !important;
         }
     </style>
 </head>
@@ -254,46 +203,58 @@
     <!-- =============== Navigation ================ -->
     <div class="navigation">
         <ul>
-            <li>
+        <li>
             <a href="{{ route('dashboardmentor') }}">
                     <span class="icon"><i class="fas fa-circle-user fa-2xl"></i></span>
-                    <h5><span class="title">Mentor</span></h5>
+                    <h3><span class="title">Admin</span></h3>
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboardmentor') }}">
+                <a href="{{route('dashboardadmin')}}">
                     <span class="icon"><i class="fas fa-home"></i></span>
                     <span class="title">Dashboard</span>
                 </a>
             </li>
+            <!-- <li class="mb-1">
+                <button class="btn btn-toggle align-items-center rounded" id="homeButton" data-toggle="collapse" data-target="#homeCollapse" aria-expanded="false" aria-controls="homeCollapse">
+                    Home
+                </button>
+                <div class="collapse" id="homeCollapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="#" class="link-dark rounded">Overview</a></li>
+                        <li><a href="#" class="link-dark rounded">Updates</a></li>
+                        <li><a href="#" class="link-dark rounded">Reports</a></li>
+                    </ul>
+                </div>
+            </li> -->
             <li>
-                <a href="{{ route('mentorprofile')}}">
+                <a href="#">
                     <span class="icon"><i class="fa-solid fa-user"></i></span>
                     <span class="title">Profile</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('menteesessionprogress') }}">
+                <a href="#">
                     <span class="icon"><i class="fa-solid fa-users"></i></span>
                     <span class="title">Session</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('menteetaskprogress') }}">
+                <a href="#">
                     <span class="icon"><i class="fa-solid fa-list"></i></ion-icon></span>
                     <span class="title">Task</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('mentorresourceadd') }}">
+                <a href="#">
                     <span class="icon"><i class="fa-solid fa-link"></i></ion-icon></span>
                     <span class="title">Resources</span>
                 </a>
             </li>
-            <li>
-                <a href="{{route('mentorjobs')}}">
-                    <span class="icon"><i class="fa-solid fa-briefcase"></i></span>
-                    <span class="title">Jobs</span>
+            <li class="active">
+                <a href="{{route('opportunity')}}">
+                    <span class="icon"><i class="fa-solid fa-message"></i></span>
+                    <span class="title">Opportunity</span>
                 </a>
             </li>
             <li>
@@ -302,7 +263,6 @@
                     <span class="title">Certificate</span>
                 </a>
             </li>
-           
             <li>
                 <a href="#">
                     <span class="icon"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i></span>
@@ -334,74 +294,15 @@
             </div>
         </div>
 
-        <!-- ======================= Cards ================== -->
-        <div class="cardBox">
-            <a href="{{route('menteemoduleprogress')}}" target="_blank">
-                <div class="card">
-                <span>
-                    <div>
-                        <div class="numbers">5</div>
-                        <div class="cardName">Modules Completed</div>
-                    </div>
-                </span>
-
-                    <div class="iconBx">
-                    <i class=" icon fa-solid fa-diagram-project"></i>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('menteequizprogress')}}" target="_blank">
-              <div class="card">
-                  <div>
-                      <div class="numbers">4</div>
-                      <div class="cardName">Total Quiz</div>
-                  </div>
-
-                  <div class="iconBx">
-                  <i class="fa-regular fa-circle-question"></i>
-                  </div>
-              </div>
-            </a>
-
-            <a href="{{route('menteetaskprogress')}}" target="_blank">
-                <div class="card">
-                    <div>
-                        <div class="numbers">6</div>
-                        <div class="cardName">Task Completed</div>
-                    </div>
-
-                    <div class="iconBx">
-                    <i class="fa-solid fa-list"></i>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('menteesessionprogress')}}" target="_blank">
-                <div class="card">
-                    <div>
-                        <div class="numbers">6</div>
-                        <div class="cardName">Total Session Completed </div>
-                    </div>
-
-                    <div class="iconBx">
-                    <i class="fa-solid fa-users"></i>
-                    </div>
-                </div>
-            </a>
-            <div class="card">
-                <div>
-                    <div class="numbers">60 mins</div>
-                    <div class="cardName">Total Minutes Mentored </div>
-                </div>
-
-                <div class="iconBx">
-                  <i class="fa-solid fa-clock"></i>
-                </div>
+        <!-- ======================= content ================== -->
+        <div class="jobcount">
+            <div class="chart-container">
+                <canvas id="opportunityChart"></canvas>
             </div>
         </div>
 
-        <!-- Content-->
-    </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="script.js"></script>
 
     <script>
         // Menu toggle
@@ -413,7 +314,65 @@
             navigation.classList.toggle('active');
             main.classList.toggle('active');
         });
+
+        // Collapse toggle
+        // document.getElementById('homeButton').addEventListener('click', function() {
+        //     const collapseElement = document.getElementById('homeCollapse');
+        //     collapseElement.classList.toggle('show');
+        // });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('opportunityChart').getContext('2d');
+            const opportunityChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jobs', 'Internships', 'Fellowships', 'Others'],
+                    datasets: [{
+                        label: 'Added Opportunities',
+                        data: [8, 10, 7, 5],
+                        backgroundColor: [
+                            '#FF6384',
+                            '#36A2EB',
+                            '#FFCE56',
+                            '#4BC0C0'
+                        ],
+                        borderColor: [
+                            '#FF6384',
+                            '#36A2EB',
+                            '#FFCE56',
+                            '#4BC0C0'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#333'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#333'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                color: '#333'
+                            }
+                        }
+                    }
+                }
+            });
+        });
     </script>
 </body>
-
 </html>

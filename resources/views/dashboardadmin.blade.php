@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentor Dashboard</title>
+    <title>Admin Dashboard</title>
     <!-- ======= FontAwesome and Bootstrap ======= -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> <!-- Update path to your font-awesome -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa1uMRHI8mK4K6pi/4jllnjt6" crossorigin="anonymous"></script>
@@ -82,8 +84,17 @@
 
         .navigation ul li a:hover {
             color: var(--black1);
-            background-color: #ffffff;
+            background-color: coral;
            
+        }
+        .navigation ul li.active a {
+            background: coral;
+            color: black;
+        }
+
+        .navigation ul li.active a:hover {
+            background: coral;
+            color: black;
         }
 
         .navigation ul li a .icon {
@@ -164,58 +175,36 @@
             object-fit: cover;
         }
 
-        .cardBox {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
         .card {
-            background: var(--white);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+            overflow: hidden;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            cursor: pointer;
-            transition: background 0.3s;
+            justify-content: center;
+            text-align: center;
+            height: 100px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, background-color 0.3s;
+            background-color:coral;
+            color: black;
         }
-        a {
-            text-decoration: none;
-        }
-       
         .card:hover {
-            background: var(--blue);
+            background-color: #343a40;
+            color: #fff;
+            transform: scale(1.05);
         }
-
-        .card:hover .numbers,
-        .card:hover .cardName,
-        .card:hover .iconBx {
-            color: var(--white);
-        }
-      
-
         .numbers {
-            align-items: center;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 500;
-            color: var(--black1);
         }
-
         .cardName {
-            font-size: 1rem;
-            color: var(--black2);
+            font-size: 1.1rem;
+            /* margin-top: 2px; */
         }
-
         .iconBx {
-            font-size: 2.5rem;
-            color: var(--black2);
+            margin-top: 2px;
         }
-       
-
-
         @media (max-width: 768px) {
             .navigation {
                 left: -300px;
@@ -257,27 +246,23 @@
             <li>
             <a href="{{ route('dashboardmentor') }}">
                     <span class="icon"><i class="fas fa-circle-user fa-2xl"></i></span>
-                    <h5><span class="title">Mentor</span></h5>
+                    <h5><span class="title">Admin</span></h5>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('dashboardmentor') }}">
+            <li class="active">
+                <a href="">
                     <span class="icon"><i class="fas fa-home"></i></span>
-                    <span class="title">Dashboard</span>
+                    <span class="title" >Dashboard</span>
                 </a>
             </li>
             <li>
+
                 <a href="{{ route('mentorprofile')}}">
                     <span class="icon"><i class="fa-solid fa-user"></i></span>
                     <span class="title">Profile</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('menteesessionprogress') }}">
-                    <span class="icon"><i class="fa-solid fa-users"></i></span>
-                    <span class="title">Session</span>
-                </a>
-            </li>
+
             <li>
                 <a href="{{ route('menteetaskprogress') }}">
                     <span class="icon"><i class="fa-solid fa-list"></i></ion-icon></span>
@@ -291,9 +276,15 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('mentorjobs')}}">
+                <a href="{{route('opportunity')}}">
                     <span class="icon"><i class="fa-solid fa-briefcase"></i></span>
-                    <span class="title">Jobs</span>
+                    <span class="title">Opportunity</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-ticket"></i></span>
+                    <span class="title">Tickets</span>
                 </a>
             </li>
             <li>
@@ -335,70 +326,91 @@
         </div>
 
         <!-- ======================= Cards ================== -->
-        <div class="cardBox">
-            <a href="{{route('menteemoduleprogress')}}" target="_blank">
-                <div class="card">
-                <span>
-                    <div>
-                        <div class="numbers">5</div>
-                        <div class="cardName">Modules Completed</div>
+        <div class="container my-5">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card">
+                        <div class="numbers">2</div>
+                        <div class="cardName">Total Mentor Mentee Pairs</div>
+                        <div class="iconBx">
+                            <i class="fa-solid fa-user-group"></i>
+                        </div>
                     </div>
-                </span>
-
-                    <div class="iconBx">
-                    <i class=" icon fa-solid fa-diagram-project"></i>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card">
+                        <div class="numbers">3</div>
+                        <div class="cardName">Registered Mentors</div>
+                        <div class="iconBx">
+                        <i class="fa-solid fa-chalkboard-user"></i></i>
+                        </div>
                     </div>
-                </div>
-            </a>
-
-            <a href="{{route('menteequizprogress')}}" target="_blank">
-              <div class="card">
-                  <div>
-                      <div class="numbers">4</div>
-                      <div class="cardName">Total Quiz</div>
-                  </div>
-
-                  <div class="iconBx">
-                  <i class="fa-regular fa-circle-question"></i>
-                  </div>
-              </div>
-            </a>
-
-            <a href="{{route('menteetaskprogress')}}" target="_blank">
-                <div class="card">
-                    <div>
-                        <div class="numbers">6</div>
-                        <div class="cardName">Task Completed</div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card">
+                        <div class="numbers">3</div>
+                        <div class="cardName">Registered Mentees</div>
+                        <div class="iconBx">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
                     </div>
-
-                    <div class="iconBx">
-                    <i class="fa-solid fa-list"></i>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="{{route('adminmodule')}}" class="text-decoration-none">
+                    <div class="card">
+                        <div class="numbers"></div>
+                        <div class="cardName">Module Overview</div>
+                        <div class="iconBx">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <a href="{{route('menteesessionprogress')}}" target="_blank">
-                <div class="card">
-                    <div>
-                        <div class="numbers">6</div>
-                        <div class="cardName">Total Session Completed </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card">
+                        <div class="numbers">2</div>
+                        <div class="cardName">Total Sessions</div>
+                        <div class="iconBx">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
                     </div>
-
-                    <div class="iconBx">
-                    <i class="fa-solid fa-users"></i>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="#"  class="text-decoration-none">
+                    <div class="card">
+                        <div class="numbers">1</div>
+                        <div class="cardName">Total Guest Lectures</div>
+                        <div class="iconBx">
+                        <i class="fa-solid fa-user-tie"></i>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <div class="card">
-                <div>
-                    <div class="numbers">60 mins</div>
-                    <div class="cardName">Total Minutes Mentored </div>
-                </div>
-
-                <div class="iconBx">
-                  <i class="fa-solid fa-clock"></i>
-                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card">
+                        <div class="numbers">60</div>
+                        <div class="cardName">Total Minutes Mentored</div>
+                        <div class="iconBx">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
             </div>
         </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <!-- Content-->
     </div>

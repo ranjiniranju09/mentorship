@@ -149,10 +149,17 @@ Route::match(['get','post'],'/viewmenteeresources/{menteeId}','App\Http\Controll
 
 
 Route::match(['get','post'],'/quiz','App\Http\Controllers\ModulesController@quiz')->name('quiz');
+// Route::match(['get','post'],'/sidebar','App\Http\Controllers\MentorController@sidebar')->name('sidebar');
+
+
+// Route::match(['get','post'],'/totalquiz','App\Http\Controllers\MentorController@totalquiz')->name('totalquiz');
 
 //sample
+//          ================ Mentee List ================= 
+ 
 
 Route::match(['get','post'],'/dashboardmentee','App\Http\Controllers\MenteeController@show')->name('dashboardmentee');
+
 Route::match(['get','post'],'/admindashboard','App\Http\Controllers\AdminController@dashboard')->name('admindashboard');
 
 Route::match(['get','post'],'/taskmentee','App\Http\Controllers\MenteeController@task')->name('taskmentee');
@@ -186,15 +193,40 @@ Route::match(['get','post'],'/sessionmentee','App\Http\Controllers\MenteeControl
 Route::match(['get','post'],'/menteeprofile','App\Http\Controllers\MenteeController@menteeprofile')->name('menteeprofile');
 
 
+// Route::match(['get','post'],'/mentorsessionadd','App\Http\Controllers\MentorController@mentorsessionadd')->name('mentorsessionadd');
+
+
+// Route::match(['get','post'],'/mentortaskadd','App\Http\Controllers\MentorController@mentortaskadd')->name('mentortaskadd');
+
 //  ================ Mentor List ================= 
+
 
 Route::match(['get','post'],'/dashboardmentor','App\Http\Controllers\MentorController@dashboardmentor')->name('dashboardmentor');
 
-Route::match(['get','post'],'/mentorsessionadd','App\Http\Controllers\MentorController@mentorsessionadd')->name('mentorsessionadd');
-
-Route::match(['get','post'],'/mentortaskadd','App\Http\Controllers\MentorController@mentortaskadd')->name('mentortaskadd');
-
 Route::match(['get','post'],'/mentorprofile','App\Http\Controllers\MentorController@mentorprofile')->name('mentorprofile');
+
+Route::match(['get','post'],'/mentorjobs','App\Http\Controllers\MentorController@mentorjobs')->name('mentorjobs');
 
 
 Route::match(['get','post'],'/mentorresourceadd','App\Http\Controllers\MentorController@mentorresourceadd')->name('mentorresourceadd');
+
+Route::match(['get','post'],'/menteemoduleprogress','App\Http\Controllers\MentorController@menteemoduleprogress')->name('menteemoduleprogress');
+
+Route::match(['get','post'],'/menteequizprogress','App\Http\Controllers\MentorController@menteequizprogress')->name('menteequizprogress');
+
+Route::match(['get','post'],'/menteetaskprogress','App\Http\Controllers\MentorController@menteetaskprogress')->name('menteetaskprogress');
+
+Route::match(['get','post'],'/menteesessionprogress','App\Http\Controllers\MentorController@menteesessionprogress')->name('menteesessionprogress');
+
+
+//  ================  List ================= 
+
+Route::match(['get','post'],'/dashboardadmin','App\Http\Controllers\AdminController@dashboardadmin')->name('dashboardadmin');
+
+Route::match(['get','post'],'/adminmodule','App\Http\Controllers\AdminController@adminmodule')->name('adminmodule');
+
+Route::match(['get','post'],'/opportunity','App\Http\Controllers\AdminController@opportunity')->name('opportunity');
+
+Route::match(['get','post'],'/adminsession','App\Http\Controllers\AdminController@adminsession')->name('adminsession');
+
+Route::match(['get','post'],'/tableview','App\Http\Controllers\AdminController@tableview')->name('tableview');

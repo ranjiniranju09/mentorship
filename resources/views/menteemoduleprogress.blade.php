@@ -14,7 +14,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa1uMRHI8mK4K6pi/4jllnjt6" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
 
@@ -53,7 +52,7 @@
             overflow: hidden;
         }
         .navigation.active {
-            width: 50px;
+            width: 80px;
         }
 
         .navigation ul {
@@ -76,14 +75,13 @@
             display: flex;
             text-decoration: none;
             color: var(--white);
-            padding: 8px 20px;
+            padding: 10px 20px;
             transition: background-color 0.3s, color 0.3s;
         }
 
         .navigation ul li a:hover {
             color: var(--black1);
             background-color: #ffffff;
-           
         }
 
         .navigation ul li a .icon {
@@ -96,7 +94,7 @@
 
         .navigation ul li a .title {
             display: block;
-            padding: 0 5px;
+            padding: 0 10px;
             height: 60px;
             line-height: 60px;
             text-align: start;
@@ -163,57 +161,30 @@
             border-radius: 50%;
             object-fit: cover;
         }
+        .academic-record {
+            display:flex;
+            margin-top: 15px;
+            margin-left: 15PX;
+            align-content: center;
 
-        .cardBox {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+        }
+
+        .chart-size {
+            width: 100% !important;
+            height: 400px !important;
+        }
+        .academic-record {
+            margin: 20px;
             padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
         }
-
-        .card {
-            background: var(--white);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: background 0.3s;
+        .academic-record h4 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
         }
-        a {
-            text-decoration: none;
-        }
-       
-        .card:hover {
-            background: var(--blue);
-        }
-
-        .card:hover .numbers,
-        .card:hover .cardName,
-        .card:hover .iconBx {
-            color: var(--white);
-        }
-      
-
-        .numbers {
-            align-items: center;
-            font-size: 2rem;
-            font-weight: 500;
-            color: var(--black1);
-        }
-
-        .cardName {
-            font-size: 1rem;
-            color: var(--black2);
-        }
-
-        .iconBx {
-            font-size: 2.5rem;
-            color: var(--black2);
-        }
-       
 
 
         @media (max-width: 768px) {
@@ -257,7 +228,7 @@
             <li>
             <a href="{{ route('dashboardmentor') }}">
                     <span class="icon"><i class="fas fa-circle-user fa-2xl"></i></span>
-                    <h5><span class="title">Mentor</span></h5>
+                    <h4><span class="title">Mentor</span></h4>
                 </a>
             </li>
             <li>
@@ -334,73 +305,13 @@
             </div>
         </div>
 
-        <!-- ======================= Cards ================== -->
-        <div class="cardBox">
-            <a href="{{route('menteemoduleprogress')}}" target="_blank">
-                <div class="card">
-                <span>
-                    <div>
-                        <div class="numbers">5</div>
-                        <div class="cardName">Modules Completed</div>
-                    </div>
-                </span>
-
-                    <div class="iconBx">
-                    <i class=" icon fa-solid fa-diagram-project"></i>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('menteequizprogress')}}" target="_blank">
-              <div class="card">
-                  <div>
-                      <div class="numbers">4</div>
-                      <div class="cardName">Total Quiz</div>
-                  </div>
-
-                  <div class="iconBx">
-                  <i class="fa-regular fa-circle-question"></i>
-                  </div>
-              </div>
-            </a>
-
-            <a href="{{route('menteetaskprogress')}}" target="_blank">
-                <div class="card">
-                    <div>
-                        <div class="numbers">6</div>
-                        <div class="cardName">Task Completed</div>
-                    </div>
-
-                    <div class="iconBx">
-                    <i class="fa-solid fa-list"></i>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('menteesessionprogress')}}" target="_blank">
-                <div class="card">
-                    <div>
-                        <div class="numbers">6</div>
-                        <div class="cardName">Total Session Completed </div>
-                    </div>
-
-                    <div class="iconBx">
-                    <i class="fa-solid fa-users"></i>
-                    </div>
-                </div>
-            </a>
-            <div class="card">
-                <div>
-                    <div class="numbers">60 mins</div>
-                    <div class="cardName">Total Minutes Mentored </div>
-                </div>
-
-                <div class="iconBx">
-                  <i class="fa-solid fa-clock"></i>
-                </div>
-            </div>
+        <!-- ======================= pie chart for module progress ================== -->
+        <div class="academic-record">
+            <h4>Mentee Module Progress</h4>
+            <canvas id="progressChart" class="chart-size"></canvas>
         </div>
 
-        <!-- Content-->
+
     </div>
 
     <script>
@@ -414,6 +325,65 @@
             main.classList.toggle('active');
         });
     </script>
+    <script>
+    var ctx = document.getElementById('progressChart').getContext('2d');
+    var progressChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Module 1', 'Module 2', 'Module 3', 'Module 4', 'Module 5'],
+            datasets: [{
+                data: [100, 45, 50, 35, 60],
+                backgroundColor: [
+                    'rgba(40, 167, 69, 0.7)',  // bg-success
+                    'rgba(23, 162, 184, 0.7)',  // bg-info
+                    'rgba(255, 193, 7, 0.7)',   // bg-warning
+                    'rgba(220, 53, 69, 0.7)',   // bg-danger
+                    'rgba(102, 16, 242, 0.7)'   // bg-purple
+                ],
+                borderColor: [
+                    'rgba(40, 167, 69, 1)',
+                    'rgba(23, 162, 184, 1)',
+                    'rgba(255, 193, 7, 1)',
+                    'rgba(220, 53, 69, 1)',
+                    'rgba(102, 16, 242, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Modules'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Progress (%)'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
 </body>
 
 </html>

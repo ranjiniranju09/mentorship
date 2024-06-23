@@ -9,41 +9,63 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function admin()
-    {
+    // public function admin()
+    // {
 
-        $sessions = DB::table('sessions')->get();
+    //     $sessions = DB::table('sessions')->get();
 
-        $mappingData = DB::table('mentor_mentee_map')
-        ->join('mentors', 'mentor_mentee_map.mentor_id', '=', 'mentors.id')
-        ->join('mentees', 'mentor_mentee_map.mentee_id', '=', 'mentees.id')
-        ->select('mentors.name as mentor_name', 'mentees.name as mentee_name')
-        ->get();
+    //     $mappingData = DB::table('mentor_mentee_map')
+    //     ->join('mentors', 'mentor_mentee_map.mentor_id', '=', 'mentors.id')
+    //     ->join('mentees', 'mentor_mentee_map.mentee_id', '=', 'mentees.id')
+    //     ->select('mentors.name as mentor_name', 'mentees.name as mentee_name')
+    //     ->get();
 
 
-        return view('admin', compact('sessions','mappingData'));
+    //     return view('admin', compact('sessions','mappingData'));
     
-    }
-    public function adminstore(Request $request)
+    // }
+    // public function adminstore(Request $request)
+    // {
+    //     DB::table('logins')->insert([
+    //         'name' => $request->input('name'),
+    //         'email' => $request->input('email'),
+    //         'mobile' => $request->input('mobile'),
+    //         'username' => $request->input('username'),
+    //         'role' => 'admin', // Set default value to "ADMIN"
+    //         'password' => bcrypt($request->input('password')),
+    //         'created_at' => now(),
+    //         'updated_at' => now(),
+    //     ]);
+
+    //     return view("login");
+
+    // }
+
+
+
+    public function dashboardadmin()
     {
-        DB::table('logins')->insert([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'mobile' => $request->input('mobile'),
-            'username' => $request->input('username'),
-            'role' => 'admin', // Set default value to "ADMIN"
-            'password' => bcrypt($request->input('password')),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        return view("login");
-
+        return view('dashboardadmin');
     }
-
-    public function dashboard()
+    public function adminmodule()
     {
-        return view('admindashboard');
+        return view('adminmodule');
     }
+    public function opportunity()
+    {
+        return view('opportunity');
+    }
+    public function adminsession()
+    {
+        return view('adminsession');
+    }
+    public function tableview()
+    {
+        return view('tableview');
+    }
+
+
+
+
 
 }

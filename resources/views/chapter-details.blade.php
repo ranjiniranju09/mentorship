@@ -177,8 +177,13 @@
                                 <div class="chapter-resources">
                                     <h5>Resources:</h5>
                                     <ul>
-                                        <li><a href="{{route('moduleresources')}}" class="chapter-link">Introduction PDF</li>
-                                        <li><a href="video1.mp4" class="chapter-link">Introductory Video</a></li>
+                                        <li>
+                                            <a href="{{route('moduleresources')}}" class="chapter-link">Introduction PDF</a>
+
+                                        </li> </br>
+                                        <li>
+                                            <a href="video1.mp4" class="chapter-link">Introductory Video</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <a href="{{route('JsIntro')}}" target="_blank" class="chapter-link">Read more</a>

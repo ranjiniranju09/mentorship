@@ -45,7 +45,7 @@
         }
 
         .navigation {
-            position: fixed;
+          position: fixed;
             width: 270px;
             height: 100%;
             background: var(--black1);
@@ -53,7 +53,7 @@
             overflow: hidden;
         }
         .navigation.active {
-            width: 50px;
+            width: 80px;
         }
 
         .navigation ul {
@@ -76,14 +76,13 @@
             display: flex;
             text-decoration: none;
             color: var(--white);
-            padding: 8px 20px;
+            padding: 10px 20px;
             transition: background-color 0.3s, color 0.3s;
         }
 
         .navigation ul li a:hover {
             color: var(--black1);
             background-color: #ffffff;
-           
         }
 
         .navigation ul li a .icon {
@@ -96,7 +95,7 @@
 
         .navigation ul li a .title {
             display: block;
-            padding: 0 5px;
+            padding: 0 10px;
             height: 60px;
             line-height: 60px;
             text-align: start;
@@ -133,22 +132,31 @@
             position: relative;
         }
 
-        .search input {
+        .search {
+            width: 400px;
+            margin: 0 10px;
+            position: relative;
+        }
+        .search label {
+            width: 100%;
+        }
+        .search label input {
             width: 100%;
             height: 40px;
-            border-radius: 20px;
-            padding: 0 20px;
-            padding-left: 40px;
-            font-size: 16px;
-            border: 1px solid var(--black2);
+            border-radius: 40px;
+            padding: 5px 20px;
+            padding-left: 35px;
+            font-size: 18px;
             outline: none;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        .search ion-icon {
+        .search label ion-icon {
             position: absolute;
-            top: 10px;
+            top: 50%;
             left: 10px;
             font-size: 1.2rem;
+            transform: translateY(-50%);
         }
 
         .user {
@@ -162,6 +170,9 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
+        }
+        .content {
+          margin-top: 20px;
         }
 
         .cardBox {
@@ -182,10 +193,7 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-        a {
-            text-decoration: none;
-        }
-       
+
         .card:hover {
             background: var(--blue);
         }
@@ -195,10 +203,8 @@
         .card:hover .iconBx {
             color: var(--white);
         }
-      
 
         .numbers {
-            align-items: center;
             font-size: 2rem;
             font-weight: 500;
             color: var(--black1);
@@ -213,10 +219,13 @@
             font-size: 2.5rem;
             color: var(--black2);
         }
-       
 
+        .display-quiz-scores{
+          margin-left: 40px;
+          width:max-content;
+        }
 
-        @media (max-width: 768px) {
+      @media (max-width: 768px) {
             .navigation {
                 left: -300px;
             }
@@ -247,6 +256,37 @@
                 left: initial;
             }
         }
+                  /* ====================== Display Session table ========================== */
+
+        .session-table {
+            margin-top: 20px;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .completed {
+            background-color: #666666;
+            color: #fff;
+        }
+
+        .inProgress {
+            background-color: #ffc107;
+            color: #000;
+        }
+
+        .pending {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        .canceled {
+            background-color: #dc3545;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -255,9 +295,9 @@
     <div class="navigation">
         <ul>
             <li>
-            <a href="{{ route('dashboardmentor') }}">
-                    <span class="icon"><i class="fas fa-circle-user fa-2xl"></i></span>
-                    <h5><span class="title">Mentor</span></h5>
+                <a href="{{ route('dashboardmentor') }}">
+                    <span class="icon"><i class="fas fa-circle-user"></i></span>
+                    <span class="title">Mentor</span>
                 </a>
             </li>
             <li>
@@ -267,33 +307,21 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('mentorprofile')}}">
+                <a href="#">
                     <span class="icon"><i class="fa-solid fa-user"></i></span>
                     <span class="title">Profile</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('menteesessionprogress') }}">
+                <a href="{{ route('mentorsessionadd') }}">
                     <span class="icon"><i class="fa-solid fa-users"></i></span>
                     <span class="title">Session</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('menteetaskprogress') }}">
+                <a href="{{ route('mentortaskadd') }}">
                     <span class="icon"><i class="fa-solid fa-list"></i></ion-icon></span>
                     <span class="title">Task</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('mentorresourceadd') }}">
-                    <span class="icon"><i class="fa-solid fa-link"></i></ion-icon></span>
-                    <span class="title">Resources</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('mentorjobs')}}">
-                    <span class="icon"><i class="fa-solid fa-briefcase"></i></span>
-                    <span class="title">Jobs</span>
                 </a>
             </li>
             <li>
@@ -302,7 +330,18 @@
                     <span class="title">Certificate</span>
                 </a>
             </li>
-           
+            <!-- <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+                    <span class="title">Mentee</span>
+                </a>
+            </li> -->
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-gear"></i></span>
+                    <span class="title">Settings</span>
+                </a>
+            </li>
             <li>
                 <a href="#">
                     <span class="icon"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i></span>
@@ -334,75 +373,99 @@
             </div>
         </div>
 
-        <!-- ======================= Cards ================== -->
-        <div class="cardBox">
-            <a href="{{route('menteemoduleprogress')}}" target="_blank">
-                <div class="card">
-                <span>
-                    <div>
-                        <div class="numbers">5</div>
-                        <div class="cardName">Modules Completed</div>
+          <div class="content">
+             <!-- Display Mentees Quiz Scores Table -->
+            <div class="display-quiz-scores">
+                <h2>Mentees Quiz Scores</h2>
+                <table class="table table-bordered quiz-scores-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Mentee ID</th>
+                            <th>Name</th>
+                            <th>Completed Quizzes</th>
+                            <th>Total Quizzes</th>
+                            <th>Pending Quizzes</th>
+                            <th>Average Score</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>John Doe</td>
+                            <td>5</td>
+                            <td>10</td>
+                            <td>5</td>
+                            <td>85%</td>
+                            <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewQuizModal" data-mentee-id="001">View Details</button></td>
+                        </tr>
+                        <!-- <tr>
+                            <td>002</td>
+                            <td>Jane Smith</td>
+                            <td>8</td>
+                            <td>10</td>
+                            <td>2</td>
+                            <td>90%</td>
+                            <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewQuizModal" data-mentee-id="002">View Details</button></td>
+                        </tr> -->
+                        <!-- Additional mentee rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <!-- View Quiz Modal -->
+                <div class="modal fade" id="viewQuizModal" tabindex="-1" role="dialog" aria-labelledby="viewQuizModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewQuizModalLabel">Quiz Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Details will be filled dynamically using JavaScript based on the mentee selected -->
+                                <div class="form-group">
+                                    <label for="menteeName">Mentee Name:</label>
+                                    <input type="text" class="form-control" id="menteeName" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="completedQuizzes">Completed Quizzes:</label>
+                                    <input type="text" class="form-control" id="completedQuizzes" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="totalQuizzes">Total Quizzes:</label>
+                                    <input type="text" class="form-control" id="totalQuizzes" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pendingQuizzes">Pending Quizzes:</label>
+                                    <input type="text" class="form-control" id="pendingQuizzes" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="averageScore">Average Score:</label>
+                                    <input type="text" class="form-control" id="averageScore" readonly>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
                     </div>
-                </span>
-
-                    <div class="iconBx">
-                    <i class=" icon fa-solid fa-diagram-project"></i>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('menteequizprogress')}}" target="_blank">
-              <div class="card">
-                  <div>
-                      <div class="numbers">4</div>
-                      <div class="cardName">Total Quiz</div>
-                  </div>
-
-                  <div class="iconBx">
-                  <i class="fa-regular fa-circle-question"></i>
-                  </div>
-              </div>
-            </a>
-
-            <a href="{{route('menteetaskprogress')}}" target="_blank">
-                <div class="card">
-                    <div>
-                        <div class="numbers">6</div>
-                        <div class="cardName">Task Completed</div>
-                    </div>
-
-                    <div class="iconBx">
-                    <i class="fa-solid fa-list"></i>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('menteesessionprogress')}}" target="_blank">
-                <div class="card">
-                    <div>
-                        <div class="numbers">6</div>
-                        <div class="cardName">Total Session Completed </div>
-                    </div>
-
-                    <div class="iconBx">
-                    <i class="fa-solid fa-users"></i>
-                    </div>
-                </div>
-            </a>
-            <div class="card">
-                <div>
-                    <div class="numbers">60 mins</div>
-                    <div class="cardName">Total Minutes Mentored </div>
-                </div>
-
-                <div class="iconBx">
-                  <i class="fa-solid fa-clock"></i>
                 </div>
             </div>
-        </div>
 
-        <!-- Content-->
+                </div>
     </div>
 
+    
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
         // Menu toggle
         const menuToggle = document.querySelector('.toggle');
@@ -414,6 +477,39 @@
             main.classList.toggle('active');
         });
     </script>
+    <script>
+    $('#viewQuizModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var menteeId = button.data('mentee-id'); // Extract info from data-* attributes
+
+        var modal = $(this);
+        // Mock mentee data - in a real application, fetch data from your backend
+        var mentees = {
+            '001': {
+                name: 'John Doe',
+                completedQuizzes: 5,
+                totalQuizzes: 10,
+                pendingQuizzes: 5,
+                averageScore: '85%'
+            },
+            '002': {
+                name: 'Jane Smith',
+                completedQuizzes: 8,
+                totalQuizzes: 10,
+                pendingQuizzes: 2,
+                averageScore: '90%'
+            }
+            // Add more mentees as needed
+        };
+
+        var mentee = mentees[menteeId];
+        modal.find('#menteeName').val(mentee.name);
+        modal.find('#completedQuizzes').val(mentee.completedQuizzes);
+        modal.find('#totalQuizzes').val(mentee.totalQuizzes);
+        modal.find('#pendingQuizzes').val(mentee.pendingQuizzes);
+        modal.find('#averageScore').val(mentee.averageScore);
+    });
+</script>
 </body>
 
 </html>

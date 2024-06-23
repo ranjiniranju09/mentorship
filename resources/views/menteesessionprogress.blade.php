@@ -76,7 +76,7 @@
             display: flex;
             text-decoration: none;
             color: var(--white);
-            padding: 10px 20px;
+            padding: 8px 20px;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -222,7 +222,7 @@
 
         .display-session{
           margin-left: 40px;
-          width:max-content;
+          width: 90%;
         }
 
       @media (max-width: 768px) {
@@ -269,7 +269,7 @@
         }
 
         .completed {
-            background-color: #666666;
+            background-color: green;
             color: #fff;
         }
 
@@ -307,26 +307,26 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('mentorprofile')}}">
                     <span class="icon"><i class="fa-solid fa-user"></i></span>
                     <span class="title">Profile</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('mentorsessionadd') }}">
+                <a href="{{ route('menteesessionprogress') }}">
                     <span class="icon"><i class="fa-solid fa-users"></i></span>
                     <span class="title">Session</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('mentortaskadd') }}">
+                <a href="{{ route('menteetaskprogress') }}">
                     <span class="icon"><i class="fa-solid fa-list"></i></ion-icon></span>
                     <span class="title">Task</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('mentorresourceadd') }}">
-                    <span class="icon"><i class="fa-solid fa-list"></i></ion-icon></span>
+                    <span class="icon"><i class="fa-solid fa-link"></i></ion-icon></span>
                     <span class="title">Resources</span>
                 </a>
             </li>
@@ -342,18 +342,7 @@
                     <span class="title">Certificate</span>
                 </a>
             </li>
-            <!-- <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
-                    <span class="title">Mentee</span>
-                </a>
-            </li> -->
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fa-solid fa-gear"></i></span>
-                    <span class="title">Settings</span>
-                </a>
-            </li>
+           
             <li>
                 <a href="#">
                     <span class="icon"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i></span>
@@ -385,24 +374,24 @@
             </div>
         </div>
 
-          <div class="content">
-
-          <!-- Display Sessions Table -->
-              <div class="display-session">
-                    <h2>Sessions Details</h2>
+        <div class="content">
+                <!-- Display Sessions Table -->
+                <div class="display-session">
+                    <h2>Up Comming Sessions</h2>
                     <span>
-                      <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSessionModal">
-                        Add Session
-                      </button>
-                      <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#uploadrecording">
-                        Upload Recording
-                      </button>
-                      <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#editSessionModal">
-                        Edit Session
-                      </button>
+                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSessionModal">
+                            Add Session
+                        </button>
+                        <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#uploadRecordingModal">
+                            Upload Recording
+                        </button>
+                        <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#editSessionModal">
+                            Edit Session
+                        </button>
                     </span>
+
                     <table class="table table-bordered session-table">
-                        <thead class="thead-light">
+                        <thead class="thead-dark">
                             <tr>
                                 <th>Session ID</th>
                                 <th>Title</th>
@@ -410,6 +399,52 @@
                                 <th>Date</th>
                                 <th>Status</th>
                                 <th>Action</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>002</td>
+                                <td>Data Science Basics</td>
+                                <td>Mentor</td>
+                                <td>2024-06-02</td>
+                                <td><span class="status inProgress">In Progress</span></td>
+                                <td><a href="#" class="btn btn-success">Join</a></td>
+                                <td><a href="#" class="btn btn-danger delete-session" data-session-id="002"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>Web Development</td>
+                                <td>Guest Lecturer</td>
+                                <td>2024-06-03</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td><a href="#" class="btn btn-success">Join</a></td>
+                                <td><a href="#" class="btn btn-danger delete-session" data-session-id="003"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>004</td>
+                                <td>Advanced Python</td>
+                                <td>Mentor</td>
+                                <td>2024-06-04</td>
+                                <td><span class="status canceled">Canceled</span></td>
+                                <td></td>
+                                <td><a href="#" class="btn btn-danger delete-session" data-session-id="004"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- New table for completed sessions -->
+                    <h2>Completed Sessions</h2>
+                    <table class="table table-bordered completed-sessions-table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Session ID</th>
+                                <th>Title</th>
+                                <th>Instructor</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -420,29 +455,7 @@
                                 <td>2024-06-01</td>
                                 <td><span class="status completed">Completed</span></td>
                                 <td><a href="https://drive.google.com/file/d/1hRGMS7cuVAYw5DucRg43LoqpNYDwFBKv/view?usp=drive_link" class="btn btn-success">View Recording</a></td>
-                            </tr>
-                            <tr>
-                                <td>002</td>
-                                <td>Data Science Basics</td>
-                                <td>Mentor</td>
-                                <td>2024-06-02</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                                <td><a href="#" class="btn btn-success">Join</a></td>
-                            </tr>
-                            <tr>
-                                <td>003</td>
-                                <td>Web Development</td>
-                                <td>Guest Lecturer</td>
-                                <td>2024-06-03</td>
-                                <td><span class="status pending">Pending</span></td>
-                                <td><a href="#" class="btn btn-success">Join</a></td>
-                            </tr>
-                            <tr>
-                                <td>004</td>
-                                <td>Advanced Python</td>
-                                <td>Mentor</td>
-                                <td>2024-06-04</td>
-                                <td><span class="status canceled">Canceled</span></td>
+                                <td><a href="#" class="btn btn-danger delete-session" data-session-id="001"><i class="fa fa-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <td>005</td>
@@ -451,144 +464,110 @@
                                 <td>2024-06-05</td>
                                 <td><span class="status completed">Completed</span></td>
                                 <td><a href="https://drive.google.com/file/d/1hRGMS7cuVAYw5DucRg43LoqpNYDwFBKv/view?usp=drive_link" class="btn btn-success">View Recording</a></td>
+                                <td><a href="#" class="btn btn-danger delete-session" data-session-id="005"><i class="fa fa-trash"></i></a></td>
                             </tr>
                         </tbody>
                     </table>
-              </div>
-              <!-- Add Session Button
-              <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSessionModal">
-                  Add Session
-              </button> -->
-                <!-- Edit Session Button -->
-                
+                </div>
 
-            <div class="row">
                 <!-- Add Session Modal -->
-                <div class="modal fade" id="addSessionModal" tabindex="-1" role="dialog" aria-labelledby="addSessionModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addSessionModalLabel">Add New Session</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="sessionName">Session Name:</label>
-                                        <input type="text" class="form-control" id="sessionName" name="sessionName" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="meetingDate">Meeting Date:</label>
-                                        <input type="date" class="form-control" id="meetingDate" name="meetingDate" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="meetingTime">Meeting Time:</label>
-                                        <input type="time" class="form-control" id="meetingTime" name="meetingTime" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sessioncategory">Modules</label>
-                                        <select class="form-control" id="sessioncategory" name="sessioncategory">
-                                            <option>---Select Modules---</option>
-                                            <option>Modules 1</option>
-                                            <option>Modules 2</option>
-                                            <option>Modules 3</option>
-                                            <option>Modules 4</option>
-                                            <option>General</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sessionlink">Session Link:</label>
-                                        <input type="text" class="form-control" id="sessionlink" name="sessionlink" required>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Add Session</button>
-                                </form>
-                            </div>
+            <div class="modal fade" id="addSessionModal" tabindex="-1" role="dialog" aria-labelledby="addSessionModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addSessionModalLabel">Add New Session</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addSessionForm">
+                                <div class="form-group">
+                                    <label for="sessionName">Session Name:</label>
+                                    <input type="text" class="form-control" id="sessionName" name="sessionName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sessionDate">Session Date:</label>
+                                    <input type="date" class="form-control" id="sessionDate" name="sessionDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sessionLink">Session Link:</label>
+                                    <input type="url" class="form-control" id="sessionLink" name="sessionLink">
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="addSessionBtn">Add Session</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-
-                <!-- Upload Recording Modal -->
-                <div class="modal fade" id="uploadrecording" tabindex="-1" role="dialog" aria-labelledby="uploadrecordingLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="uploadrecordingLabel">Edit Session</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="sessionSelect">Select Session:</label>
-                                        <select class="form-control" id="sessionSelect" name="sessionSelect">
-                                            <option>----- Select here -----</option>
-                                            <option>Introduction to Python</option>
-                                            <option>Data Science Basics</option>
-                                            <option>Web Development</option>
-                                            <option>Advanced Python</option>
-                                            <option>Machine Learning</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sessionVideo">Upload Recorded Video:</label>
-                                        <input type="file" class="form-control" id="sessionVideo" name="sessionVideo">
-                                    </div>
-                                    <button type="submit" class="btn btn-secondary">Save Changes</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Edit Session Modal -->
-                <div class="modal fade" id="editSessionModal" tabindex="-1" role="dialog" aria-labelledby="editSessionModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editSessionModalLabel">Edit Session</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="sessionName">Session Name:</label>
-                                        <input type="text" class="form-control" id="sessionName" name="sessionName" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="meetingDate">Meeting Date:</label>
-                                        <input type="date" class="form-control" id="meetingDate" name="meetingDate" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="meetingTime">Meeting Time:</label>
-                                        <input type="time" class="form-control" id="meetingTime" name="meetingTime" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sessionSelect">Select Session:</label>
-                                        <select class="form-control" id="sessionSelect" name="sessionSelect">
-                                            <option>----- Select here -----</option>
-                                            <option>Introduction to Python</option>
-                                            <option>Data Science Basics</option>
-                                            <option>Web Development</option>
-                                            <option>Advanced Python</option>
-                                            <option>Machine Learning</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-secondary">Save Changes</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                
             </div>
-          </div>
+
+            <!-- Edit Session Modal -->
+            <div class="modal fade" id="editSessionModal" tabindex="-1" role="dialog" aria-labelledby="editSessionModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editSessionModalLabel">Edit Session</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editSessionForm">
+                                <div class="form-group">
+                                    <label for="selectSession">Select Session:</label>
+                                    <select class="form-control" id="selectSession" name="selectSession" required>
+                                        <!-- Options will be dynamically populated via JavaScript -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editSessionName">Session Name:</label>
+                                    <input type="text" class="form-control" id="editSessionName" name="editSessionName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editSessionDate">Session Date:</label>
+                                    <input type="date" class="form-control" id="editSessionDate" name="editSessionDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editSessionLink">Session Link:</label>
+                                    <input type="url" class="form-control" id="editSessionLink" name="editSessionLink">
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="saveSessionBtn">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Recording Modal -->
+            <div class="modal fade" id="uploadRecordingModal" tabindex="-1" role="dialog" aria-labelledby="uploadRecordingModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="uploadRecordingModalLabel">Upload Recording</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="uploadRecordingForm">
+                                <div class="form-group">
+                                    <label for="selectSession">Select Session:</label>
+                                    <select class="form-control" id="selectSession" name="selectSession" required>
+                                        <!-- Options will be dynamically populated via JavaScript -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recordingFile">Upload Recording:</label>
+                                    <input type="file" class="form-control-file" id="recordingFile" name="recordingFile" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="uploadRecordingBtn">Upload Recording</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
     
     
@@ -608,6 +587,108 @@
             navigation.classList.toggle('active');
             main.classList.toggle('active');
         });
+
+        $(document).ready(function() {
+            function populateSessionOptions() {
+                var sessions = [
+                    { id: "002", name: "Data Science Basics" },
+                    { id: "003", name: "Web Development" },
+                    { id: "004", name: "Advanced Python" }
+                    // Add more sessions as needed
+                ];
+
+                var selectSession = $('#selectSession');
+                selectSession.empty();
+                $.each(sessions, function(index, session) {
+                    selectSession.append($('<option>').text(session.name).attr('value', session.id));
+                });
+            }
+
+            $(document).ready(function() {
+                // Call the function to populate session options
+                populateSessionOptions();
+
+                // Submit handler for Upload Recording form
+                $('#uploadRecordingForm').submit(function(event) {
+                    event.preventDefault();
+                    // Handle form submission logic here
+                    // Example: AJAX post or form submission
+                    console.log('Upload Recording form submitted');
+                });
+            });
+
+            // Submit handler for Add Session form
+            $('#addSessionForm').submit(function(event) {
+                event.preventDefault();
+                // Handle form submission logic here
+                // Example: AJAX post or form submission
+                console.log('Add Session form submitted');
+            });
+
+            // Submit handler for Edit Session form
+            $('#editSessionForm').submit(function(event) {
+                event.preventDefault();
+                // Handle form submission logic here
+                // Example: AJAX post or form submission
+                console.log('Edit Session form submitted');
+            });
+        });
+
+        // Upload Recording Modal functionality
+        $(document).ready(function() {
+            // Populate select options dynamically
+            function populateSessionOptions() {
+                // Example of populating sessions, replace with your data source
+                var sessions = ['Data Science Basics', 'Web Development', 'Advanced Python'];
+                var selectSession = $('#selectSession');
+                selectSession.empty();
+                $.each(sessions, function(index, value) {
+                    selectSession.append($('<option>').text(value).attr('value', value));
+                });
+            }
+            populateSessionOptions();
+
+            $('#uploadrecording').submit(function(event) {
+                event.preventDefault();
+                // Perform validation and submission
+                var selectedSession = $('#selectSession').val();
+                var recordingFile = $('#recordingFile').prop('files')[0];
+
+                // Add your AJAX or form submission logic here
+
+                // Example of closing modal after submission
+                $('#uploadrecording').modal('hide');
+            });
+        });
+
+
+            
+            // Show alert message when add session form is submitted
+            $('#addSessionForm').submit(function(event) {
+                event.preventDefault();
+                alert("Session has been added.");
+                $('#addSessionModal').modal('hide');
+                // Add your form submission logic here (e.g., AJAX call to submit the form data)
+            });
+
+            // Show alert message when edit session form is submitted
+            $('#editSessionForm').submit(function(event) {
+                event.preventDefault();
+                alert("Session details updated successfully.");
+                $('#editSessionModal').modal('hide');
+                // Add your form submission logic here (e.g., AJAX call to submit the form data)
+            });
+
+            // Delete session action
+            $('.delete-session').click(function(event) {
+                event.preventDefault();
+                var sessionId = $(this).data('session-id');
+                if(confirm("Are you sure you want to delete this session?")) {
+                    alert("Session " + sessionId + " has been deleted.");
+                    // Add your delete logic here (e.g., AJAX call to delete the session)
+                }
+            });
+
     </script>
 </body>
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,493 +6,441 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentor Task Add </title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- ======= Styles ====== -->
+    <title>Mentor Dashboard</title>
+    <!-- ======= FontAwesome and Bootstrap ======= -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-   
-</head>
-<style>
-    /* =========== Google Fonts ============ */
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa1uMRHI8mK4K6pi/4jllnjt6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-/* =============== Globals ============== */
-* {
-  font-family: "Ubuntu", sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
 
-:root {
-  --blue: #2a2185;
-  --white: #fff;
-  --gray: #f5f5f5;
-  --black1: #222;
-  --black2: #999;
-}
+        * {
+            font-family: "Ubuntu", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+        :root {
+            --blue: #2a2185;
+            --white: #fff;
+            --gray: #f5f5f5;
+            --black1: #222;
+            --black2: #999;
+        }
 
-.container {
-  position: relative;
-  width: 100%;
-}
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: var(--gray);
+        }
 
-/* =============== Navigation ================ */
-.navigation {
-  position: fixed;
-  width: 300px;
-  height: 100%;
-  background: var(--black1);
-  border-left: 10px solid var(--white);
-  transition: 0.5s;
-  overflow: hidden;
-}
-.navigation.active {
-  width: 80px;
-}
+        .container {
+            position: relative;
+            width: 100%;
+        }
 
-.navigation ul {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
+        .navigation {
+          position: fixed;
+            width: 270px;
+            height: 100%;
+            background: var(--black1);
+            transition: 0.5s;
+            overflow: hidden;
+        }
+        .navigation.active {
+            width: 80px;
+        }
 
-.navigation ul li {
-  position: relative;
-  width: 100%;
-  list-style: none;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-  
-}
+        .navigation ul {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
 
-.navigation ul li:hover,
-.navigation ul li.hovered {
-  background-color: var(--white);
-}
+        .navigation ul li {
+            position: relative;
+            width: 100%;
+            list-style: none;
+        }
 
-.navigation ul li:nth-child(1) {
-  margin-bottom: 40px;
-  pointer-events: none;
-}
+        .navigation ul li a {
+            position: relative;
+            display: block;
+            width: 100%;
+            display: flex;
+            text-decoration: none;
+            color: var(--white);
+            padding: 8px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.navigation ul li a {
-  position: relative;
-  display: block;
-  width: 100%;
-  display: flex;
-  text-decoration: none;
-  color: var(--white);
-}
-.navigation ul li:hover a,
-.navigation ul li.hovered a {
-  color: var(--blue);
-}
+        .navigation ul li a:hover {
+            color: var(--black1);
+            background-color: #ffffff;
+        }
 
-.navigation ul li a .icon {
-  position: relative;
-  display: block;
-  min-width: 60px;
-  height: 60px;
-  line-height: 75px;
-  text-align: center;
-}
-.navigation ul li a .icon ion-icon {
-  font-size: 1.75rem;
-}
+        .navigation ul li a .icon {
+            display: block;
+            min-width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+        }
 
-.navigation ul li a .title {
-  position: relative;
-  display: block;
-  padding: 0 10px;
-  height: 60px;
-  line-height: 60px;
-  text-align: start;
-  white-space: nowrap;
-}
+        .navigation ul li a .title {
+            display: block;
+            padding: 0 10px;
+            height: 60px;
+            line-height: 60px;
+            text-align: start;
+            white-space: nowrap;
+        }
 
-/* --------- curve outside ---------- */
-.navigation ul li:hover a::before,
-.navigation ul li.hovered a::before {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: -50px;
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  border-radius: 100%;
-  box-shadow: 35px 35px 0 10px var(--white);
-  pointer-events: none;
-}
-.navigation ul li:hover a::after,
-.navigation ul li.hovered a::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -50px;
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  border-radius: 50%;
-  box-shadow: 35px -35px 0 10px var(--white);
-  pointer-events: none;
-}
+        .main {
+            margin-left: 270px;
+            transition: 0.5s;
+        }
 
-/* ===================== Main ===================== */
-.main {
-  position: absolute;
-  width: calc(100% - 300px);
-  left: 300px;
-  min-height: 100vh;
-  background: var(--white);
-  transition: 0.5s;
-}
-.main.active {
-  width: calc(100% - 80px);
-  left: 80px;
-}
+        .main.active {
+            margin-left: 80px;
+        }
 
-.topbar {
-  width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-}
+        .topbar {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background: var(--white);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-.toggle {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5rem;
-  cursor: pointer;
-}
+        .toggle {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
 
-.search {
-  position: relative;
-  width: 400px;
-  margin: 0 10px;
-}
+        .search {
+            width: 400px;
+            position: relative;
+        }
 
-.search label {
-  position: relative;
-  width: 100%;
-}
+        .search {
+            width: 400px;
+            margin: 0 10px;
+            position: relative;
+        }
+        .search label {
+            width: 100%;
+        }
+        .search label input {
+            width: 100%;
+            height: 40px;
+            border-radius: 40px;
+            padding: 5px 20px;
+            padding-left: 35px;
+            font-size: 18px;
+            outline: none;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .search label ion-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            font-size: 1.2rem;
+            transform: translateY(-50%);
+        }
 
-.search label input {
-  width: 100%;
-  height: 40px;
-  border-radius: 40px;
-  padding: 5px 20px;
-  padding-left: 35px;
-  font-size: 18px;
-  outline: none;
-  border: 1px solid var(--black2);
-}
+        .user {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
 
-.search label ion-icon {
-  position: absolute;
-  top: 0;
-  left: 10px;
-  font-size: 1.2rem;
-}
+        .user img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .content {
+          margin-top: 20px;
+          width:100%;
+        }
 
-.user {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  /* border-radius: 50%; */
-  /* overflow: hidden; */
-  cursor: pointer;
-}
 
-.user img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.form-container {
-        background: #ffffff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-        margin: 20px;
-    }
+        .display-quiz-scores{
+          margin-left: 40px;
+          width:max-content;
+        }
+        .form-container {
+            width: 90%;
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 8px;
+        }
+        .profile-picture {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-picture img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 15px;
+        }
+        .profile-picture input[type="file"] {
+            display: none;
+        }
+        .profile-picture label {
+            display: block;
+            text-align: center;
+            cursor: pointer;
+            color: #007bff;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group input {
+            border-radius: 4px;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+      @media (max-width: 768px) {
+            .navigation {
+                left: -300px;
+            }
 
-    .form-container h2 {
-        margin-bottom: 20px;
-        font-weight: 500;
-    }
+            .navigation.active {
+                left: 0;
+            }
 
-    .form-group {
-        margin-bottom: 15px;
-    }
+            .main {
+                margin-left: 0;
+            }
 
-    .form-group label {
-        font-weight: 500;
-    }
+            .main.active {
+                margin-left: 300px;
+            }
+        }
 
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group input[type="tel"],
-    .form-group input[type="file"],
-    .form-group textarea {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #999999;
-        border-radius: 5px;
-        outline: none;
-        transition: all 0.3s ease;
-    }
+        @media (max-width: 480px) {
+            .navigation.active {
+                width: 100%;
+                left: 0;
+            }
 
-    .form-group input[type="text"]:focus,
-    .form-group input[type="email"]:focus,
-    .form-group input[type="tel"]:focus,
-    .form-group input[type="file"]:focus,
-    .form-group textarea:focus {
-        border-color: #2a2185;
-    }
+            .main.active .toggle {
+                color: #fff;
+                position: fixed;
+                right: 0;
+                left: initial;
+            }
+        }
+                  /* ====================== Display Session table ========================== */
 
-    .form-group input[type="file"] {
-        padding: 3px;
-    }
+        .session-table {
+            margin-top: 20px;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-    .form-group button {
-        background: #2a2185;
-        color: #ffffff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
+        .completed {
+            background-color: #666666;
+            color: #fff;
+        }
 
-    .form-group button:hover {
-        background: #1e185f;
-    }   
- 
+        .inProgress {
+            background-color: #ffc107;
+            color: #000;
+        }
 
-/* ====================== Responsive Design ========================== */
-@media (max-width: 991px) {
-  .navigation {
-    left: -300px;
-  }
-  .navigation.active {
-    width: 300px;
-    left: 0;
-  }
-  .main {
-    width: 100%;
-    left: 0;
-  }
-  .main.active {
-    left: 300px;
-  }
-  .cardBox {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+        .pending {
+            background-color: #17a2b8;
+            color: #fff;
+        }
 
-@media (max-width: 768px) {
-  .details {
-    grid-template-columns: 1fr;
-  }
-  
-  .status.inProgress {
-    white-space: nowrap;
-  }
-}
-
-@media (max-width: 480px) {
-  .cardBox {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  .cardHeader h2 {
-    font-size: 20px;
-  }
-  .user {
-    min-width: 40px;
-  }
-  .navigation {
-    width: 100%;
-    left: -100%;
-    z-index: 1000;
-  }
-  .navigation.active {
-    width: 100%;
-    left: 0;
-  }
-  .toggle {
-    z-index: 10001;
-  }
-  .main.active .toggle {
-    color: #fff;
-    position: fixed;
-    right: 0;
-    left: initial;
-  }
-}
-</style>
+        .canceled {
+            background-color: #dc3545;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
     <!-- =============== Navigation ================ -->
-    <div class="container-fluid">
-        <div class="navigation">
-            <ul>
-                <li>
-                    <a href="#"  >
-                        <span class="icon">
-                            <i class="fa-solid fa-circle-user fa-2xl"></i>
-                        </span>
-                        <span class="title" active > Mentor </span>
-                    </a>
-                </li>
+    <div class="navigation">
+        <ul>
+            <li>
+            <a href="{{ route('dashboardmentor') }}">
+                    <span class="icon"><i class="fas fa-circle-user fa-2xl"></i></span>
+                    <h5><span class="title">Mentor</span></h5>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('dashboardmentor') }}">
+                    <span class="icon"><i class="fas fa-home"></i></span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('mentorprofile')}}">
+                    <span class="icon"><i class="fa-solid fa-user"></i></span>
+                    <span class="title">Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('menteesessionprogress') }}">
+                    <span class="icon"><i class="fa-solid fa-users"></i></span>
+                    <span class="title">Session</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('menteetaskprogress') }}">
+                    <span class="icon"><i class="fa-solid fa-list"></i></ion-icon></span>
+                    <span class="title">Task</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('mentorresourceadd') }}">
+                    <span class="icon"><i class="fa-solid fa-link"></i></ion-icon></span>
+                    <span class="title">Resources</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('mentorjobs')}}">
+                    <span class="icon"><i class="fa-solid fa-briefcase"></i></span>
+                    <span class="title">Jobs</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-certificate"></i></span>
+                    <span class="title">Certificate</span>
+                </a>
+            </li>
+           
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i></span>
+                    <span class="title">Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
-                <li>
-                <a href="{{route('dashboardmentor')}}">
-                        <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </span>
-                        <span class="title">Dashboard</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{route('mentorprofile')}}">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                        <span class="title">Profile</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{route('mentorsessionadd')}}">
-                        <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </span>
-                        <span class="title">Session</span>
-                    </a>
-                </li>
-
-                <li>
-                  <a href="{{route('mentortaskadd')}}">
-                    <span class="icon">
-                      <ion-icon name="help-outline"></ion-icon>
-                    </span>
-                      <span class="title">Task</span>
-                  </a>
-                </li>
-
-                <li>
-                    <a href="{{route('mentorresourceadd')}}">
-                        <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
-                        </span>
-                        <span class="title">Resources</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
-                        </span>
-                        <span class="title">Password</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Sign Out</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- ========================= Main ==================== -->
-        <div class="main">
-            <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
-                </div>
-
-                <div class="search">
-                    <label>
-                        <input type="text" placeholder="Search here">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
-                </div>
-
-                <div class="user">
-                    <i class="fa-solid fa-user fa-beat fa-2xl"></i>
-                </div>
+    <!-- ========================= Main ==================== -->
+    <div class="main">
+        <!-- ================ Top Bar ================= -->
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
             </div>
 
-            <!-- Profile Details Form -->
+            <!-- Search -->
+            <div class="search">
+                <label>
+                    <ion-icon name="search-outline"></ion-icon>
+                    <input type="text" placeholder="Search Here">
+                </label>
+            </div>
 
-            <div class="form-container">
-                <div class="col-md-10">
-                <form action="#" method="POST">
-                    <div class="profile-picture">
-                        <img src="{{ asset('public/build/assets/17134408731954993.png')}}" alt="Your Profile Picture">
-                        <!-- <div class="form-group">
-                            <input type="file" id="profile-picture" name="profile-picture">
-                        </div> -->
-                    </div>
-                    <h2>Profile Details</h2>
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="mobile">Mobile:</label>
-                            <input type="tel" id="mobile" name="mobile" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="skills">Skills:</label>
-                            <input type="text" id="skills" name="skills">
-                        </div>
-                       
-                        <div class="form-group">
-                            <button type="submit">Save</button>
-                        </div>
-                    </form>
-                </div>
+            <!-- User Image -->
+            <div class="user">
+                <a href="#"><i class="fa-solid fa-user fa-beat fa-2xl"></i></a>
             </div>
         </div>
-    </div>    
-</body>
+
+        <div class="content">
+        <div class="form-container">
+        <div class="profile-picture">
+                    <img src="{{ asset('public/build/assets/stud.png') }}" alt="Your Profile Picture">
+                    <label for="profile-picture">Change Profile Picture</label>
+                    <input type="file" id="profile-picture" name="profile-picture">
+                </div>
+            <form action="#" method="POST" enctype="multipart/form-data">
+               
+                <h2 class="text-center mb-4">Profile Details</h2>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" value="RANJINI N" id="name" name="name" required>
+                </div>
+                <div class="form-group"> 
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" value="ranjini.forstu@gmail.com" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile:</label>
+                    <input type="tel" class="form-control" value="9995138026" id="mobile" name="mobile" required>
+                </div>
+                <div class="form-group">
+                    <label for="skills">Languages known :</label>
+                    <select class="form-control" id="sessioncategory" name="sessioncategory">
+                    <option>-------Select Here------</option>
+                    <option>English</option>
+                    <option>Hindi</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label for="skills">Skills:</label>
+                    <input type="text" class="form-control" value="PHP"  id="skills" name="skills">
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+    
     <script src="assets/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa1uMRHI8mK4K6pi/4jllnjt6" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        // Menu toggle
+        const menuToggle = document.querySelector('.toggle');
+        const navigation = document.querySelector('.navigation');
+        const main = document.querySelector('.main');
+
+        menuToggle.addEventListener('click', () => {
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        });
+    </script>
+    <script>
+        document.getElementById('profile-picture').addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                var img = document.querySelector('.profile-picture img');
+                img.src = URL.createObjectURL(this.files[0]);
+            }
+        });
+    </script>
+</body>
 
 </html>

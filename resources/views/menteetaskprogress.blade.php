@@ -220,24 +220,10 @@
             color: var(--black2);
         }
 
-        .display-resources{
-          margin-left: 40px;
-          width:max-content;
-        }
-        .btn-close {
-            float: right;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            line-height: 1;
-            color: #000;
-            text-shadow: 0 1px 0 #fff;
-            opacity: .5;
-        }
-        .btn-close:hover {
-            color: #000;
-            text-decoration: none;
-            opacity: .75;
+        .display-tasks{
+          margin-left: 60px;
+          width: 90%;
+          
         }
 
       @media (max-width: 768px) {
@@ -282,8 +268,29 @@
             font-weight: bold;
             text-transform: uppercase;
         }
+
+        .success {
+            background-color:green;
+            color: #fff;
+        }
+
+        .inProgress {
+            background-color: #ffc107;
+            color: #000;
+        }
+
+        .pending {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        .canceled {
+            background-color: #dc3545;
+            color: #fff;
+        }
     </style>
 </head>
+
 <body>
     <!-- =============== Navigation ================ -->
     <div class="navigation">
@@ -370,144 +377,224 @@
 
         <div class="content">
 
-            <div class="display-resources">
-                <h2>Knowledge Bank Details</h2>
-                <span>
-                    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addResourceModal">
-                        Add Resource
-                    </button>
-                    <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#editResourceModal">
-                        Edit Resource
-                    </button>
-                </span>
-                <table class="table table-bordered resource-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Resource ID</th>
-                            <th>Resource Name</th>
-                            <th>Upload Date</th>
-                            <th>Related Link</th>
-                            <th>Category</th>
-                            <th>Download Link</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>001</td>
-                            <td>Project Proposal</td>
-                            <td>2024-06-10</td>
-                            <td><a href="https://example.com" target="_blank">Link</a></td>
-                            <td><span class="status public">Public</span></td>
-                            <td><a href="https://example.com/file1.zip" class="btn btn-success">Open Link</a></td>
-                            <td>
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewResourceModal" data-resource-id="001">Expand</button>
-                                <span>
-                                    <a href="#" class="btn btn-danger delete-resources" data-resources-id="001"><i class="fa fa-trash"></i></a>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>Chapter 1 Review</td>
-                            <td>2024-06-15</td>
-                            <td><a href="https://example.com" target="_blank">Link</a></td>
-                            <td><span class="status private">Private</span></td>
-                            <td><a href="https://example.com/file2.zip" class="btn btn-success">Open Link</a></td>
-                            <td>
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewResourceModal" data-resource-id="002">Expand</button>
-                                <span>
-                                    <a href="#" class="btn btn-danger delete-resources" data-resources-id="002"><i class="fa fa-trash"></i></a>
-                                </span>
-                            </td>
-                        </tr>
-                        <!-- Additional resource rows as needed -->
-                    </tbody>
-                </table>
-            </div>
+        <!-- Display Tasks Table -->
+        <div class="display-tasks">
+            <span><h2>In Progress Task </h2></span>
+            <span>
+                <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addTaskModal">
+                    Add Task
+                </button>
+                <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#editTaskModal">
+                    Edit Task
+                </button>
+            </span>
+            <table class="table table-bordered task-table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Task ID</th>
+                        <th>Task Name</th>
+                        <th>Due Date</th>
+                        <th>Related Link</th>
+                        <th>Status</th>
+                        <th>Download Link</th>
+                        <th>Action</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Complete Project Proposal</td>
+                        <td>2024-06-10</td>
+                        <td><a href="https://example.com" target="_blank">Link</a></td>
+                        <td><span class="status inProgress">In Progress</span></td>
+                        <td><a href="#" class="btn btn-success">Download</a></td>
+                        <td>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewTaskModal" data-task-id="001">Open</button>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-danger delete-task" data-task-id="001"><i class="fa fa-trash"></i></a>
+                        </td>
 
-            <div class="row">
-                <!-- Add Resource Modal -->
-                <div class="modal fade" id="addResourceModal" tabindex="-1" role="dialog" aria-labelledby="addResourceModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addResourceModalLabel">Add New Resource</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="addResourceForm">
-                                    <div class="form-group">
-                                        <label for="resourceName">Resource Name:</label>
-                                        <input type="text" class="form-control" id="resourceName" name="resourceName" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="uploadDate">Upload Date:</label>
-                                        <input type="date" class="form-control" id="uploadDate" name="uploadDate" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Do you want to add a resource link?</label><br>
-                                        <input type="radio" id="addLinkYes" name="addLink" value="yes" required> Yes<br>
-                                        <input type="radio" id="addLinkNo" name="addLink" value="no" required> No
-                                    </div>
-                                    <div class="form-group" id="relatedLinkField" style="display: none;">
-                                        <label for="relatedLink">Related Link:</label>
-                                        <input type="url" class="form-control" id="relatedLink" name="relatedLink">
-                                    </div>
-                                    <div class="form-group" id="topicDescriptionField" style="display: none;">
-                                        <label for="topicDescription">Topic Description:</label>
-                                        <textarea class="form-control" id="topicDescription" name="topicDescription" rows="3"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="resourceStatus">Category:</label>
-                                        <select class="form-control" id="resourceStatus" name="resourceStatus">
-                                            <option>Public</option>
-                                            <option>Private</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Add Resource</button>
-                                </form>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Review Chapter 1</td>
+                        <td>2024-06-15</td>
+                        <td><a href="https://example.com" target="_blank">Link</a></td>
+                        <td><span class="status inProgress">In Progress</span></td>
+                        <td><!--<a href="https://example.com/file2.zip" class="btn btn-success">Download</a>--></td>
+                        <td>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewTaskModal" data-task-id="002">Open</button>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-danger delete-task" data-task-id="002"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <!-- Additional task rows as needed -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="display-tasks">
+            <!-- New table for completed tasks -->
+            <span><h2>Completed Tasks</h2></span>
+            <table class="table table-bordered completed-tasks-table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Task ID</th>
+                        <th>Task Name</th>
+                        <th>Due Date</th>
+                        <th>Related Link</th>
+                        <th>Status</th>
+                        <th>Download Link</th>
+                        <th>Action</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>003</td>
+                        <td>Review Chapter 2</td>
+                        <td>2024-06-20</td>
+                        <td><a href="https://example.com" target="_blank">Link</a></td>
+                        <td><span class="status success">Completed</span></td>
+                        <td><a href="https://example.com/file3.zip" class="btn btn-success">Download</a></td>
+                        <td>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewTaskModal" data-task-id="003">Open</button>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-danger delete-task" data-task-id="003"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <!-- Additional completed task rows as needed -->
+                </tbody>
+            </table>
+        </div>
+
+                <div class="row">
+                    <!-- Add Task Modal -->
+                    <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addTaskModalLabel">Add New Task</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="taskName">Task Name:</label>
+                                            <input type="text" class="form-control" id="taskName" name="taskName" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dueDate">Due Date:</label>
+                                            <input type="date" class="form-control" id="dueDate" name="dueDate" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="relatedLink">Related Link:</label>
+                                            <input type="url" class="form-control" id="relatedLink" name="relatedLink" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="taskStatus">Status:</label>
+                                            <select class="form-control" id="taskStatus" name="taskStatus">
+                                                <option>Open</option>
+                                                <option>Closed</option>
+                                                <option>Canceled</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="downloadLink">Download Link:</label>
+                                            <input type="url" class="form-control" id="downloadLink" name="downloadLink" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Add Task</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            
-                <!-- Edit Resource Modal -->
-                <div class="modal fade" id="editResourceModal" tabindex="-1" role="dialog" aria-labelledby="editResourceModalLabel" aria-hidden="true">
+
+                <div class="row">
+                    <!-- View Task Modal -->
+                    <div class="modal fade" id="viewTaskModal" tabindex="-1" role="dialog" aria-labelledby="viewTaskModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="viewTaskModalLabel">Task Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Details will be filled dynamically using JavaScript based on the task opened -->
+                                    <div class="form-group">
+                                        <label for="viewTaskName">Task Name:</label>
+                                        <input type="text" class="form-control" id="viewTaskName" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="viewDueDate">Due Date:</label>
+                                        <input type="date" class="form-control" id="viewDueDate" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="viewRelatedLink">Related Link:</label>
+                                        <input type="url" class="form-control" id="viewRelatedLink" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="viewTaskStatus">Status:</label>
+                                        <input type="text" class="form-control" id="viewTaskStatus" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="viewDownloadLink">Download Link:</label>
+                                        <input type="url" class="form-control" id="viewDownloadLink" readonly>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Task Modal -->
+                <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="editResourceModalLabel">Edit Resource</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                                <h5 class="modal-title" id="editTaskModalLabel">Edit Task</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="editResourceForm">
+                                <form id="editTaskForm">
                                     <div class="form-group">
-                                        <label for="editResourceName">Resource Name:</label>
-                                        <input type="text" class="form-control" id="editResourceName" name="editResourceName" required>
+                                        <label for="editTaskName">Task Name:</label>
+                                        <input type="text" class="form-control" id="editTaskName" name="editTaskName" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="editUploadDate">Upload Date:</label>
-                                        <input type="date" class="form-control" id="editUploadDate" name="editUploadDate" required>
+                                        <label for="editDueDate">Due Date:</label>
+                                        <input type="date" class="form-control" id="editDueDate" name="editDueDate" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="editRelatedLink">Related Link:</label>
                                         <input type="url" class="form-control" id="editRelatedLink" name="editRelatedLink" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="editResourceStatus">Category:</label>
-                                        <select class="form-control" id="editResourceStatus" name="editResourceStatus">
-                                            <option>Public</option>
-                                            <option>Private</option>
+                                        <label for="editTaskStatus">Status:</label>
+                                        <select class="form-control" id="editTaskStatus" name="editTaskStatus">
+                                            <option>Completed</option>
+                                            <option>In Progress</option>
+                                            <option>Pending</option>
+                                            <option>Canceled</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="editTopicDescription">Topic Description:</label>
-                                        <textarea class="form-control" id="editTopicDescription" name="editTopicDescription" rows="3" required></textarea>
+                                        <label for="editDownloadLink">Download Link:</label>
+                                        <input type="url" class="form-control" id="editDownloadLink" name="editDownloadLink">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                 </form>
@@ -516,52 +603,11 @@
                     </div>
                 </div>
 
-                <!-- View Resource Modal -->
-                <div class="modal fade" id="viewResourceModal" tabindex="-1" role="dialog" aria-labelledby="viewResourceModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="viewResourceModalLabel">Knowledge Bank Details</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Details will be filled dynamically using JavaScript based on the resource opened -->
-                                <div class="form-group">
-                                    <label for="viewResourceName">Resource Name:</label>
-                                    <input type="text" class="form-control" id="viewResourceName" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="viewUploadDate">Upload Date:</label>
-                                    <input type="date" class="form-control" id="viewUploadDate" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="viewRelatedLink">Related Link:</label>
-                                    <input type="url" class="form-control" id="viewRelatedLink" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="viewStatus">Status:</label>
-                                    <input type="text" class="form-control" id="viewStatus" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="viewCategory">Category:</label>
-                                    <input type="text" class="form-control" id="viewCategory" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="viewTopicDescription">Topic Description:</label>
-                                    <textarea class="form-control" id="viewTopicDescription" rows="3" readonly></textarea>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
+    
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -570,26 +616,47 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
+            // Function to handle deletion of a task
+            $('.delete-task-btn').click(function () {
+                var taskId = $(this).data('task-id');
+                var confirmed = confirm("Are you sure you want to delete this task?");
+
+                if (confirmed) {
+                    // Perform deletion logic here (remove the table row)
+                    $('#taskRow_' + taskId).remove(); // Assuming you add an ID to each <tr> for easier deletion
+                    // Example: <tr id="taskRow_001"> ... </tr>
+
+                    // Additional logic (e.g., AJAX call to delete data from backend)
+                }
+            });
+
             // Handle opening the View Task modal and populate it with data
-            $('#viewResourceModal').on('show.bs.modal', function (event) {
+            $('#viewTaskModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 var taskId = button.data('task-id'); // Extract info from data-* attributes
 
                 // Fetch the data based on task ID (this should be replaced with actual data fetching logic)
                 var taskData = {
                     '001': {
-                        name: 'Project Proposal',
+                        name: 'Complete Project Proposal',
                         date: '2024-06-10',
                         link: 'https://example.com',
                         status: 'Completed',
-                        downloadLink: 'https://example.com/download'
+                        downloadLink: 'https://example.com/file1.zip'
                     },
                     '002': {
-                        name: 'Chapter 1 Review',
+                        name: 'Review Chapter 1',
                         date: '2024-06-15',
                         link: 'https://example.com',
                         status: 'In Progress',
                         downloadLink: ''
+                    },
+                    '003': {
+                        name: 'Review Chapter 2',
+                        date: '2024-06-20',
+                        link: 'https://example.com',
+                        status: 'Completed',
+                        downloadLink: 'https://example.com/file3.zip'
                     }
                     // Add more data as needed
                 };
@@ -605,10 +672,10 @@
             });
 
             // Show alert and hide modal when adding a task
-            $('#addResourceForm').submit(function(event) {
+            $('#addTaskForm').submit(function(event) {
                 event.preventDefault();
-                alert("Approval request has been sent to the admin.");
-                $('#addResourceModal').modal('hide');
+                alert("Task has been added successfully.");
+                $('#addTaskModal').modal('hide');
                 // Add your form submission logic here (e.g., AJAX call to submit the form data)
             });
 
@@ -620,18 +687,25 @@
                 // Fetch the data based on task ID (this should be replaced with actual data fetching logic)
                 var taskData = {
                     '001': {
-                        name: 'Project Proposal',
+                        name: 'Complete Project Proposal',
                         date: '2024-06-10',
                         link: 'https://example.com',
                         status: 'Completed',
-                        downloadLink: 'https://example.com/download'
+                        downloadLink: 'https://example.com/file1.zip'
                     },
                     '002': {
-                        name: 'Chapter 1 Review',
+                        name: 'Review Chapter 1',
                         date: '2024-06-15',
                         link: 'https://example.com',
                         status: 'In Progress',
                         downloadLink: ''
+                    },
+                    '003': {
+                        name: 'Review Chapter 2',
+                        date: '2024-06-20',
+                        link: 'https://example.com',
+                        status: 'Completed',
+                        downloadLink: 'https://example.com/file3.zip'
                     }
                     // Add more data as needed
                 };
@@ -647,11 +721,11 @@
             });
 
             // Handle Add Task form submission
-            $('#addResourceModal form').on('submit', function (e) {
+            $('#addTaskModal form').on('submit', function (e) {
                 e.preventDefault();
                 // Add your form submission logic here
                 console.log('Adding task:', $(this).serializeArray());
-                $('#addResourceModal').modal('hide');
+                $('#addTaskModal').modal('hide');
             });
 
             // Handle Edit Task form submission
@@ -662,30 +736,15 @@
                 $('#editTaskModal').modal('hide');
             });
 
-            // Show/hide fields based on radio button selection
-            $('input[name="addLink"]').on('change', function () {
-                if ($('#addLinkYes').is(':checked')) {
-                    $('#relatedLinkField').show();
-                    $('#relatedLink').attr('required', true);
-                    $('#topicDescriptionField').hide();
-                    $('#topicDescription').attr('required', false);
-                } else if ($('#addLinkNo').is(':checked')) {
-                    $('#relatedLinkField').hide();
-                    $('#relatedLink').attr('required', false);
-                    $('#topicDescriptionField').show();
-                    $('#topicDescription').attr('required', true);
+            // Delete session action
+            $('.delete-task').click(function(event) {
+                event.preventDefault();
+                var taskId = $(this).data('task-id');
+                if(confirm("Are you sure you want to delete this Task?")) {
+                    alert("Task " + taskId + " has been deleted.");
+                    // Add your delete logic here (e.g., AJAX call to delete the session)
                 }
             });
-            // Delete session action
-            $('.delete-resources').click(function(event) {
-                    event.preventDefault();
-                    var resourcesId = $(this).data('resources-id');
-                    if(confirm("Are you sure you want to delete this Resources?")) {
-                        alert("Reasource " + resourcesId + " has been deleted.");
-                        // Add your delete logic here (e.g., AJAX call to delete the session)
-                    }
-                });
-
         });
     </script>
 
