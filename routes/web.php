@@ -9,6 +9,7 @@ use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Broadcast;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ModuleController;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 
@@ -198,6 +199,7 @@ Route::match(['get','post'],'/menteeprofile','App\Http\Controllers\MenteeControl
 
 // Route::match(['get','post'],'/mentortaskadd','App\Http\Controllers\MentorController@mentortaskadd')->name('mentortaskadd');
 
+
 //  ================ Mentor List ================= 
 
 
@@ -230,3 +232,11 @@ Route::match(['get','post'],'/opportunity','App\Http\Controllers\AdminController
 Route::match(['get','post'],'/adminsession','App\Http\Controllers\AdminController@adminsession')->name('adminsession');
 
 Route::match(['get','post'],'/tableview','App\Http\Controllers\AdminController@tableview')->name('tableview');
+
+Route::match(['get','post'],'/adminquizprogress','App\Http\Controllers\AdminController@adminquizprogress')->name('adminquizprogress');
+
+Route::match(['get','post'],'/certificate','App\Http\Controllers\AdminController@showcertificate')->name('showcertificate');
+
+Route::match(['get','post'],'/download','App\Http\Controllers\AdminController@download')->name('download');
+
+Route::match(['get','post'],'/achievement','App\Http\Controllers\AdminController@achievement')->name('achievement');

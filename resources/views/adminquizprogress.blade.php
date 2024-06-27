@@ -43,7 +43,7 @@
 
         .container {
             position: relative;
-            width: 100%;
+            /* width: 100%; */
         }
 
         .navigation {
@@ -93,7 +93,7 @@
         }
 
         .navigation ul li.active a:hover {
-            background: darkcyan;
+            background:darkcyan;
             color: black;
         }
 
@@ -174,49 +174,29 @@
             border-radius: 50%;
             object-fit: cover;
         }
-
-        .card {
-            border-radius: 1rem;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        
+        .summary-table {
+            /* margin: 50px auto; */
+            max-width: 60%;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .summary-table th, .summary-table td {
+            padding: 15px;
             text-align: center;
-            height: 150px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, background-color 0.3s;
-            background-color:darkcyan;
-            color: black;
         }
-        .card:hover {
-            background-color: var(--white);
-            color: black;
-            transform: scale(1.05);
+        .summary-table th {
+            background-color: #007bff;
+            color: #fff;
         }
-        .numbers {
-            font-size: 1.5rem;
-            font-weight: 500;
+        .summary-table td {
+            background-color: #f8f9fa;
         }
-        .cardName {
-            font-size: 1.1rem;
-            /* margin-top: 2px; */
+        .summary-table .header {
+            font-size: 1.25rem;
+            font-weight: bold;
         }
-        .iconBx {
-            margin-top: 2px;
-        }
-        .table {
-            width: 100%;
-            margin-left: 30px;
-            }
-
-            .progress {
-            height: 20px;
-            }
-
-            .badge {
-            font-size: 1rem;
-            }
         @media (max-width: 768px) {
             .navigation {
                 left: -300px;
@@ -299,7 +279,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('showcertificate')}}">
+                <a href="#">
                     <span class="icon"><i class="fa-solid fa-certificate"></i></span>
                     <span class="title">Certificate</span>
                 </a>
@@ -337,140 +317,39 @@
         </div>
 
         <!-- ======================= Cards ================== -->
-        <div class="container my-5">
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Overall Quiz Details</h2>
             <div class="row">
-                <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">2</div>
-                            <div class="cardName">Total Mentor Mentee Pairs</div>
-                            <div class="iconBx">
-                                <i class="fa-solid fa-user-group"></i>
-                            </div>
-                        </div>
-                    </a>
+                <div class="col-md-6 mb-4">
+                    <table class="table summary-table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th >Metric</th>
+                                <th >Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Total Quiz</td>
+                                <td>35</td>
+                            </tr>
+                            <tr>
+                                <td>Total Quiz completeted</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>Total Quiz Pending</td>
+                                <td>28</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">3</div>
-                            <div class="cardName">Registered Mentors</div>
-                            <div class="iconBx">
-                            <i class="fa-solid fa-chalkboard-user"></i></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">3</div>
-                            <div class="cardName">Registered Mentees</div>
-                            <div class="iconBx">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="{{route('adminmodule')}}" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers"></div>
-                            <div class="cardName">Module Overview</div>
-                            <div class="iconBx">
-                                <i class="fa-solid fa-diagram-project"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">2</div>
-                            <div class="cardName">Total Sessions</div>
-                            <div class="iconBx">
-                                <i class="fa-solid fa-users"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="#"  class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">1</div>
-                            <div class="cardName">Total Guest Lectures</div>
-                            <div class="iconBx">
-                            <i class="fa-solid fa-user-tie"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="{{route('adminquizprogress')}}"  class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">1</div>
-                            <div class="cardName">Total Quiz Progress</div>
-                            <div class="iconBx">
-                            <i class="fa-solid fa-user-tie"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">60</div>
-                            <div class="cardName">Total Minutes Mentored</div>
-                            <div class="iconBx">
-                                <i class="fa-solid fa-clock"></i>
-                            </div>
-                        </div>
-                    </a>
+                <div class="col-md-6 mb-4">
+                    <canvas id="quizChart" style="width:100%;max-width:900px"></canvas>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <h3> Top Mentor</h3>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                        <th scope="col">Mentor</th>
-                        <th scope="col">Achievements</th>
-                        <th scope="col">Progress</th>
-                        <th scope="col">Badge</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td>Mentor 1</td>
-                        <td>75%</td>
-                        <td>
-                            <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge badge-success">Expert</span></td>
-                        </tr>
-                        <tr>
-                        <td>Mentor 2</td>
-                        <td>50%</td>
-                        <td>
-                            <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge badge-warning">Intermediate</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- <div class="row">
-            <div class="col-md-4 mb-4">
-            </div>
-        </div> -->
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -490,6 +369,34 @@
             main.classList.toggle('active');
         });
     </script>
+    <script>
+        const ctx = document.getElementById('quizChart').getContext('2d');
+        const quizChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Completed', 'Pending'],
+            datasets: [{
+            label: 'Quiz Progress',
+            data: [7, 28],
+            backgroundColor: ['#28a745', '#dc3545'],
+            borderColor: ['#28a745', '#dc3545'],
+            borderWidth: 1
+            }]
+        },
+        options: {
+            cutout: '70%',
+            responsive: true,
+            plugins: {
+            legend: {
+                position: 'top',
+            },
+            tooltip: {
+                enabled: true,
+            }
+            }
+        }
+        });
+  </script>
 </body>
 
 </html>

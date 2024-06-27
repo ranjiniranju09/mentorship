@@ -84,16 +84,16 @@
 
         .navigation ul li a:hover {
             color: var(--black1);
-            background-color: coral;
+            background-color: darkcyan;
            
         }
         .navigation ul li.active a {
-            background: coral;
+            background: darkcyan;
             color: black;
         }
 
         .navigation ul li.active a:hover {
-            background: coral;
+            background: darkcyan;
             color: black;
         }
 
@@ -315,6 +315,7 @@
                         <th>Assigned Mentor</th>
                         <th>Module Completed</th>
                         <th>Modules Pending</th>
+
                         <th>Action</th>
                     </tr>
                 </thead>

@@ -174,49 +174,14 @@
             border-radius: 50%;
             object-fit: cover;
         }
-
         .card {
-            border-radius: 1rem;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            height: 150px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, background-color 0.3s;
-            background-color:darkcyan;
-            color: black;
+            margin-top: 50%;
+            width: 800px;
+            margin-left: 110px;
+            border: black;
+            border-radius: 5%;
         }
-        .card:hover {
-            background-color: var(--white);
-            color: black;
-            transform: scale(1.05);
-        }
-        .numbers {
-            font-size: 1.5rem;
-            font-weight: 500;
-        }
-        .cardName {
-            font-size: 1.1rem;
-            /* margin-top: 2px; */
-        }
-        .iconBx {
-            margin-top: 2px;
-        }
-        .table {
-            width: 100%;
-            margin-left: 30px;
-            }
 
-            .progress {
-            height: 20px;
-            }
-
-            .badge {
-            font-size: 1rem;
-            }
         @media (max-width: 768px) {
             .navigation {
                 left: -300px;
@@ -253,7 +218,7 @@
 
 <body>
     <!-- =============== Navigation ================ -->
-    <div class="navigation">
+    <!-- <div class="navigation">
         <ul>
             <li>
             <a href="{{ route('dashboardadmin') }}">
@@ -312,17 +277,16 @@
                 </a>
             </li>
         </ul>
-    </div>
+    </div> -->
 
     <!-- ========================= Main ==================== -->
     <div class="main">
         <!-- ================ Top Bar ================= -->
-        <div class="topbar">
+        <!-- <div class="topbar">
             <div class="toggle">
                 <ion-icon name="menu-outline"></ion-icon>
             </div>
 
-            <!-- Search -->
             <div class="search">
                 <label>
                     <ion-icon name="search-outline"></ion-icon>
@@ -330,147 +294,32 @@
                 </label>
             </div>
 
-            <!-- User Image -->
             <div class="user">
                 <a href="#"><i class="fa-solid fa-user fa-beat fa-2xl"></i></a>
             </div>
-        </div>
+        </div> -->
 
         <!-- ======================= Cards ================== -->
-        <div class="container my-5">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">2</div>
-                            <div class="cardName">Total Mentor Mentee Pairs</div>
-                            <div class="iconBx">
-                                <i class="fa-solid fa-user-group"></i>
-                            </div>
-                        </div>
-                    </a>
+        <div class="card certificate-container mt-4 border-4 shadow-sm rounded">
+            <div class="card-body p-4 bg-light rounded">
+                <div class="certificate-title text-center mb-4">
+                    <h3>Certificate of Completion</h3>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">3</div>
-                            <div class="cardName">Registered Mentors</div>
-                            <div class="iconBx">
-                            <i class="fa-solid fa-chalkboard-user"></i></i>
-                            </div>
-                        </div>
-                    </a>
+                <div class="certificate-body">
+                    <p class="text-center">This is to certify that</p>
+                    <h4 class="text-center mb-4"><strong>{{ $name }}</strong></h4>
+                    <p class="text-center">has successfully completed the course</p>
+                    <h5 class="text-center mt-4"><strong>{{ $course }}</strong></h5>
+                    <p class="text-center">on</p>
+                    <h5 class="text-center"><strong>{{ $date }}</strong></h5>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">3</div>
-                            <div class="cardName">Registered Mentees</div>
-                            <div class="iconBx">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="{{route('adminmodule')}}" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers"></div>
-                            <div class="cardName">Module Overview</div>
-                            <div class="iconBx">
-                                <i class="fa-solid fa-diagram-project"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">2</div>
-                            <div class="cardName">Total Sessions</div>
-                            <div class="iconBx">
-                                <i class="fa-solid fa-users"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="#"  class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">1</div>
-                            <div class="cardName">Total Guest Lectures</div>
-                            <div class="iconBx">
-                            <i class="fa-solid fa-user-tie"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="{{route('adminquizprogress')}}"  class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">1</div>
-                            <div class="cardName">Total Quiz Progress</div>
-                            <div class="iconBx">
-                            <i class="fa-solid fa-user-tie"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="numbers">60</div>
-                            <div class="cardName">Total Minutes Mentored</div>
-                            <div class="iconBx">
-                                <i class="fa-solid fa-clock"></i>
-                            </div>
-                        </div>
-                    </a>
+                <div class="certificate-footer text-center mt-4">
+                    <p>Congratulations!</p>
                 </div>
             </div>
+            <div class="certificate-decorations"></div>
         </div>
 
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <h3> Top Mentor</h3>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                        <th scope="col">Mentor</th>
-                        <th scope="col">Achievements</th>
-                        <th scope="col">Progress</th>
-                        <th scope="col">Badge</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td>Mentor 1</td>
-                        <td>75%</td>
-                        <td>
-                            <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge badge-success">Expert</span></td>
-                        </tr>
-                        <tr>
-                        <td>Mentor 2</td>
-                        <td>50%</td>
-                        <td>
-                            <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge badge-warning">Intermediate</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- <div class="row">
-            <div class="col-md-4 mb-4">
-            </div>
-        </div> -->
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -489,6 +338,12 @@
             navigation.classList.toggle('active');
             main.classList.toggle('active');
         });
+    </script>
+    <script>
+        document.getElementById('generateButton').onclick = function() {
+            document.getElementById('certificateContainer').style.display = 'block';
+            document.getElementById('downloadButton').style.display = 'inline';
+        };
     </script>
 </body>
 

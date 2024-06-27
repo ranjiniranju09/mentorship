@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 
 class AdminController extends Controller
@@ -63,9 +65,33 @@ class AdminController extends Controller
     {
         return view('tableview');
     }
+    public function adminquizprogress()
+    {
+        return view('adminquizprogress');
+    }
 
+    public function showcertificate()
+    {
+        $name = 'John Doe';
+        $course = 'Laravel Basics';
+        $date = date('F d, Y');
 
+        return view('certificate', compact('name', 'course', 'date'));
+    }
 
+    public function download()
+    {
+        $name = 'John Doe';
+        $course = 'Laravel Basics';
+        $date = date('F d, Y');
 
+        // $pdf = PDF::loadView('certificate', compact('name', 'course', 'date'));
+        return view('downloadcertificate', compact('name', 'course', 'date'));
+    }
+    public function achievement()
+    {
+        return view('achievement');
+    }
 
 }
+

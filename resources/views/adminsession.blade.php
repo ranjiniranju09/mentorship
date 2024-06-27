@@ -84,16 +84,16 @@
 
         .navigation ul li a:hover {
             color: var(--black1);
-            background-color: coral;
+            background-color: darkcyan;
            
         }
         .navigation ul li.active a {
-            background: coral;
+            background: darkcyan;
             color: black;
         }
 
         .navigation ul li.active a:hover {
-            background: coral;
+            background: darkcyan;
             color: black;
         }
 
@@ -197,6 +197,28 @@
             width: 100% !important;
             height: auto !important;
         }
+        .summary-table {
+            margin: 50px auto;
+            max-width: 60%;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .summary-table th, .summary-table td {
+            padding: 15px;
+            text-align: center;
+        }
+        .summary-table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .summary-table td {
+            background-color: #f8f9fa;
+        }
+        .summary-table .header {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
 
         @media (max-width: 768px) {
             .navigation {
@@ -242,8 +264,8 @@
                     <h5><span class="title">Admin</span></h5>
                 </a>
             </li>
-            <li class="active">
-                <a href="">
+            <li>
+                <a href="{{ route('dashboardadmin') }}">
                     <span class="icon"><i class="fas fa-home"></i></span>
                     <span class="title" >Dashboard</span>
                 </a>
@@ -255,11 +277,10 @@
                     <span class="title">Profile</span>
                 </a>
             </li>
-
-            <li>
-                <a href="{{ route('menteetaskprogress') }}">
-                    <span class="icon"><i class="fa-solid fa-list"></i></ion-icon></span>
-                    <span class="title">Task</span>
+            <li class="active">
+                <a href="{{route('adminsession')}}">
+                    <span class="icon"><i class="fa-solid fa-users"></i></span>
+                    <span class="title">Session</span>
                 </a>
             </li>
             <li>
@@ -323,6 +344,36 @@
             <div class="chart-container">
                 <canvas id="sessionChart"></canvas>
             </div>
+        </div>
+
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Overall Session Details</h2>
+            <table class="table summary-table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th >Metric</th>
+                        <th >Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Total Sessions</td>
+                        <td>37</td>
+                    </tr>
+                    <tr>
+                        <td>Sessions Pending</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>Total Guest Sessions</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td>Guest Sessions Pending</td>
+                        <td>4</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
         
