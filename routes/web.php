@@ -240,3 +240,5 @@ Route::match(['get','post'],'/certificate','App\Http\Controllers\AdminController
 Route::match(['get','post'],'/download','App\Http\Controllers\AdminController@download')->name('download');
 
 Route::match(['get','post'],'/achievement','App\Http\Controllers\AdminController@achievement')->name('achievement');
+
+Route::match(['get','post'],'/adminresource','App\Http\Controllers\AdminController@adminresource')->name('adminresource');

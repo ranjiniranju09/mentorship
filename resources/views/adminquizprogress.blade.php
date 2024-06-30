@@ -42,8 +42,9 @@
         }
 
         .container {
-            position: relative;
-            /* width: 100%; */
+            max-width: 1000px; /* Adjust as needed */
+            margin: auto; /* Center the container */
+            padding: 20px; /* Add padding for spacing */
         }
 
         .navigation {
@@ -176,8 +177,9 @@
         }
         
         .summary-table {
-            /* margin: 50px auto; */
-            max-width: 60%;
+            width: 100%;
+            margin-top: 20px;
+            max-width: 100%;
             border: 1px solid #dee2e6;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -197,6 +199,10 @@
             font-size: 1.25rem;
             font-weight: bold;
         }
+        .col-md-6 {
+            padding: 0 10px; /* Adjust column padding */
+        }
+    
         @media (max-width: 768px) {
             .navigation {
                 left: -300px;
@@ -212,6 +218,9 @@
 
             .main.active {
                 margin-left: 300px;
+            }
+            .col-md-6 {
+                padding: 0;
             }
         }
 
@@ -324,8 +333,8 @@
                     <table class="table summary-table">
                         <thead class="thead-dark">
                             <tr>
-                                <th >Metric</th>
-                                <th >Count</th>
+                                <th>Metric</th>
+                                <th>Count</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -334,7 +343,7 @@
                                 <td>35</td>
                             </tr>
                             <tr>
-                                <td>Total Quiz completeted</td>
+                                <td>Total Quiz completed</td>
                                 <td>7</td>
                             </tr>
                             <tr>
@@ -345,11 +354,13 @@
                     </table>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <canvas id="quizChart" style="width:100%;max-width:900px"></canvas>
+                    <div class="canvas-container">
+                        <!-- <h2 class="text-center mb-4">Module and Chapter-wise Quiz Counts</h2> -->
+                        <canvas id="barChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -370,33 +381,47 @@
         });
     </script>
     <script>
-        const ctx = document.getElementById('quizChart').getContext('2d');
-        const quizChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Completed', 'Pending'],
-            datasets: [{
-            label: 'Quiz Progress',
-            data: [7, 28],
-            backgroundColor: ['#28a745', '#dc3545'],
-            borderColor: ['#28a745', '#dc3545'],
-            borderWidth: 1
-            }]
-        },
-        options: {
-            cutout: '70%',
-            responsive: true,
-            plugins: {
-            legend: {
-                position: 'top',
+        const ctx = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Module 1', 'Module 2', 'Module 3', 'Module 4', 'Module 5'],
+                datasets: [{
+                    label: 'Module Quiz Count',
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    data: [10, 8, 15, 12, 7]
+                }, {
+                    label: 'Chapter-wise Quiz Count',
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    data: [5, 7, 9, 6, 8]
+                }]
             },
-            tooltip: {
-                enabled: true,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        enabled: true,
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                    },
+                    y: {
+                        stacked: true
+                    }
+                }
             }
-            }
-        }
         });
-  </script>
+    </script>
 </body>
 
 </html>

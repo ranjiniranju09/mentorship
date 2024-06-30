@@ -41,11 +41,6 @@
             background: var(--gray);
         }
 
-        .container {
-            position: relative;
-            width: 100%;
-        }
-
         .navigation {
             position: fixed;
             width: 270px;
@@ -174,52 +169,33 @@
             border-radius: 50%;
             object-fit: cover;
         }
+        .centered-table {
+            margin-top:50px ;
+            width: 50%;
+            text-align: center;
+        }
 
-        .session-details {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+        .table thead {
+            background-color: #343a40;
+            color: white;
+        }
+
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .table-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 80px;
+            height: 100%;
         }
-
-        .chart-container {
-            width: 70%;
-            max-width: 700px;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        canvas {
-            width: 100% !important;
-            height: auto !important;
-        }
-        .summary-table {
-            margin: 50px auto;
-            max-width: 60%;
-            border: 1px solid #dee2e6;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .summary-table th, .summary-table td {
-            padding: 15px;
-            text-align: center;
-        }
-        .summary-table th {
-            background-color: #007bff;
-            color: #fff;
-        }
-        .summary-table td {
-            background-color: #f8f9fa;
-        }
-        .summary-table .header {
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-
         @media (max-width: 768px) {
             .navigation {
                 left: -300px;
@@ -264,7 +240,7 @@
                     <h5><span class="title">Admin</span></h5>
                 </a>
             </li>
-            <li>
+            <li class="active">
                 <a href="{{ route('dashboardadmin') }}">
                     <span class="icon"><i class="fas fa-home"></i></span>
                     <span class="title" >Dashboard</span>
@@ -277,20 +253,20 @@
                     <span class="title">Profile</span>
                 </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="{{route('adminsession')}}">
                     <span class="icon"><i class="fa-solid fa-users"></i></span>
                     <span class="title">Session</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('mentorresourceadd') }}">
+                <a href="#">
                     <span class="icon"><i class="fa-solid fa-link"></i></ion-icon></span>
                     <span class="title">Resources</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('opportunity')}}">
+                <a href="#">
                     <span class="icon"><i class="fa-solid fa-briefcase"></i></span>
                     <span class="title">Opportunity</span>
                 </a>
@@ -302,7 +278,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{route('showcertificate')}}">
                     <span class="icon"><i class="fa-solid fa-certificate"></i></span>
                     <span class="title">Certificate</span>
                 </a>
@@ -340,51 +316,26 @@
         </div>
 
         <!-- ======================= Cards ================== -->
-        <div class="session-details">
-            <div class="chart-container">
-                <canvas id="sessionChart"></canvas>
+            <div class="table-container">
+                <table class="table table-bordered table-hover centered-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Metric</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mentor-wise Resource Count</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>General Resource Count</td>
+                            <td>15</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-
-        <div class="container mt-5">
-            <h2 class="text-center mb-4">Overall Session Details</h2>
-            <table class="table summary-table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th >Metric</th>
-                        <th >Count</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Total Sessions</td>
-                        <td>37</td>
-                    </tr>
-                    <tr>
-                        <td>Past Sessions</td>
-                        <td>7</td>
-                    </tr>
-                    <tr>
-                        <td>Upcoming Sessions</td>
-                        <td>30</td>
-                    </tr>
-                    <tr>
-                        <td>Total Guest Sessions</td>
-                        <td>7</td>
-                    </tr>
-                    <tr>
-                        <td>Past Guest Sessions</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>Upcoming Guest Sessions</td>
-                        <td>4</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -394,69 +345,16 @@
     </div>
 
     <script>
-    // Menu toggle
-    const menuToggle = document.querySelector('.toggle');
-    const navigation = document.querySelector('.navigation');
-    const main = document.querySelector('.main');
+        // Menu toggle
+        const menuToggle = document.querySelector('.toggle');
+        const navigation = document.querySelector('.navigation');
+        const main = document.querySelector('.main');
 
-    menuToggle.addEventListener('click', () => {
-        navigation.classList.toggle('active');
-        main.classList.toggle('active');
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('sessionChart').getContext('2d');
-        const sessionChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['General', 'Guest Lectures', 'Module Related', 'Chapterwise Count'],
-                datasets: [{
-                    label: 'Session Details',
-                    data: [20, 15, 10, 12], // Data for General, Guest Lectures, Module Related, and Chapterwise Count
-                    backgroundColor: [
-                        '#FF6384', // Color for General
-                        '#36A2EB', // Color for Guest Lectures
-                        '#FFCE56', // Color for Module Related
-                        '#4BC0C0'  // Color for Chapterwise Count
-                    ],
-                    borderColor: [
-                        '#FF6384', // Border color for General
-                        '#36A2EB', // Border color for Guest Lectures
-                        '#FFCE56', // Border color for Module Related
-                        '#4BC0C0'  // Border color for Chapterwise Count
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        ticks: {
-                            color: '#333'
-                        }
-                    },
-                    y: {
-                        ticks: {
-                            color: '#333'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                        labels: {
-                            color: '#333'
-                        }
-                    }
-                }
-            }
+        menuToggle.addEventListener('click', () => {
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
         });
-    });
-</script>
-
+    </script>
 </body>
 
 </html>

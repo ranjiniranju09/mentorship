@@ -281,7 +281,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('adminresource') }}">
                     <span class="icon"><i class="fa-solid fa-link"></i></ion-icon></span>
                     <span class="title">Resources</span>
                 </a>
@@ -384,10 +384,10 @@
                     </a>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
+                    <a href="{{route('adminsession')}}" class="text-decoration-none">
                         <div class="card">
-                            <div class="numbers">2</div>
-                            <div class="cardName">Total Sessions</div>
+                            <div class="numbers"></div>
+                            <div class="cardName">Sessions Overview</div>
                             <div class="iconBx">
                                 <i class="fa-solid fa-users"></i>
                             </div>
@@ -432,7 +432,7 @@
 
         <div class="row">
             <div class="col-md-4 mb-4">
-                <h3> Top Mentor</h3>
+                <h3 style="margin-left: 40px;"> Top Mentor</h3>
                 <table class="table table-striped">
                     <thead>
                         <tr>

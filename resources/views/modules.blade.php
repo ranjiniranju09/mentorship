@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modules</title>
-    <!-- Bootstrap CSS -->
+    <!-- Ionicons CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/css/ionicons.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Font Awesome -->
@@ -113,7 +114,7 @@
             font-weight: bold;
         }
         .start-btn {
-            background-color: #5cb85c;
+            background-color: #0099ff;
             color: #fff;
             border-radius: 20px;
             padding: 10px 20px;
@@ -122,7 +123,8 @@
             transition: background-color 0.3s;
         }
         .start-btn:hover {
-            background-color: #4cae4c;
+            background-color: #0099ff;
+            color: #fff;
         }
         .dashboard-header-wrapper {
             margin-bottom: 30px;
@@ -289,12 +291,14 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="custom-card project">
-                            <i class="fa-brands fa-js fa-2xl" style="color: #FFD43B;"></i>
+                            <div class="custom-card project position-relative">
+                                <i class="fa-brands fa-js fa-2xl" style="color: #FFD43B;"></i>
                                 <h5>Javascript</h5>
                                 <a href="{{route('chapters')}}" class="start-btn">Explore</a>
+                                <i class="fa-solid fa-award fa-2xl position-absolute" style="top: 10px; right: 10px; color: green; font-size: 24px;"></i>
                             </div>
                         </div>
+
                         <div class="col-md-3">
                             <div class="custom-card project">
                             <i class="fa-brands fa-html5 fa-2xl" style="color: #ff9500;"></i>

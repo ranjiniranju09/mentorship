@@ -84,13 +84,16 @@ class AdminController extends Controller
         $name = 'John Doe';
         $course = 'Laravel Basics';
         $date = date('F d, Y');
-
-        // $pdf = PDF::loadView('certificate', compact('name', 'course', 'date'));
+    
         return view('downloadcertificate', compact('name', 'course', 'date'));
     }
     public function achievement()
     {
         return view('achievement');
+    }
+    public function adminresource()
+    {
+        return view('adminresource');
     }
 
 }

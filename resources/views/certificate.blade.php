@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <!-- ======= FontAwesome and Bootstrap ======= -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -197,6 +200,10 @@
             width: 80%;
             margin: 0 auto;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 11in;
+            height: 8.5in;
+            max-width: 100%;
+            max-height: 100%;
         }
         .certificate-title {
             font-size: 40px;
@@ -210,6 +217,11 @@
             margin-top: 50px;
             font-size: 16px;
         }
+    .certificate-body,
+    .certificate-header,
+    .certificate-footer {
+        width: 100%;
+    }
         @media (max-width: 768px) {
             .navigation {
                 left: -300px;
@@ -338,7 +350,7 @@
                 </div>
 
                 <div class="certificate-container mt-4" id="certificateContainer" style="display: none;">
-                    <div class="card p-4 border-2 shadow-sm rounded">
+                    <div class="card p-4 border-2 shadow-sm rounded" id="certificateContent">
                         <div class="certificate-header text-center mb-4">
                             <h3 class="certificate-title">Certificate of Completion</h3>
                         </div>
@@ -352,16 +364,21 @@
                         </div>
                         <div class="certificate-footer text-center mt-4">
                             <p>Congratulations!</p>
+                            <!-- Company Logos and Other Images -->
+                            <div class="footer-images">
+                                <img src="path_to_company_logo.png" alt="Company Logo" class="img-fluid mr-3" style="max-width: 100px;">
+                                <img src="path_to_image2.png" alt="Image 2" class="img-fluid mr-3" style="max-width: 100px;">
+                                <img src="path_to_image3.png" alt="Image 3" class="img-fluid" style="max-width: 100px;">
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-    </br>
-    </br>
-            <a href="{{route('download')}}" id="downloadButton" class="btn btn-success btn-lg mt-3" style="display: none;">Download PDF</a>
+            </br>
+            </br>
+            <!-- Download Button -->
+            <a href="{{ route('download') }}" id="downloadButton" class="btn btn-success btn-lg mt-3" style="display: none;">Download Certificate</a>
         </div>
-
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -383,20 +400,35 @@
     </script>
     <script>
         document.getElementById('generateButton').onclick = function() {
-        document.getElementById('certificateContainer').style.display = 'block';
-        document.getElementById('downloadButton').style.display = 'inline';
+            document.getElementById('certificateContainer').style.display = 'block';
+            document.getElementById('downloadButton').style.display = 'inline';
         };
 
-    // Function to print the certificate section
-    document.getElementById('downloadButton').onclick = function() {
-        var printContents = document.getElementById('certificateContainer').innerHTML;
-        var originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
-    };
+        document.getElementById('downloadButton').onclick = function() {
+            var node = document.getElementById('certificateContent');
+
+            var scale = 2;  // Increase the scale for better quality
+            var style = {
+                transform: 'scale(' + scale + ')',
+                transformOrigin: 'top left',
+                width: node.offsetWidth + 'px',
+                height: node.offsetHeight + 'px'
+            };
+
+            var param = {
+                width: node.offsetWidth * scale,
+                height: node.offsetHeight * scale,
+                style: style
+            };
+
+            domtoimage.toBlob(node, param)
+                .then(function (blob) {
+                    window.saveAs(blob, 'certificate.png'); // Save as certificate.png
+                });
+        };
     </script>
-    
+
+
 
 
 

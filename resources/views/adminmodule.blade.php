@@ -198,6 +198,7 @@
             margin-top: 30px;
             width: 900px;
             margin-left: 200px;
+            text-align: center;
         }
        
        
@@ -267,7 +268,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('mentorresourceadd') }}">
+                <a href="{{ route('adminresource') }}">
                     <span class="icon"><i class="fa-solid fa-link"></i></ion-icon></span>
                     <span class="title">Resources</span>
                 </a>
@@ -457,8 +458,8 @@
                         <tr>
                             <th></th>
                             <th>Module</th>
-                            <th>Completed</th>
-                            <th>Pending</th>
+                            <th>Total Mentee Completed</th>
+                            <th>Total Mentee Pending</th>
                             <th>Score</th>
                         </tr>
                     </thead>
@@ -479,6 +480,8 @@
                                                 <th>Chapter</th>
                                                 <th>Status</th>
                                                 <th>Score</th>
+                                                <th>Total Mentee Completed</th>
+                                                <th>Total Mentee Pending</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -486,26 +489,36 @@
                                                 <td>chapter 1</td>
                                                 <td>Completed</td>
                                                 <td>80%</td>
+                                                <td>10</td>
+                                                <td>0</td>
                                             </tr>
                                             <tr>
                                                 <td>chapter 2</td>
                                                 <td>Completed</td>
                                                 <td>75%</td>
+                                                <td>9</td>
+                                                <td>1</td>
                                             </tr>
                                             <tr>
                                                 <td>chapter 3</td>
                                                 <td>Completed</td>
                                                 <td>85%</td>
+                                                <td>8</td>
+                                                <td>2</td>
                                             </tr>
                                             <tr>
                                                 <td>chapter 4</td>
                                                 <td>Completed</td>
                                                 <td>80%</td>
+                                                <td>9</td>
+                                                <td>1</td>
                                             </tr>
                                             <tr>
                                                 <td>chapter 5</td>
                                                 <td>Completed</td>
                                                 <td>90%</td>
+                                                <td>7</td>
+                                                <td>3</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -528,6 +541,8 @@
                                                 <th>Chapter</th>
                                                 <th>Status</th>
                                                 <th>Score</th>
+                                                <th>Total Mentee Completed</th>
+                                                <th>Total Mentee Pending</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -535,26 +550,36 @@
                                                 <td>chapter 1</td>
                                                 <td>Completed</td>
                                                 <td>80%</td>
+                                                <td>8</td>
+                                                <td>2</td>
                                             </tr>
                                             <tr>
                                                 <td>chapter 2</td>
                                                 <td>Completed</td>
-                                                <td>75%</td>
+                                                <td>85%</td>
+                                                <td>7</td>
+                                                <td>3</td>
                                             </tr>
                                             <tr>
                                                 <td>chapter 3</td>
                                                 <td>Completed</td>
-                                                <td>85%</td>
+                                                <td>75%</td>
+                                                <td>9</td>
+                                                <td>1</td>
                                             </tr>
                                             <tr>
                                                 <td>chapter 4</td>
                                                 <td>Completed</td>
-                                                <td>80%</td>
+                                                <td>90%</td>
+                                                <td>6</td>
+                                                <td>4</td>
                                             </tr>
                                             <tr>
                                                 <td>chapter 5</td>
-                                                <td>pending</td>
+                                                <td>Pending</td>
+                                                <td>0%</td>
                                                 <td>0</td>
+                                                <td>10</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -565,12 +590,6 @@
                 </table>
             </div>
         </div>
-       
-
-
-
-        
-
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -626,7 +645,7 @@
             const remainingModules = totalModules - completedModules;
 
             const moduleData = {
-                labels: ['Completed Modules', 'Remaining Modules'],
+                labels: ['Students Completed All Modules', 'Students Pending Modules'],
                 datasets: [{
                     label: 'Modules Count',
                     data: [completedModules, remainingModules],
@@ -744,7 +763,11 @@
                 });
             });
         </script>
-
+        <script>
+            function toggleCollapse(selector) {
+                $(selector).collapse('toggle');
+            }
+        </script>
 
 
 </body>
